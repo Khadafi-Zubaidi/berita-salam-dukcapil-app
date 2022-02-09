@@ -28,6 +28,14 @@
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
+                                <a href="{{route('tambah_data_jdih_oleh_redaktur')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-file-alt"></i>
+                                    <p>
+                                        Tambah Data
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{route('dashboard_redaktur')}}" class="nav-link">
                                     <i class="nav-icon fas fa-home"></i>
                                     <p>
@@ -79,9 +87,11 @@
                                                         @foreach($DataTabel as $dt)
                                                             <tr>
                                                                 <td>{{$no++}}</td>
-                                                                <td>{{$dt->judul}}</td>
+                                                                <td>{!!$dt->nama_peraturan!!}</td>
                                                                 <td>
                                                                     <a href="javascript:void(0)" onclick="ubahData({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><i class="fa fa-edit"></i></a>
+                                                                    <a href="javascript:void(0)" onclick="editDataFoto({{$dt->id}})" class="btn btn-info btn-block btn-sm"><i class="fa fa-file-pdf"></i></a>
+                                                                    <a href="/jdih/{{$dt->berkas}}" target="_blank" class="btn btn-success btn-block btn-sm">Lihat Berkas</a>
                                                                 </td>
                                                             </tr>
                                                             <!-- Ubah Data -->
@@ -98,14 +108,9 @@
                                                                             <form id="ubahDataForm" action="" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" id="id1"/>
-                                                                                <label>Link *</label><br>
+                                                                                <label>Nama Peraturan *</label><br>
                                                                                 <div class="input-group mb-3">
-                                                                                    <input type="text" id="judul1" class="form-control">
-                                                                                    <div class="input-group-append">
-                                                                                        <div class="input-group-text">
-                                                                                            <span class="fas fa-id-card"></span>
-                                                                                        </div>
-                                                                                    </div>
+                                                                                    <textarea id="nama_peraturan1"></textarea>
                                                                                 </div>
                                                                                 <div class="col-12">
                                                                                     <button type="submit" class="btn btn-primary btn-block">Simpan Perubahan Data</button>
@@ -120,20 +125,20 @@
                                                                 {
                                                                     $.get('/jdihs/'+id,function(jdih){
                                                                         $("#id1").val(jdih.id);
-                                                                        $("#judul1").summernote('code', jdih.judul);
+                                                                        $("#nama_peraturan1").summernote('code', jdih.nama_peraturan);
                                                                         $("#ubahDataModal").modal('toggle');
                                                                     })
                                                                     $("#ubahDataForm").submit(function (e){
                                                                         e.preventDefault();
                                                                         let id = $("#id1").val();
-                                                                        let judul = $("#judul1").val();
+                                                                        let nama_peraturan = $("#nama_peraturan1").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
                                                                             url:"{{route('jdih.updatedata')}}",
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id:id,
-                                                                                link:link,
+                                                                                nama_peraturan:nama_peraturan,
                                                                                 _token:_token
                                                                             },
                                                                             success:function(response){
@@ -144,6 +149,63 @@
                                                                     })
                                                                 }
                                                             </script>
+                                                            <!-- Ubah File Lampiran -->
+                                                            <div class="modal fade" id="editDataFotoModal">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content bg-info">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title">Ubah File Lampiran</h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form id="editDataFotoForm" action="" method="post" enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <input type="hidden" id="id4" name="id4"/>
+                                                                                <label>Upload File (PDF)</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="file" id="file" name="file" class="form-control">
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <button type="submit" class="btn btn-primary btn-block">Upload Berkas</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <script>
+                                                                function editDataFoto(id)
+                                                                {
+                                                                    $.get('/jdihs/'+id,function(jdih){
+                                                                        $("#id4").val(jdih.id);
+                                                                        $("#editDataFotoModal").modal('toggle');
+                                                                    });
+                                                                    $.ajaxSetup({
+                                                                        headers: {
+                                                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                                                        }
+                                                                    });
+                                                                    $("#editDataFotoForm").submit(function (e){
+                                                                        e.preventDefault();
+                                                                        var formData = new FormData(this);
+                                                                        $.ajax({
+                                                                            url:"{{route('jdih.updatefile')}}",
+                                                                            type: "POST",
+                                                                            data: formData,
+                                                                            cache:false,
+                                                                            contentType: false,
+                                                                            processData: false,
+                                                                            success: (data) =>{
+                                                                                this.reset();
+                                                                                $("#editDataFotoModal").modal('hide');
+                                                                                window.location = "{{route('tampil_data_jdih_oleh_redaktur')}}";
+                                                                            }
+                                                                        });
+                                                                    });
+                                                                }
+                                                            </script> 
                                                         @endforeach
                                                     </tbody>
                                                 </table>
