@@ -119,6 +119,9 @@ Route::put('/inovasi3',[RedakturController::class,'hapus_data_inovasi_oleh_redak
 Route::get('tambah_data_inovasi_oleh_redaktur',[RedakturController::class,'tambah_data_inovasi_oleh_redaktur'])->name('tambah_data_inovasi_oleh_redaktur');
 Route::post('simpan_data_baru_inovasi_oleh_redaktur',[RedakturController::class,'simpan_data_baru_inovasi_oleh_redaktur'])->name('simpan_data_baru_inovasi_oleh_redaktur');
 
+Route::get('tampil_data_jdih_oleh_redaktur',[RedakturController::class,'tampil_data_jdih_oleh_redaktur'])->name('tampil_data_jdih_oleh_redaktur');
+Route::get('/jdihs/{id}',[RedakturController::class,'get_id_jdih_by_redaktur']);
+
 
 
 //Reporter

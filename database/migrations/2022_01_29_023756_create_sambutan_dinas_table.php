@@ -16,7 +16,7 @@ class CreateSambutanDinasTable extends Migration
         Schema::create('sambutan_dinas', function (Blueprint $table) {
             $table->id();
             $table->string('isi_sambutan')->nullable();
-            $table->string('foto')->nullable();
+            $table->string('foto')->default('kepala_dinas.jpeg');
             $table->timestamps();
         });
     }

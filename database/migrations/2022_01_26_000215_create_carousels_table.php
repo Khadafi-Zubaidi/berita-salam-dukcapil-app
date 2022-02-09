@@ -15,7 +15,6 @@ class CreateCarouselsTable extends Migration
     {
         Schema::create('carousels', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_redaktur')->nullable();
             $table->string('judul')->nullable();
             $table->string('keterangan_singkat')->nullable();
             $table->string('foto')->default('carousel.jpeg');

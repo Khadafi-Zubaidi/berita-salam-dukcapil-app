@@ -19,7 +19,7 @@ class CreateBeritasTable extends Migration
             $table->string('judul')->nullable();
             $table->string('tanggal_berita')->nullable();
             $table->text('isi_berita')->nullable();
-            $table->string('foto')->nullable();
+            $table->string('foto')->default('newspaper.png');
             $table->string('diperiksa_oleh_redaktur')->default('B');
             $table->timestamps();
         });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInovasisTable extends Migration
+class CreateJdihsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateInovasisTable extends Migration
      */
     public function up()
     {
-        Schema::create('inovasis', function (Blueprint $table) {
+        Schema::create('jdihs', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_inovasi')->nullable();
-            $table->text('deskripsi')->nullable();
-            $table->string('foto')->default('foto.png');
+            $table->text('nama_peraturan')->nullable();
+            $table->string('berkas')->default('contoh_berkas_pdf.pdf');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateInovasisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inovasis');
+        Schema::dropIfExists('jdihs');
     }
 }

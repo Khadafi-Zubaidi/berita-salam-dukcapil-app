@@ -6,6 +6,7 @@ use App\Models\Aduan;
 use App\Models\Berita;
 use App\Models\Carousel;
 use App\Models\Inovasi;
+use App\Models\Jdih;
 use App\Models\ProdukLayanan;
 use App\Models\Redaktur;
 use App\Models\Reporter;
@@ -623,6 +624,25 @@ class RedakturController extends Controller
         $data_foto_diperbaharui->foto = $data;
         $data_foto_diperbaharui->save();
         return response()->json($data_foto_diperbaharui);
+    }
+
+    public function tampil_data_jdih_oleh_redaktur(){
+        if (session()->has('LoggedRedaktur')){
+            $data_admin_untuk_dashboard = Redaktur::where('id','=',session('LoggedRedaktur'))->first();
+            $data_tabel = Jdih::orderBy('id', 'desc')->get();
+            $data = [
+                'DataTabel'=>$data_tabel,
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_redaktur.tampil_data_jdih_oleh_redaktur',$data);
+        }else{
+            return view('login.login_redaktur');
+        }
+    }
+
+    public function get_id_jdih_by_redaktur($id){
+        $data = Jdih::find($id);
+        return response()->json($data);
     }
 
 
