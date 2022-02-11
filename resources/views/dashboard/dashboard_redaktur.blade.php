@@ -84,6 +84,12 @@
                                             <p>JDIH</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_sop_oleh_redaktur')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>SOP</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item">

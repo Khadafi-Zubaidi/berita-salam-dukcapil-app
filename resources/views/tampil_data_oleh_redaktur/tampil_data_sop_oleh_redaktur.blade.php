@@ -28,7 +28,7 @@
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
-                                <a href="{{route('tambah_data_jdih_oleh_redaktur')}}" class="nav-link">
+                                <a href="{{route('tambah_data_sop_oleh_redaktur')}}" class="nav-link">
                                     <i class="nav-icon fas fa-file-alt"></i>
                                     <p>
                                         Tambah Data
@@ -63,7 +63,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title">Data Jaringan Dokumentasi dan Informasi Hukum</h5>
+                                        <h5 class="card-title">Data Standar Operasional Prosedur</h5>
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                                 <i class="fas fa-minus"></i>
@@ -78,7 +78,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
-                                                            <th>Nama Peraturan</th>
+                                                            <th>Nama SOP</th>
                                                             <th>Aksi</th>
                                                         </tr>
                                                     </thead>
@@ -87,11 +87,11 @@
                                                         @foreach($DataTabel as $dt)
                                                             <tr>
                                                                 <td>{{$no++}}</td>
-                                                                <td>{!!$dt->nama_peraturan!!}</td>
+                                                                <td>{!!$dt->nama_sop!!}</td>
                                                                 <td>
                                                                     <a href="javascript:void(0)" onclick="ubahData({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><i class="fa fa-edit"></i></a>
                                                                     <a href="javascript:void(0)" onclick="editDataFoto({{$dt->id}})" class="btn btn-info btn-block btn-sm"><i class="fa fa-file-pdf"></i></a>
-                                                                    <a href="/jdih/{{$dt->berkas}}" target="_blank" class="btn btn-success btn-block btn-sm">Lihat Berkas</a>
+                                                                    <a href="/sop/{{$dt->berkas}}" target="_blank" class="btn btn-success btn-block btn-sm">Lihat Berkas</a>
                                                                     <a href="javascript:void(0)" onclick="hapusData({{$dt->id}})" class="btn btn-danger btn-block btn-sm"><i class="fa fa-trash"></i></a>
                                                                 </td>
                                                             </tr>
@@ -100,7 +100,7 @@
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content bg-warning">
                                                                         <div class="modal-header">
-                                                                            <h4 class="modal-title">Ubah Data JDIH</h4>
+                                                                            <h4 class="modal-title">Ubah Data SOP</h4>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
@@ -109,9 +109,9 @@
                                                                             <form id="ubahDataForm" action="" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" id="id1"/>
-                                                                                <label>Nama Peraturan *</label><br>
+                                                                                <label>Nama SOP *</label><br>
                                                                                 <div class="input-group mb-3">
-                                                                                    <textarea id="nama_peraturan1"></textarea>
+                                                                                    <textarea id="nama_sop1"></textarea>
                                                                                 </div>
                                                                                 <div class="col-12">
                                                                                     <button type="submit" class="btn btn-primary btn-block">Simpan Perubahan Data</button>
@@ -124,27 +124,27 @@
                                                             <script>
                                                                 function ubahData(id)
                                                                 {
-                                                                    $.get('/jdihs/'+id,function(jdih){
-                                                                        $("#id1").val(jdih.id);
-                                                                        $("#nama_peraturan1").summernote('code', jdih.nama_peraturan);
+                                                                    $.get('/sops/'+id,function(sop){
+                                                                        $("#id1").val(sop.id);
+                                                                        $("#nama_sop1").summernote('code', sop.nama_sop);
                                                                         $("#ubahDataModal").modal('toggle');
                                                                     })
                                                                     $("#ubahDataForm").submit(function (e){
                                                                         e.preventDefault();
                                                                         let id = $("#id1").val();
-                                                                        let nama_peraturan = $("#nama_peraturan1").val();
+                                                                        let nama_sop = $("#nama_sop1").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
-                                                                            url:"{{route('jdih.updatedata')}}",
+                                                                            url:"{{route('sop.updatedata')}}",
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id:id,
-                                                                                nama_peraturan:nama_peraturan,
+                                                                                nama_sop:nama_sop,
                                                                                 _token:_token
                                                                             },
                                                                             success:function(response){
                                                                                 $("#ubahDataModal").modal('hide');
-                                                                                window.location = "{{route('tampil_data_jdih_oleh_redaktur')}}";
+                                                                                window.location = "{{route('tampil_data_sop_oleh_redaktur')}}";
                                                                             }
                                                                         })
                                                                     })
@@ -179,8 +179,8 @@
                                                             <script>
                                                                 function editDataFoto(id)
                                                                 {
-                                                                    $.get('/jdihs/'+id,function(jdih){
-                                                                        $("#id4").val(jdih.id);
+                                                                    $.get('/sops/'+id,function(sop){
+                                                                        $("#id4").val(sop.id);
                                                                         $("#editDataFotoModal").modal('toggle');
                                                                     });
                                                                     $.ajaxSetup({
@@ -192,7 +192,7 @@
                                                                         e.preventDefault();
                                                                         var formData = new FormData(this);
                                                                         $.ajax({
-                                                                            url:"{{route('jdih.updatefile')}}",
+                                                                            url:"{{route('sop.updatefile')}}",
                                                                             type: "POST",
                                                                             data: formData,
                                                                             cache:false,
@@ -201,12 +201,12 @@
                                                                             success: (data) =>{
                                                                                 this.reset();
                                                                                 $("#editDataFotoModal").modal('hide');
-                                                                                window.location = "{{route('tampil_data_jdih_oleh_redaktur')}}";
+                                                                                window.location = "{{route('tampil_data_sop_oleh_redaktur')}}";
                                                                             }
                                                                         });
                                                                     });
                                                                 }
-                                                            </script>
+                                                            </script> 
                                                             <!-- Hapus Data -->
                                                             <div class="modal fade" id="hapusDataModal">
                                                                 <div class="modal-dialog modal-lg">
@@ -221,9 +221,9 @@
                                                                             <form id="hapusDataForm" action="" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" id="id6"/>
-                                                                                <label>Nama Peraturan *</label><br>
+                                                                                <label>Nama SOP *</label><br>
                                                                                 <div class="input-group mb-3">
-                                                                                    <input type="text" id="nama_peraturan6" class="form-control" disabled>
+                                                                                    <input type="text" id="nama_sop6" class="form-control" disabled>
                                                                                 </div>
                                                                                 <div class="col-12">
                                                                                     <button type="submit" class="btn btn-danger btn-block">Hapus Data</button>
@@ -236,9 +236,9 @@
                                                             <script>
                                                                 function hapusData(id)
                                                                 {
-                                                                    $.get('/jdihs/'+id,function(jdih){
-                                                                        $("#id6").val(jdih.id);
-                                                                        $("#nama_peraturan6").summernote('code', jdih.nama_peraturan);
+                                                                    $.get('/sops/'+id,function(sop){
+                                                                        $("#id6").val(sop.id);
+                                                                        $("#nama_sop6").summernote('code', sop.nama_sop);
                                                                         $("#hapusDataModal").modal('toggle');
                                                                     })
                                                                     $("#hapusDataForm").submit(function (e){
@@ -246,7 +246,7 @@
                                                                         let id = $("#id6").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
-                                                                            url:"{{route('jdih.deletedata')}}",
+                                                                            url:"{{route('sop.deletedata')}}",
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id:id,
@@ -254,12 +254,12 @@
                                                                             },
                                                                             success:function(response){
                                                                                 $("#hapusDataModal").modal('hide');
-                                                                                window.location = "{{route('tampil_data_jdih_oleh_redaktur')}}";
+                                                                                window.location = "{{route('tampil_data_sop_oleh_redaktur')}}";
                                                                             }
                                                                         })
                                                                     })
                                                                 }
-                                                            </script>     
+                                                            </script>    
                                                         @endforeach
                                                     </tbody>
                                                 </table>
