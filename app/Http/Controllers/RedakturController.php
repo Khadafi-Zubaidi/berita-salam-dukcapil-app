@@ -6,10 +6,12 @@ use App\Models\Aduan;
 use App\Models\Berita;
 use App\Models\Carousel;
 use App\Models\Inovasi;
+use App\Models\Jdih;
 use App\Models\ProdukLayanan;
 use App\Models\Redaktur;
 use App\Models\Reporter;
 use App\Models\SambutanDinas;
+use App\Models\Sop;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -624,6 +626,161 @@ class RedakturController extends Controller
         $data_foto_diperbaharui->save();
         return response()->json($data_foto_diperbaharui);
     }
+
+    public function tampil_data_jdih_oleh_redaktur(){
+        if (session()->has('LoggedRedaktur')){
+            $data_admin_untuk_dashboard = Redaktur::where('id','=',session('LoggedRedaktur'))->first();
+            $data_tabel = Jdih::orderBy('id', 'desc')->get();
+            $data = [
+                'DataTabel'=>$data_tabel,
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_redaktur.tampil_data_jdih_oleh_redaktur',$data);
+        }else{
+            return view('login.login_redaktur');
+        }
+    }
+
+    public function get_id_jdih_by_redaktur($id){
+        $data = Jdih::find($id);
+        return response()->json($data);
+    }
+
+    public function simpan_perubahan_data_jdih_oleh_redaktur(Request $request){
+        $data_perubahan = Jdih::find($request->id);
+        $data_perubahan->nama_peraturan = $request->nama_peraturan;
+        $data_perubahan->save();
+        return response()->json($data_perubahan);
+    }
+
+    public function hapus_data_jdih_oleh_redaktur(Request $request){
+        $data_dihapus = Jdih::find($request->id);
+        $data_dihapus->delete();
+        return response()->json($data_dihapus);
+    }
+
+    public function tambah_data_jdih_oleh_redaktur(){
+        if (session()->has('LoggedRedaktur')){
+            $data_admin_untuk_dashboard = Redaktur::where('id','=',session('LoggedRedaktur'))->first();
+            $data = [
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tambah_data_oleh_redaktur.tambah_data_jdih_oleh_redaktur',$data);
+        }else{
+            return view('login.login_redaktur');
+        }
+    }
+
+    public function simpan_data_baru_jdih_oleh_redaktur(Request $request){
+        if (session()->has('LoggedRedaktur')){
+            $request->validate([
+                'nama_peraturan'=>'required',
+            ],[
+                'nama_peraturan.required'=>'Nama Peraturan tidak boleh kosong',
+            ]);
+            $data_baru = new Jdih();
+            $data_baru->nama_peraturan = $request->nama_peraturan;
+            $data_baru->save();
+            return redirect('tampil_data_jdih_oleh_redaktur');
+        }else{
+            return view('login.login_redaktur');
+        }
+    }
+
+    public function simpan_perubahan_file_jdih_oleh_redaktur(Request $request){
+        if($request->hasfile('file')){
+            $data_foto_diperbaharui = Jdih::find($request->id4);
+            $request->validate([
+                'file' => 'required|mimes:pdf',
+            ]);
+            $extension = $request->file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $request->file->move(public_path('jdih'),$filename);
+            $data = $filename;
+            $data_foto_diperbaharui->berkas = $data;
+            $data_foto_diperbaharui->save();
+            return redirect('tampil_data_jdih_oleh_redaktur'); 
+        }
+        
+    }
+
+    public function tampil_data_sop_oleh_redaktur(){
+        if (session()->has('LoggedRedaktur')){
+            $data_admin_untuk_dashboard = Redaktur::where('id','=',session('LoggedRedaktur'))->first();
+            $data_tabel = Sop::orderBy('id', 'desc')->get();
+            $data = [
+                'DataTabel'=>$data_tabel,
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_redaktur.tampil_data_sop_oleh_redaktur',$data);
+        }else{
+            return view('login.login_redaktur');
+        }
+    }
+
+    public function get_id_sop_by_redaktur($id){
+        $data = Sop::find($id);
+        return response()->json($data);
+    }
+
+    public function simpan_perubahan_data_sop_oleh_redaktur(Request $request){
+        $data_perubahan = Sop::find($request->id);
+        $data_perubahan->nama_sop = $request->nama_sop;
+        $data_perubahan->save();
+        return response()->json($data_perubahan);
+    }
+
+    public function tambah_data_sop_oleh_redaktur(){
+        if (session()->has('LoggedRedaktur')){
+            $data_admin_untuk_dashboard = Redaktur::where('id','=',session('LoggedRedaktur'))->first();
+            $data = [
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tambah_data_oleh_redaktur.tambah_data_sop_oleh_redaktur',$data);
+        }else{
+            return view('login.login_redaktur');
+        }
+    }
+
+    public function simpan_data_baru_sop_oleh_redaktur(Request $request){
+        if (session()->has('LoggedRedaktur')){
+            $request->validate([
+                'nama_sop'=>'required',
+            ],[
+                'nama_sop.required'=>'Nama SOP tidak boleh kosong',
+            ]);
+            $data_baru = new Sop();
+            $data_baru->nama_sop = $request->nama_sop;
+            $data_baru->save();
+            return redirect('tampil_data_sop_oleh_redaktur');
+        }else{
+            return view('login.login_redaktur');
+        }
+    }
+
+    public function simpan_perubahan_file_sop_oleh_redaktur(Request $request){
+        if($request->hasfile('file')){
+            $data_foto_diperbaharui = Sop::find($request->id4);
+            $request->validate([
+                'file' => 'required|mimes:pdf',
+            ]);
+            $extension = $request->file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $request->file->move(public_path('sop'),$filename);
+            $data = $filename;
+            $data_foto_diperbaharui->berkas = $data;
+            $data_foto_diperbaharui->save();
+            return redirect('tampil_data_sop_oleh_redaktur'); 
+        }
+        
+    }
+
+    public function hapus_data_sop_oleh_redaktur(Request $request){
+        $data_dihapus = Sop::find($request->id);
+        $data_dihapus->delete();
+        return response()->json($data_dihapus);
+    }
+
 
 
 

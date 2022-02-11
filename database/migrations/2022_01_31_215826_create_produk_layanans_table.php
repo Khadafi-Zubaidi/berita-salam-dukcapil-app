@@ -19,6 +19,7 @@ class CreateProdukLayanansTable extends Migration
             $table->text('persyaratan')->nullable();
             $table->text('prosedur_mekanisme')->nullable();
             $table->text('waktu_penyelesaian')->nullable();
+            $table->string('foto')->default('foto.png');
             $table->string('biaya_tarif')->nullable();
             $table->timestamps();
         });

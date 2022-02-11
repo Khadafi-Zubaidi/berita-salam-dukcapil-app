@@ -20,7 +20,7 @@ class CreateRedaktursTable extends Migration
             $table->string('jabatan')->nullable();
             $table->string('password')->nullable();
             $table->string('pangkat_golongan')->nullable();
-            $table->string('foto')->default('foto_redaktur.png');
+            $table->string('foto')->default('foto.png');
             $table->string('aktif')->default('Y');
             $table->timestamps();
         });
