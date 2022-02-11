@@ -127,9 +127,6 @@ Route::post('simpan_data_baru_jdih_oleh_redaktur',[RedakturController::class,'si
 Route::post('/jdih4',[RedakturController::class,'simpan_perubahan_file_jdih_oleh_redaktur'])->name('jdih.updatefile');
 Route::put('/jdih6',[RedakturController::class,'hapus_data_jdih_oleh_redaktur'])->name('jdih.deletedata');
 
-
-
-
 Route::get('tampil_data_sop_oleh_redaktur',[RedakturController::class,'tampil_data_sop_oleh_redaktur'])->name('tampil_data_sop_oleh_redaktur');
 Route::get('/sops/{id}',[RedakturController::class,'get_id_sop_by_redaktur']);
 Route::put('/sop1',[RedakturController::class,'simpan_perubahan_data_sop_oleh_redaktur'])->name('sop.updatedata');
@@ -137,6 +134,16 @@ Route::get('tambah_data_sop_oleh_redaktur',[RedakturController::class,'tambah_da
 Route::post('simpan_data_baru_sop_oleh_redaktur',[RedakturController::class,'simpan_data_baru_sop_oleh_redaktur'])->name('simpan_data_baru_sop_oleh_redaktur');
 Route::post('/sop4',[RedakturController::class,'simpan_perubahan_file_sop_oleh_redaktur'])->name('sop.updatefile');
 Route::put('/sop6',[RedakturController::class,'hapus_data_sop_oleh_redaktur'])->name('sop.deletedata');
+
+Route::get('tampil_data_formulir_oleh_redaktur',[RedakturController::class,'tampil_data_formulir_oleh_redaktur'])->name('tampil_data_formulir_oleh_redaktur');
+Route::get('/formulirs/{id}',[RedakturController::class,'get_id_formulir_by_redaktur']);
+Route::put('/formulir1',[RedakturController::class,'simpan_perubahan_data_formulir_oleh_redaktur'])->name('formulir.updatedata');
+Route::get('tambah_data_formulir_oleh_redaktur',[RedakturController::class,'tambah_data_formulir_oleh_redaktur'])->name('tambah_data_formulir_oleh_redaktur');
+Route::post('simpan_data_baru_formulir_oleh_redaktur',[RedakturController::class,'simpan_data_baru_formulir_oleh_redaktur'])->name('simpan_data_baru_formulir_oleh_redaktur');
+Route::post('/formulir4',[RedakturController::class,'simpan_perubahan_file_formulir_oleh_redaktur'])->name('formulir.updatefile');
+Route::put('/formulir6',[RedakturController::class,'hapus_data_formulir_oleh_redaktur'])->name('formulir.deletedata');
+
+
 
 
 

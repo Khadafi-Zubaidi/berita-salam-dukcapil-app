@@ -90,6 +90,12 @@
                                             <p>SOP</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_formulir_oleh_redaktur')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Formulir</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
