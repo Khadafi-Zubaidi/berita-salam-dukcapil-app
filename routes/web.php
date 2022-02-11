@@ -31,6 +31,13 @@ Route::get('tampil_arsip_inovasi',[BerandaController::class,'tampil_arsip_inovas
 Route::get('tampil_kolom_aduan',[BerandaController::class,'tampil_kolom_aduan'])->name('tampil_kolom_aduan');
 Route::post('simpan_data_baru_aduan',[BerandaController::class,'simpan_data_baru_aduan'])->name('simpan_data_baru_aduan');
 Route::get('tampil_terima_kasih',[BerandaController::class,'tampil_terima_kasih'])->name('tampil_terima_kasih');
+Route::get('tampil_arsip_jdih',[BerandaController::class,'tampil_arsip_jdih'])->name('tampil_arsip_jdih');
+Route::get('tampil_arsip_sop',[BerandaController::class,'tampil_arsip_sop'])->name('tampil_arsip_sop');
+Route::get('tampil_arsip_formulir',[BerandaController::class,'tampil_arsip_formulir'])->name('tampil_arsip_formulir');
+
+
+
+
 
 
 //Admin App

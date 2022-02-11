@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Aduan;
 use App\Models\Carousel;
 use App\Models\Berita;
+use App\Models\Formulir;
 use App\Models\Inovasi;
+use App\Models\Jdih;
 use App\Models\ProdukLayanan;
 use App\Models\SambutanDinas;
+use App\Models\Sop;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
@@ -126,6 +129,36 @@ class BerandaController extends Controller
             'DataCarousel'=>$data_carousel,
         ];
         return view('beranda.tampil_terima_kasih',$data);
+    }
+
+    public function tampil_arsip_jdih(){
+        $data_carousel = Carousel::orderBy('id', 'desc')->limit(3)->get();
+        $data_jdih = Jdih::orderBy('id', 'asc')->get();
+        $data = [
+            'DataCarousel'=>$data_carousel,
+            'DataJDIH'=>$data_jdih,
+        ];
+        return view('beranda.tampil_arsip_jdih',$data);
+    }
+
+    public function tampil_arsip_sop(){
+        $data_carousel = Carousel::orderBy('id', 'desc')->limit(3)->get();
+        $data_sop = Sop::orderBy('id', 'asc')->get();
+        $data = [
+            'DataCarousel'=>$data_carousel,
+            'DataSOP'=>$data_sop,
+        ];
+        return view('beranda.tampil_arsip_sop',$data);
+    }
+
+    public function tampil_arsip_formulir(){
+        $data_carousel = Carousel::orderBy('id', 'desc')->limit(3)->get();
+        $data_formulir = Formulir::orderBy('id', 'asc')->get();
+        $data = [
+            'DataCarousel'=>$data_carousel,
+            'DataFormulir'=>$data_formulir,
+        ];
+        return view('beranda.tampil_arsip_formulir',$data);
     }
 
 }

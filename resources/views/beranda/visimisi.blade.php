@@ -59,6 +59,21 @@
                 <span class="sr-only"></span>
               </a>
             </li>
+            <li class="nav-item ml-4 mb-0">
+              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_jdih')}}">JDIH
+                <span class="sr-only"></span>
+              </a>
+            </li>
+            <li class="nav-item ml-4 mb-0">
+              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_sop')}}">SOP
+                <span class="sr-only"></span>
+              </a>
+            </li>
+            <li class="nav-item ml-4 mb-0">
+              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_formulir')}}">UNDUH
+                <span class="sr-only"></span>
+              </a>
+            </li>
             
             <li class="nav-item ml-4 mb-0">
               <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_kolom_aduan')}}">HUBUNGI KAMI

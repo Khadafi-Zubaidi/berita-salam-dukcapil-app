@@ -24,94 +24,94 @@
 
     <!-- Navbar -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-light scrolling-navbar white">
-      <div class="container-fluid justify-content-center align-items-center">
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
-          aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent-4">
-          <ul class="navbar-nav">
-            <li class="nav-item ml-4 mb-0">
-                <a class="nav-link waves-effect waves-light font-weight-bold" href="/">BERANDA
-                  <span class="sr-only">(current)</span>
+        <div class="container-fluid justify-content-center align-items-center">
+  
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+            aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent-4">
+            <ul class="navbar-nav">
+              <li class="nav-item ml-4 mb-0">
+                  <a class="nav-link waves-effect waves-light font-weight-bold" href="/">BERANDA
+                    <span class="sr-only">(current)</span>
+                  </a>
+              </li>
+              <li class="nav-item dropdown ml-4 mb-0">
+                <a class="nav-link dropdown-toggle waves-effect waves-light font-weight-bold" id="navbarDropdownMenuLink"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> PROFIL
                 </a>
-            </li>
-            <li class="nav-item dropdown ml-4 mb-0">
-              <a class="nav-link dropdown-toggle waves-effect waves-light font-weight-bold" id="navbarDropdownMenuLink"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> PROFIL
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item waves-effect waves-light" href="{{route('tampil_visi_misi')}}">Visi dan Misi</a>
-                <a class="dropdown-item waves-effect waves-light" href="#">Struktur Organisasi</a>
-                <a class="dropdown-item waves-effect waves-light" href="#">Tugas Pokok dan Fungsi</a>
-              </div>
-            </li>
-            <li class="nav-item ml-4 mb-0">
-                <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_berita')}}">BERITA
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item waves-effect waves-light" href="{{route('tampil_visi_misi')}}">Visi dan Misi</a>
+                  <a class="dropdown-item waves-effect waves-light" href="#">Struktur Organisasi</a>
+                  <a class="dropdown-item waves-effect waves-light" href="#">Tugas Pokok dan Fungsi</a>
+                </div>
+              </li>
+              <li class="nav-item ml-4 mb-0">
+                  <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_berita')}}">BERITA
+                    <span class="sr-only"></span>
+                  </a>
+              </li>
+              <li class="nav-item ml-4 mb-0">
+                <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_produk_layanan')}}">PRODUK LAYANAN
                   <span class="sr-only"></span>
                 </a>
-            </li>
-            <li class="nav-item ml-4 mb-0">
-              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_produk_layanan')}}">PRODUK LAYANAN
-                <span class="sr-only"></span>
+              </li>
+              <li class="nav-item ml-4 mb-0">
+                <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_inovasi')}}">INOVASI
+                  <span class="sr-only"></span>
+                </a>
+              </li>
+              <li class="nav-item ml-4 mb-0">
+                <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_jdih')}}">JDIH
+                  <span class="sr-only"></span>
+                </a>
+              </li>
+              <li class="nav-item ml-4 mb-0">
+                <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_sop')}}">SOP
+                  <span class="sr-only"></span>
+                </a>
+              </li>
+              <li class="nav-item ml-4 mb-0">
+                <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_formulir')}}">UNDUH
+                  <span class="sr-only"></span>
+                </a>
+              </li>
+              
+              <li class="nav-item ml-4 mb-0">
+                <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_kolom_aduan')}}">HUBUNGI KAMI
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+  
+          <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light">
+                <i class="fab fa-twitter"></i>
               </a>
             </li>
-            <li class="nav-item ml-4 mb-0">
-              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_inovasi')}}">INOVASI
-                <span class="sr-only"></span>
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light">
+                <i class="fab fa-google-plus-g"></i>
               </a>
             </li>
-            <li class="nav-item ml-4 mb-0">
-              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_jdih')}}">JDIH
-                <span class="sr-only"></span>
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light">
+                <i class="fab fa-linkedin-in"></i>
               </a>
             </li>
-            <li class="nav-item ml-4 mb-0">
-              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_sop')}}">SOP
-                <span class="sr-only"></span>
-              </a>
-            </li>
-            <li class="nav-item ml-4 mb-0">
-              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_formulir')}}">UNDUH
-                <span class="sr-only"></span>
-              </a>
-            </li>
-            
-            <li class="nav-item ml-4 mb-0">
-              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_kolom_aduan')}}">HUBUNGI KAMI
-                <span class="sr-only">(current)</span>
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light">
+                <i class="fab fa-instagram"></i>
               </a>
             </li>
           </ul>
+  
         </div>
-
-        <ul class="navbar-nav ml-auto nav-flex-icons">
-          <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-              <i class="fab fa-twitter"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-              <i class="fab fa-google-plus-g"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-              <i class="fab fa-instagram"></i>
-            </a>
-          </li>
-        </ul>
-
-      </div>
-
-    </nav>
+  
+      </nav>
     <!-- Navbar -->
 
   </header>
@@ -198,7 +198,7 @@
               <!-- Grid row -->
               <div class="text-center mb-2 mt-2">
                 <hr>  
-                <h3>Arsip Produk Layanan</h3>
+                <h3>Arsip Jaringan Dokumentasi dan Informasi Hukum</h3>
                 <hr>  
               </div>
                 <div class="card">
@@ -207,83 +207,18 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Produk Layanan</th>
+                                    <th>Nama JDIH</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php $no = 1; @endphp
-                                @foreach($DataProdukLayanan as $dpl)
+                                @foreach($DataJDIH as $djdih)
                                 <tr>
                                     <td>{{$no++}}</td>
-                                    <td>{{$dpl->nama_produk_layanan}}</td>
+                                    <td>{!! $djdih->nama_peraturan !!}</td>
                                     <td>
-                                        <a href="javascript:void(0)" onclick="lihatDetailProdukLayanan({{$dpl->id}})" class="btn btn-deep-orange btn-rounded btn-sm">Detail Informasi</a>
-                                        <!-- Central Modal Large Info -->
-        <div class="modal fade" id="centralModalLGInfoDemo1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-notify modal-success" role="document">
-          <!-- Content -->
-          <div class="modal-content">
-            <!-- Header -->
-            <div class="modal-header">
-              <p class="heading lead">Produk Layanan</p>
-
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true" class="white-text">&times;</span>
-              </button>
-            </div>
-
-            <!-- Body -->
-            <div class="modal-body">
-              <input type="hidden" id="id2">
-              <div class="text-center">
-                <h4 class="text-center font-weight-bold dark-grey-text py-3" id="nama_produk_layanan2"></h4>
-              </div>
-              <h5>Dasar Hukum</h5>
-              <p id="dasar_hukum2" class="text-justify">
-              </p>
-              &nbsp;
-              <h5>Persyaratan</h5>
-              <p id="persyaratan2" class="text-justify">
-              </p>
-              &nbsp;
-              <h5>Prosedur/Mekanisme</h5>
-              <p id="prosedur_mekanisme2" class="text-justify">
-              </p>
-              &nbsp;
-              <h5>Waktu Penyelesaian</h5>
-              <p id="waktu_penyelesaian2" class="text-justify">
-              </p>
-              &nbsp;
-              <h5>Biaya Tarif</h5>
-              <p id="biaya_tarif2" class="text-justify">
-              </p>
-              &nbsp;
-            </div>
-
-            <!-- Footer -->
-            <div class="modal-footer">
-              <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Tutup</a>
-            </div>
-            <script>
-              function lihatDetailProdukLayanan(id)
-              {
-                  $.get('/produklayanans3/'+id,function(produklayanan){
-                      $("#id2").val(produklayanan.id);
-                      $("#nama_produk_layanan2").text(produklayanan.nama_produk_layanan);
-                      $("#dasar_hukum2").html(produklayanan.dasar_hukum);
-                      $("#persyaratan2").html(produklayanan.persyaratan);
-                      $("#prosedur_mekanisme2").html(produklayanan.prosedur_mekanisme);
-                      $("#waktu_penyelesaian2").html(produklayanan.waktu_penyelesaian);
-                      $("#biaya_tarif2").html(produklayanan.biaya_tarif);
-                      $("#centralModalLGInfoDemo1").modal('toggle');
-                  });
-              }
-          </script>
-          </div>
-          <!-- Content -->
-        </div>
+                                        <a href="/jdih/{{$djdih->berkas}}" target="_blank" class="btn btn-success btn-block btn-sm">Lihat Berkas</a>
                                     </td>
                                 </tr>
                                 @endforeach
