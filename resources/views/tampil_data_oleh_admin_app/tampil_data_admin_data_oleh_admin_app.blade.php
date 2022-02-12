@@ -28,7 +28,7 @@
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
-                                <a href="{{route('tambah_data_redaktur_oleh_admin_app')}}" class="nav-link">
+                                <a href="{{route('tambah_data_admin_data_oleh_admin_app')}}" class="nav-link">
                                     <i class="nav-icon fas fa-user-plus"></i>
                                     <p>
                                         Tambah Data
@@ -63,7 +63,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title">Data Redaktur</h5>
+                                        <h5 class="card-title">Data Admin Data</h5>
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                                 <i class="fas fa-minus"></i>
@@ -96,7 +96,7 @@
                                                                 <td>{{$dt->nama}}</td>
                                                                 <td>{{$dt->jabatan}}</td>
                                                                 <td>{{$dt->pangkat_golongan}}</td>
-                                                                <td><img src="{{asset('foto_redaktur')}}/{{$dt->foto}}" width="100px" height="100px"  alt="User Image"></td>
+                                                                <td><img src="{{asset('foto_admin_data')}}/{{$dt->foto}}" width="100px" height="100px"  alt="User Image"></td>
                                                                 <td>@if ($dt->aktif == 'Y')
                                                                         <span class="badge badge-success">Aktif</span>
                                                                     @else
@@ -177,13 +177,13 @@
                                                             <script>
                                                                 function ubahData(id)
                                                                 {
-                                                                    $.get('/redakturs1/'+id,function(redaktur){
-                                                                        $("#id1").val(redaktur.id);
-                                                                        $("#nip1").val(redaktur.nip);
-                                                                        $("#nama1").val(redaktur.nama);
-                                                                        $("#jabatan1").val(redaktur.jabatan);
-                                                                        $("#pangkat_golongan1").val(redaktur.pangkat_golongan);
-                                                                        $("#aktif1").val(redaktur.aktif);
+                                                                    $.get('/admindatas/'+id,function(admindata){
+                                                                        $("#id1").val(admindata.id);
+                                                                        $("#nip1").val(admindata.nip);
+                                                                        $("#nama1").val(admindata.nama);
+                                                                        $("#jabatan1").val(admindata.jabatan);
+                                                                        $("#pangkat_golongan1").val(admindata.pangkat_golongan);
+                                                                        $("#aktif1").val(admindata.aktif);
                                                                         $("#ubahDataModal").modal('toggle');
                                                                     })
                                                                     $("#ubahDataForm").submit(function (e){
@@ -196,7 +196,7 @@
                                                                         let aktif = $("#aktif1").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
-                                                                            url:"{{route('redaktur.updatedata')}}",
+                                                                            url:"{{route('admindata.updatedata')}}",
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id:id,
@@ -209,7 +209,7 @@
                                                                             },
                                                                             success:function(response){
                                                                                 $("#ubahDataModal").modal('hide');
-                                                                                window.location = "{{route('tampil_data_redaktur_oleh_admin_app')}}";
+                                                                                window.location = "{{route('tampil_data_admin_data_oleh_admin_app')}}";
                                                                             }
                                                                         })
                                                                     })
@@ -267,10 +267,10 @@
                                                             <script>
                                                                 function ubahDataPassword(id)
                                                                 {
-                                                                    $.get('/redakturs1/'+id,function(redaktur){
-                                                                        $("#id2").val(redaktur.id);
-                                                                        $("#nip2").val(redaktur.nip);
-                                                                        $("#nama2").val(redaktur.nama);
+                                                                    $.get('/admindatas/'+id,function(admindata){
+                                                                        $("#id2").val(admindata.id);
+                                                                        $("#nip2").val(admindata.nip);
+                                                                        $("#nama2").val(admindata.nama);
                                                                         $("#ubahDataModalPassword").modal('toggle');
                                                                     })
                                                                     $("#ubahDataPasswordForm").submit(function (e){
@@ -279,7 +279,7 @@
                                                                         let password = $("#password2").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
-                                                                            url:"{{route('redaktur.updatedatapassword')}}",
+                                                                            url:"{{route('admindata.updatedatapassword')}}",
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id:id,
@@ -288,7 +288,7 @@
                                                                             },
                                                                             success:function(response){
                                                                                 $("#ubahDataModal").modal('hide');
-                                                                                window.location = "{{route('tampil_data_redaktur_oleh_admin_app')}}";
+                                                                                window.location = "{{route('tampil_data_admin_data_oleh_admin_app')}}";
                                                                             }
                                                                         })
                                                                     })

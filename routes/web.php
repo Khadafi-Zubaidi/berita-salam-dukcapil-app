@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AdminAppController;
+use App\Http\Controllers\AdminDataController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\RedakturController;
 use App\Http\Controllers\ReporterController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +57,29 @@ Route::get('/redakturs1/{id}',[AdminAppController::class,'get_id_redaktur_by_adm
 Route::put('/redaktur',[AdminAppController::class,'simpan_perubahan_data_redaktur_oleh_admin_app'])->name('redaktur.updatedata');
 Route::get('tambah_data_redaktur_oleh_admin_app',[AdminAppController::class,'tambah_data_redaktur_oleh_admin_app'])->name('tambah_data_redaktur_oleh_admin_app');
 Route::post('simpan_data_baru_redaktur_oleh_admin_app',[AdminAppController::class,'simpan_data_baru_redaktur_oleh_admin_app'])->name('simpan_data_baru_redaktur_oleh_admin_app');
+Route::put('/redaktur2',[AdminAppController::class,'simpan_perubahan_data_password_redaktur_oleh_admin_app'])->name('redaktur.updatedatapassword');
+Route::get('tampil_data_admin_data_oleh_admin_app',[AdminAppController::class,'tampil_data_admin_data_oleh_admin_app'])->name('tampil_data_admin_data_oleh_admin_app');
+Route::get('/admindatas/{id}',[AdminAppController::class,'get_id_admin_data_by_admin_app']);
+Route::put('/admindata1',[AdminAppController::class,'simpan_perubahan_data_admin_data_oleh_admin_app'])->name('admindata.updatedata');
+Route::put('/admindata2',[AdminAppController::class,'simpan_perubahan_data_password_admin_data_oleh_admin_app'])->name('admindata.updatedatapassword');
+Route::get('tambah_data_admin_data_oleh_admin_app',[AdminAppController::class,'tambah_data_admin_data_oleh_admin_app'])->name('tambah_data_admin_data_oleh_admin_app');
+Route::post('simpan_data_baru_admin_data_oleh_admin_app',[AdminAppController::class,'simpan_data_baru_admin_data_oleh_admin_app'])->name('simpan_data_baru_admin_data_oleh_admin_app');
+
+//Admin Data
+Route::get('login_admin_data',[AdminDataController::class,'login_admin_data'])->middleware('AdminDataLoggedIn');
+Route::post('cek_login_admin_data',[AdminDataController::class,'cek_login_admin_data'])->name('cek_login_admin_data');
+Route::get('dashboard_admin_data',[AdminDataController::class,'dashboard_admin_data'])->name('dashboard_admin_data');
+Route::post('simpan_perubahan_data_profil_admin_data',[AdminDataController::class,'simpan_perubahan_data_profil_admin_data'])->name('simpan_perubahan_data_profil_admin_data');
+Route::post('simpan_perubahan_data_password_admin_data',[AdminDataController::class,'simpan_perubahan_data_password_admin_data'])->name('simpan_perubahan_data_password_admin_data');
+Route::post('simpan_perubahan_data_foto_admin_data',[AdminDataController::class,'simpan_perubahan_data_foto_admin_data'])->name('simpan_perubahan_data_foto_admin_data');
+Route::get('logout_admin_data',[AdminDataController::class,'logout_admin_data'])->name('logout_admin_data');
+Route::get('tampil_data_kecamatan_oleh_admin_data',[AdminDataController::class,'tampil_data_kecamatan_oleh_admin_data'])->name('tampil_data_kecamatan_oleh_admin_data');
+Route::get('/kecamatans/{id}',[AdminDataController::class,'get_id_kecamatan_by_admin_data']);
+Route::put('/kecamatan1',[AdminDataController::class,'simpan_perubahan_data_kecamatan_oleh_admin_data'])->name('kecamatan.updatedata');
+Route::get('tambah_data_kecamatan_oleh_admin_data',[AdminDataController::class,'tambah_data_kecamatan_oleh_admin_data'])->name('tambah_data_kecamatan_oleh_admin_data');
+Route::post('simpan_data_baru_kecamatan_oleh_admin_data',[AdminDataController::class,'simpan_data_baru_kecamatan_oleh_admin_data'])->name('simpan_data_baru_kecamatan_oleh_admin_data');
+
+
 
 //Redaktur
 Route::get('login_redaktur',[RedakturController::class,'login_redaktur'])->middleware('RedakturLoggedIn');
@@ -149,6 +174,12 @@ Route::get('tambah_data_formulir_oleh_redaktur',[RedakturController::class,'tamb
 Route::post('simpan_data_baru_formulir_oleh_redaktur',[RedakturController::class,'simpan_data_baru_formulir_oleh_redaktur'])->name('simpan_data_baru_formulir_oleh_redaktur');
 Route::post('/formulir4',[RedakturController::class,'simpan_perubahan_file_formulir_oleh_redaktur'])->name('formulir.updatefile');
 Route::put('/formulir6',[RedakturController::class,'hapus_data_formulir_oleh_redaktur'])->name('formulir.deletedata');
+
+
+
+
+
+
 
 
 
