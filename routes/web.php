@@ -80,6 +80,11 @@ Route::get('/kecamatans/{id}',[AdminDataController::class,'get_id_kecamatan_by_a
 Route::put('/kecamatan1',[AdminDataController::class,'simpan_perubahan_data_kecamatan_oleh_admin_data'])->name('kecamatan.updatedata');
 Route::get('tambah_data_kecamatan_oleh_admin_data',[AdminDataController::class,'tambah_data_kecamatan_oleh_admin_data'])->name('tambah_data_kecamatan_oleh_admin_data');
 Route::post('simpan_data_baru_kecamatan_oleh_admin_data',[AdminDataController::class,'simpan_data_baru_kecamatan_oleh_admin_data'])->name('simpan_data_baru_kecamatan_oleh_admin_data');
+Route::get('tampil_data_desa_kelurahan_oleh_admin_data',[AdminDataController::class,'tampil_data_desa_kelurahan_oleh_admin_data'])->name('tampil_data_desa_kelurahan_oleh_admin_data');
+Route::get('/desa_kelurahans/{id}',[AdminDataController::class,'get_id_desa_kelurahan_by_admin_data']);
+Route::put('/desa_kelurahan1',[AdminDataController::class,'simpan_perubahan_data_desa_kelurahan_oleh_admin_data'])->name('desakelurahan.updatedata');
+Route::get('tambah_data_desa_kelurahan_oleh_admin_data',[AdminDataController::class,'tambah_data_desa_kelurahan_oleh_admin_data'])->name('tambah_data_desa_kelurahan_oleh_admin_data');
+Route::post('simpan_data_baru_desa_kelurahan_oleh_admin_data',[AdminDataController::class,'simpan_data_baru_desa_kelurahan_oleh_admin_data'])->name('simpan_data_baru_desa_kelurahan_oleh_admin_data');
 
 
 
