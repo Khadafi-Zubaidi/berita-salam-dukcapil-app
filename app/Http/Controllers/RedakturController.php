@@ -13,6 +13,8 @@ use App\Models\Redaktur;
 use App\Models\Reporter;
 use App\Models\SambutanDinas;
 use App\Models\Sop;
+use App\Models\StrukturOrganisasi;
+use App\Models\Tupoksi;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -858,6 +860,84 @@ class RedakturController extends Controller
         $data_dihapus->delete();
         return response()->json($data_dihapus);
     }
+
+    public function tampil_data_struktur_organisasi_oleh_redaktur(){
+        if (session()->has('LoggedRedaktur')){
+            $data_admin_untuk_dashboard = Redaktur::where('id','=',session('LoggedRedaktur'))->first();
+            $data_tabel = StrukturOrganisasi::orderBy('id', 'desc')->get();
+            $data = [
+                'DataTabel'=>$data_tabel,
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_redaktur.tampil_data_struktur_organisasi_oleh_redaktur',$data);
+        }else{
+            return view('login.login_redaktur');
+        }
+    }
+
+    public function get_id_struktur_organisasi_by_redaktur($id){
+        $data = StrukturOrganisasi::find($id);
+        return response()->json($data);
+    }
+
+    public function simpan_perubahan_data_foto_struktur_organisasi_oleh_redaktur(Request $request){
+        $data_foto_diperbaharui = StrukturOrganisasi::find($request->id4);
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg',
+        ]);
+        $extension = $request->file->getClientOriginalExtension();
+        $filename = time().'.'.$extension;
+        $request->file->move(public_path('foto_struktur_organisasi'),$filename);
+        $data = $filename;
+        $data_foto_diperbaharui->foto = $data;
+        $data_foto_diperbaharui->save();
+        return response()->json($data_foto_diperbaharui);
+    }
+
+    public function tampil_data_tupoksi_oleh_redaktur(){
+        if (session()->has('LoggedRedaktur')){
+            $data_admin_untuk_dashboard = Redaktur::where('id','=',session('LoggedRedaktur'))->first();
+            $data_tabel = Tupoksi::orderBy('id', 'desc')->get();
+            $data = [
+                'DataTabel'=>$data_tabel,
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_redaktur.tampil_data_tupoksi_oleh_redaktur',$data);
+        }else{
+            return view('login.login_redaktur');
+        }
+    }
+
+    public function get_id_tupoksi_by_redaktur($id){
+        $data = Tupoksi::find($id);
+        return response()->json($data);
+    }
+
+    public function simpan_perubahan_data_tupoksi_oleh_redaktur(Request $request){
+        $data_perubahan = Tupoksi::find($request->id);
+        $data_perubahan->nama_peraturan = $request->nama_peraturan;
+        $data_perubahan->save();
+        return response()->json($data_perubahan);
+    }
+
+    public function simpan_perubahan_file_tupoksi_oleh_redaktur(Request $request){
+        if($request->hasfile('file')){
+            $data_foto_diperbaharui = Tupoksi::find($request->id4);
+            $request->validate([
+                'file' => 'required|mimes:pdf',
+            ]);
+            $extension = $request->file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $request->file->move(public_path('tupoksi'),$filename);
+            $data = $filename;
+            $data_foto_diperbaharui->berkas = $data;
+            $data_foto_diperbaharui->save();
+            return redirect('tampil_data_tupoksi_oleh_redaktur'); 
+        }
+        
+    }
+
+
 
 
 }

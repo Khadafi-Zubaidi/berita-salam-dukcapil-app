@@ -198,74 +198,16 @@
               <!-- Grid row -->
               <div class="text-center mb-2 mt-2">
                 <hr>  
-                <h3>Arsip Berita</h3>
+                <h3>Struktur Organisasi</h3>
                 <hr>  
               </div>
                 <div class="card">
                     <div class="card-body">
-                        <table id="example1" class="table table-striped" cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Judul</th>
-                                    <th>Isi Berita</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $no = 1; @endphp
-                                @foreach($DataBerita as $db)
-                                <tr>
-                                    <td>{{$no++}}</td>
-                                    <td>{{$db->judul}}</td>
-                                    <td>@php echo substr($db->isi_berita, 0, 100) @endphp ...</td>
-                                    <td>
-                                        <a href="javascript:void(0)" onclick="lihatDetailBerita({{$db->id}})" class="btn btn-deep-orange btn-rounded btn-sm">Lihat Berita</a>
-                                        <div class="modal fade" id="centralModalLGInfoDemo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-lg modal-notify modal-info" role="document">
-                                            <!-- Content -->
-                                            <div class="modal-content">
-                                                <!-- Header -->
-                                                <div class="modal-header">
-                                                <p class="heading lead">Berita Salam Dukcapil</p>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true" class="white-text">&times;</span>
-                                                </button>
-                                                </div>
-                                                <!-- Body -->
-                                                <div class="modal-body">
-                                                <div class="text-center">
-                                                    <h4 id="judul4"></h4>
-                                                </div>
-                                                <p id="isi_berita4" class="text-justify">
-                                                </p>
-                                                <img id="foto4" width="100%">
-                                                </div>
-                                                <!-- Footer -->
-                                                <div class="modal-footer">
-                                                <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Tutup</a>
-                                                </div>
-                                                <script>
-                                                function lihatDetailBerita(id)
-                                                {
-                                                    $.get('/beritas3/'+id,function(berita){
-                                                        $("#id4").val(berita.id);
-                                                        $("#judul4").text(berita.judul);
-                                                        $("#isi_berita4").html(berita.isi_berita);
-                                                        $("#foto4").attr('src',"foto_berita/"+berita.foto);
-                                                        $("#centralModalLGInfoDemo").modal('toggle');
-                                                    });
-                                                }
-                                            </script>
-                                            </div>
-                                            <!-- Content -->
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        @foreach($DataStrukturOrganisasi as $dso)
+                            <div align="center">
+                                <img src="{{asset('foto_struktur_organisasi')}}/{{$dso->foto}}" width="1024px" height="768px"  alt="User Image">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

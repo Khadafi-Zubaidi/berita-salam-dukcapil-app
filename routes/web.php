@@ -36,6 +36,8 @@ Route::get('tampil_terima_kasih',[BerandaController::class,'tampil_terima_kasih'
 Route::get('tampil_arsip_jdih',[BerandaController::class,'tampil_arsip_jdih'])->name('tampil_arsip_jdih');
 Route::get('tampil_arsip_sop',[BerandaController::class,'tampil_arsip_sop'])->name('tampil_arsip_sop');
 Route::get('tampil_arsip_formulir',[BerandaController::class,'tampil_arsip_formulir'])->name('tampil_arsip_formulir');
+Route::get('tampil_struktur_organisasi',[BerandaController::class,'tampil_struktur_organisasi'])->name('tampil_struktur_organisasi');
+Route::get('tampil_arsip_tupoksi',[BerandaController::class,'tampil_arsip_tupoksi'])->name('tampil_arsip_tupoksi');
 
 
 
@@ -175,8 +177,14 @@ Route::post('simpan_data_baru_formulir_oleh_redaktur',[RedakturController::class
 Route::post('/formulir4',[RedakturController::class,'simpan_perubahan_file_formulir_oleh_redaktur'])->name('formulir.updatefile');
 Route::put('/formulir6',[RedakturController::class,'hapus_data_formulir_oleh_redaktur'])->name('formulir.deletedata');
 
+Route::get('tampil_data_struktur_organisasi_oleh_redaktur',[RedakturController::class,'tampil_data_struktur_organisasi_oleh_redaktur'])->name('tampil_data_struktur_organisasi_oleh_redaktur');
+Route::get('/strukturorganisasis/{id}',[RedakturController::class,'get_id_struktur_organisasi_by_redaktur']);
+Route::post('/strukturorganisasi',[RedakturController::class,'simpan_perubahan_data_foto_struktur_organisasi_oleh_redaktur'])->name('strukturorganisasi.updatedatafoto');
 
-
+Route::get('tampil_data_tupoksi_oleh_redaktur',[RedakturController::class,'tampil_data_tupoksi_oleh_redaktur'])->name('tampil_data_tupoksi_oleh_redaktur');
+Route::get('/tupoksis/{id}',[RedakturController::class,'get_id_tupoksi_by_redaktur']);
+Route::put('/tupoksi1',[RedakturController::class,'simpan_perubahan_data_tupoksi_oleh_redaktur'])->name('tupoksi.updatedata');
+Route::post('/tupoksi2',[RedakturController::class,'simpan_perubahan_file_tupoksi_oleh_redaktur'])->name('tupoksi.updatefile');
 
 
 

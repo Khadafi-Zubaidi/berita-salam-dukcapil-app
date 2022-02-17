@@ -111,8 +111,7 @@
 
       </div>
 
-    </nav>
-    <!-- Navbar -->
+    </nav>    <!-- Navbar -->
 
   </header>
   <!-- Navigation -->
@@ -198,7 +197,7 @@
               <!-- Grid row -->
               <div class="text-center mb-2 mt-2">
                 <hr>  
-                <h3>Arsip Berita</h3>
+                <h3>Arsip Tugas Pokok dan Fungsi</h3>
                 <hr>  
               </div>
                 <div class="card">
@@ -207,60 +206,18 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Judul</th>
-                                    <th>Isi Berita</th>
+                                    <th>Nama Peraturan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php $no = 1; @endphp
-                                @foreach($DataBerita as $db)
+                                @foreach($DataTupoksi as $dt)
                                 <tr>
                                     <td>{{$no++}}</td>
-                                    <td>{{$db->judul}}</td>
-                                    <td>@php echo substr($db->isi_berita, 0, 100) @endphp ...</td>
+                                    <td>{!! $dt->nama_peraturan !!}</td>
                                     <td>
-                                        <a href="javascript:void(0)" onclick="lihatDetailBerita({{$db->id}})" class="btn btn-deep-orange btn-rounded btn-sm">Lihat Berita</a>
-                                        <div class="modal fade" id="centralModalLGInfoDemo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-lg modal-notify modal-info" role="document">
-                                            <!-- Content -->
-                                            <div class="modal-content">
-                                                <!-- Header -->
-                                                <div class="modal-header">
-                                                <p class="heading lead">Berita Salam Dukcapil</p>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true" class="white-text">&times;</span>
-                                                </button>
-                                                </div>
-                                                <!-- Body -->
-                                                <div class="modal-body">
-                                                <div class="text-center">
-                                                    <h4 id="judul4"></h4>
-                                                </div>
-                                                <p id="isi_berita4" class="text-justify">
-                                                </p>
-                                                <img id="foto4" width="100%">
-                                                </div>
-                                                <!-- Footer -->
-                                                <div class="modal-footer">
-                                                <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Tutup</a>
-                                                </div>
-                                                <script>
-                                                function lihatDetailBerita(id)
-                                                {
-                                                    $.get('/beritas3/'+id,function(berita){
-                                                        $("#id4").val(berita.id);
-                                                        $("#judul4").text(berita.judul);
-                                                        $("#isi_berita4").html(berita.isi_berita);
-                                                        $("#foto4").attr('src',"foto_berita/"+berita.foto);
-                                                        $("#centralModalLGInfoDemo").modal('toggle');
-                                                    });
-                                                }
-                                            </script>
-                                            </div>
-                                            <!-- Content -->
-                                        </div>
+                                        <a href="/tupoksi/{{$dt->berkas}}" target="_blank" class="btn btn-success btn-block btn-sm">Lihat Berkas</a>
                                     </td>
                                 </tr>
                                 @endforeach

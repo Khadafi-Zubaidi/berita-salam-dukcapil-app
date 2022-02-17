@@ -11,6 +11,8 @@ use App\Models\Jdih;
 use App\Models\ProdukLayanan;
 use App\Models\SambutanDinas;
 use App\Models\Sop;
+use App\Models\StrukturOrganisasi;
+use App\Models\Tupoksi;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
@@ -159,6 +161,26 @@ class BerandaController extends Controller
             'DataFormulir'=>$data_formulir,
         ];
         return view('beranda.tampil_arsip_formulir',$data);
+    }
+
+    public function tampil_struktur_organisasi(){
+        $data_carousel = Carousel::orderBy('id', 'desc')->limit(3)->get();
+        $data_struktur_organisasi = StrukturOrganisasi::orderBy('id', 'asc')->get();
+        $data = [
+            'DataCarousel'=>$data_carousel,
+            'DataStrukturOrganisasi'=>$data_struktur_organisasi,
+        ];
+        return view('beranda.tampil_struktur_organisasi',$data);
+    }
+
+    public function tampil_arsip_tupoksi(){
+        $data_carousel = Carousel::orderBy('id', 'desc')->limit(3)->get();
+        $data_tupoksi = Tupoksi::orderBy('id', 'asc')->get();
+        $data = [
+            'DataCarousel'=>$data_carousel,
+            'DataTupoksi'=>$data_tupoksi,
+        ];
+        return view('beranda.tampil_arsip_tupoksi',$data);
     }
 
 }

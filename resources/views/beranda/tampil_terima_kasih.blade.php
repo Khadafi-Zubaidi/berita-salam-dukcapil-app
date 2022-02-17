@@ -42,8 +42,8 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item waves-effect waves-light" href="{{route('tampil_visi_misi')}}">Visi dan Misi</a>
-                <a class="dropdown-item waves-effect waves-light" href="#">Struktur Organisasi</a>
-                <a class="dropdown-item waves-effect waves-light" href="#">Tugas Pokok dan Fungsi</a>
+                <a class="dropdown-item waves-effect waves-light" href="{{route('tampil_struktur_organisasi')}}">Struktur Organisasi</a>
+                <a class="dropdown-item waves-effect waves-light" href="{{route('tampil_arsip_tupoksi')}}">Tugas Pokok dan Fungsi</a>
               </div>
             </li>
             <li class="nav-item ml-4 mb-0">

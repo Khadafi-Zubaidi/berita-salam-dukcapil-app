@@ -96,6 +96,18 @@
                                             <p>Formulir</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_struktur_organisasi_oleh_redaktur')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Struktur Organisasi</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_tupoksi_oleh_redaktur')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Tupoksi</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
