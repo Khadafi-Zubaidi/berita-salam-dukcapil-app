@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AdminData;
 use App\Models\DesaKelurahan;
 use App\Models\Kecamatan;
+use App\Models\OperatorDesaKelurahan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -245,8 +246,105 @@ class AdminDataController extends Controller
         }
     }
 
+    public function tampil_data_operator_desa_kelurahan_oleh_admin_data(){
+        if (session()->has('LoggedAdminData')){
+            $data_admin_untuk_dashboard = AdminData::where('id','=',session('LoggedAdminData'))->first();
+            $data_tabel = DB::table('operator_desa_kelurahans')
+                            ->join('desa_kelurahans', 'operator_desa_kelurahans.id_desa_kelurahan', '=', 'desa_kelurahans.id')
+                            ->join('kecamatans', 'desa_kelurahans.id_kecamatan', '=', 'kecamatans.id')
+                            ->select('operator_desa_kelurahans.id',
+                                     'operator_desa_kelurahans.nip',
+                                     'operator_desa_kelurahans.nama_operator',
+                                     'operator_desa_kelurahans.jabatan',
+                                     'operator_desa_kelurahans.pangkat_golongan',
+                                     'operator_desa_kelurahans.aktif',
+                                     'operator_desa_kelurahans.foto',
+                                     'desa_kelurahans.nama_desa_kelurahan',
+                                     'kecamatans.nama_kecamatan')
+                            ->orderBy('operator_desa_kelurahans.id', 'asc')->get();
 
+            $data = [
+                'DataTabel'=>$data_tabel,
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_admin_data.tampil_data_operator_desa_kelurahan_oleh_admin_data',$data);
+        }else{
+            return view('login.login_admin_data');
+        }
+    }
 
+    public function get_id_operator_desa_kelurahan_by_admin_data($id){
+        $data = OperatorDesaKelurahan::find($id);
+        return response()->json($data);
+    }
 
+    public function simpan_perubahan_data_operator_desa_kelurahan_oleh_admin_data(Request $request){
+        $data_perubahan = OperatorDesaKelurahan::find($request->id);
+        $data_perubahan->nip = $request->nip;
+        $data_perubahan->nama_operator = $request->nama_operator;
+        $data_perubahan->jabatan = $request->jabatan;
+        $data_perubahan->pangkat_golongan = $request->pangkat_golongan;
+        $data_perubahan->aktif = $request->aktif;
+        $data_perubahan->save();
+        return response()->json($data_perubahan);
+    }
 
+    public function tambah_data_operator_desa_kelurahan_oleh_admin_data(){
+        if (session()->has('LoggedAdminData')){
+            $data_admin_untuk_dashboard = AdminData::where('id','=',session('LoggedAdminData'))->first();
+            $data_desa_kelurahan=DB::table('desa_kelurahans')
+                                    ->join('kecamatans', 'desa_kelurahans.id_kecamatan', '=', 'kecamatans.id')
+                                    ->select(
+                                        'desa_kelurahans.id',   
+                                        'desa_kelurahans.nama_desa_kelurahan',
+                                        'kecamatans.nama_kecamatan'
+                                    )
+                                    ->orderBy('desa_kelurahans.id', 'asc')->get();
+
+            $data = [
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+                'DataDesaKelurahan'=>$data_desa_kelurahan,
+            ];
+            return view('tambah_data_oleh_admin_data.tambah_data_operator_desa_kelurahan_oleh_admin_data',$data);
+        }else{
+            return view('login.login_admin_data');
+        }
+    }
+
+    public function simpan_data_baru_operator_desa_kelurahan_oleh_admin_data(Request $request){
+        if (session()->has('LoggedAdminData')){
+            $request->validate([
+                'id_desa_kelurahan'=>'required',
+                'nip'=>'required',
+                'nama_operator'=>'required',
+                'jabatan'=>'required',
+                'password'=>'required',
+                'pangkat_golongan'=>'required',
+            ],[
+                'id_desa_kelurahan.required'=>'ID Desa/Kelurahan tidak boleh kosong',
+                'nip.required'=>'NIP tidak boleh kosong',
+                'nama_operator.required'=>'Nama Operator tidak boleh kosong',
+                'jabatan.required'=>'Jabatan tidak boleh kosong',
+                'password.required'=>'Password tidak boleh kosong',
+                'pangkat_golongan.required'=>'Pangkat/Golongan tidak boleh kosong',
+            ]);
+            $data_baru = new OperatorDesaKelurahan();
+            $data_baru->id_desa_kelurahan = $request->id_desa_kelurahan;
+            $data_baru->nip = $request->nip;
+            $data_baru->nama_operator = $request->nama_operator;
+            $data_baru->jabatan = $request->jabatan;
+            $data_baru->password = Hash::make($request->password);
+            $data_baru->pangkat_golongan = $request->pangkat_golongan;
+            $data_baru->save();
+            return redirect('tampil_data_operator_desa_kelurahan_oleh_admin_data');
+        }else{
+            return view('login.login_admin_data');
+        }
+    }
+
+    public function hapus_data_operator_desa_kelurahan(Request $request){
+        $data_dihapus = OperatorDesaKelurahan::find($request->id2);
+        $data_dihapus->delete();
+        return response()->json($data_dihapus);
+    }
 }

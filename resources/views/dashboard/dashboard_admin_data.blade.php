@@ -55,7 +55,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="{{route('tampil_data_operator_desa_kelurahan_oleh_admin_data')}}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Op. Desa/Kelurahan</p>
                                         </a>
