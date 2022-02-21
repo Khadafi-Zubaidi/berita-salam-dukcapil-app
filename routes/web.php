@@ -97,6 +97,9 @@ Route::post('simpan_data_baru_operator_desa_kelurahan_oleh_admin_data',[AdminDat
 Route::put('/operator_desa_kelurahan2',[AdminDataController::class,'hapus_data_operator_desa_kelurahan'])->name('operator_desa_kelurahan.hapus_data');
 Route::put('/operator_desa_kelurahan3',[AdminDataController::class,'simpan_perubahan_data_password_operator_desa_kelurahan_oleh_admin_data'])->name('operator_desa_kelurahan.update_password');
 
+Route::get('tampil_data_berkas_permohonan_belum_selesai_oleh_admin_data',[AdminDataController::class,'tampil_data_berkas_permohonan_belum_selesai_oleh_admin_data'])->name('tampil_data_berkas_permohonan_belum_selesai_oleh_admin_data');
+Route::get('/berkas_pengurusans/{id}',[AdminDataController::class,'get_id_berkas_pengurusan_by_admin_data']);
+Route::post('/berkas_pengurusan1',[AdminDataController::class,'unggah_berkas_permohonan_selesai'])->name('berkas_permohonan.upload_berkas_permohonan_selesai');
 
 //Redaktur
 Route::get('login_redaktur',[RedakturController::class,'login_redaktur'])->middleware('RedakturLoggedIn');
@@ -242,3 +245,5 @@ Route::post('simpan_perubahan_data_foto_operator',[OperatorDesaKelurahanControll
 Route::get('logout_operator',[OperatorDesaKelurahanController::class,'logout_operator'])->name('logout_operator');
 Route::get('tambah_data_berkas_oleh_operator',[OperatorDesaKelurahanController::class,'tambah_data_berkas_oleh_operator'])->name('tambah_data_berkas_oleh_operator');
 Route::post('simpan_data_baru_permohonan_oleh_operator',[OperatorDesaKelurahanController::class,'simpan_data_baru_permohonan_oleh_operator'])->name('simpan_data_baru_permohonan_oleh_operator');
+Route::get('tampil_data_berkas_permohonan_belum_selesai_oleh_operator',[OperatorDesaKelurahanController::class,'tampil_data_berkas_permohonan_belum_selesai_oleh_operator'])->name('tampil_data_berkas_permohonan_belum_selesai_oleh_operator');
+Route::post('/berkas_pengurusan2',[OperatorDesaKelurahanController::class,'unggah_berkas_permohonan_lagi_oleh_operator'])->name('berkas_permohonan.upload_berkas_permohonan_lagi');

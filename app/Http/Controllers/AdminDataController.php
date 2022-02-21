@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminData;
+use App\Models\BerkasPengurusan;
 use App\Models\DesaKelurahan;
 use App\Models\Kecamatan;
 use App\Models\OperatorDesaKelurahan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AdminDataController extends Controller
 {
@@ -362,5 +364,46 @@ class AdminDataController extends Controller
         $data_perubahan->save();
         return response()->json($data_perubahan);
     }
-    
+
+    public function tampil_data_berkas_permohonan_belum_selesai_oleh_admin_data(){
+        if (session()->has('LoggedAdminData')){
+            $data_admin_untuk_dashboard = AdminData::where('id','=',session('LoggedAdminData'))->first();
+            $data_tabel = DB::table('berkas_pengurusans')
+                        ->where('status', '=', 'B')
+                        ->orderBy('id', 'desc')
+                        ->get();
+            $data = [
+                'DataTabel'=>$data_tabel,
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_admin_data.tampil_data_berkas_permohonan_belum_selesai_oleh_admin_data',$data);
+        }else{
+            return view('login.login_admin_data');
+        }
+    }
+
+    public function get_id_berkas_pengurusan_by_admin_data($id){
+        $data = BerkasPengurusan::find($id);
+        return response()->json($data);
+    }
+
+    public function unggah_berkas_permohonan_selesai(Request $request){
+        $data_berkas_diperbaharui = BerkasPengurusan::find($request->id1);
+        $request->validate([
+            'file' => 'required|mimes:zip',
+        ]);
+        $extension = $request->file->getClientOriginalExtension();
+        $filename = time().'.'.$extension;
+        $request->file->move(public_path('berkas_permohonan_selesai'),$filename);
+        $data = $filename;
+        $data_berkas_diperbaharui->berkas_selesai = $data;
+        $tanggal_penyelesaian = date("d/m/Y");
+        $data_berkas_diperbaharui->tanggal_penyelesaian = $tanggal_penyelesaian;
+        $status = "S";
+        $data_berkas_diperbaharui->status = $status;
+        $data_berkas_diperbaharui->save();
+        return response()->json($data_berkas_diperbaharui);
+    }
+
+        
 }

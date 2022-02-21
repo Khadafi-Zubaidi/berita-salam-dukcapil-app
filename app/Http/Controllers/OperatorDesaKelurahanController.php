@@ -183,4 +183,38 @@ class OperatorDesaKelurahanController extends Controller
             return view('login.login_operator');
         }
     }
+
+    public function tampil_data_berkas_permohonan_belum_selesai_oleh_operator(){
+        if (session()->has('LoggedOperator')){
+            $data_admin_untuk_dashboard = OperatorDesaKelurahan::where('id','=',session('LoggedOperator'))->first();
+            $data_tabel = DB::table('berkas_pengurusans')
+                        ->where('id_operator_desa_kelurahan','=',$data_admin_untuk_dashboard->id)
+                        ->where('status', '=', 'B')
+                        ->orderBy('id', 'desc')
+                        ->get();
+            $data = [
+                'DataTabel'=>$data_tabel,
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_operator.tampil_data_berkas_permohonan_belum_selesai_oleh_operator',$data);
+        }else{
+            return view('login.login_admin_data');
+        }
+    }
+
+    public function unggah_berkas_permohonan_lagi_oleh_operator(Request $request){
+        $data_berkas_diperbaharui = BerkasPengurusan::find($request->id1);
+        $request->validate([
+            'file' => 'required|mimes:zip',
+        ]);
+        $extension = $request->file->getClientOriginalExtension();
+        $filename = time().'.'.$extension;
+        $request->file->move(public_path('berkas_permohonan'),$filename);
+        $data = $filename;
+        $data_berkas_diperbaharui->berkas_permohonan = $data;
+        $tanggal_pengajuan = date("d/m/Y");
+        $data_berkas_diperbaharui->tanggal_pengajuan = $tanggal_pengajuan;
+        $data_berkas_diperbaharui->save();
+        return response()->json($data_berkas_diperbaharui);
+    }
 }

@@ -36,7 +36,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{route('tampil_data_berkas_permohonan_belum_selesai_oleh_operator')}}" class="nav-link">
                                     <i class="nav-icon fas fa-file"></i>
                                     <p>
                                         Belum Selesai
@@ -130,7 +130,7 @@
                                                     </div>
                                                     <div class="col-lg-4 col-6">
                                                         <!-- small box -->
-                                                        <div class="small-box bg-success">
+                                                        <div class="small-box bg-danger">
                                                             <div class="inner">
                                                                 <h3>{{$jumlah_berkas_pengurusan_yang_belum_selesai}}</h3>
                                                                 <p>Belum Selesai</p>
@@ -142,7 +142,7 @@
                                                     </div>
                                                     <div class="col-lg-4 col-6">
                                                         <!-- small box -->
-                                                        <div class="small-box bg-danger">
+                                                        <div class="small-box bg-success">
                                                             <div class="inner">
                                                                 <h3>{{$jumlah_berkas_pengurusan_yang_sudah_selesai}}</h3>
                                                                 <p>Sudah Selesai</p>
