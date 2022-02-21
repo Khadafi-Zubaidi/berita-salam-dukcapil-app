@@ -46,10 +46,16 @@ class AdminDataController extends Controller
                 ->count();
             $jumlah_operator_desa_kelurahan = DB::table('operator_desa_kelurahans')
                 ->count();
+            $jumlah_berkas_pengurusan_yang_belum_selesai = DB::table('berkas_pengurusans')
+                ->where('status','=','B')
+                ->count();
+            $jumlah_berkas_pengurusan_yang_sudah_selesai = DB::table('berkas_pengurusans')
+                ->where('status','=','S')
+                ->count();
             $data = [
                 'LoggedUserInfo'=>$data_admin_untuk_dashboard,
             ];
-            return view('dashboard.dashboard_admin_data',$data,compact('jumlah_kecamatan','jumlah_desa_kelurahan','jumlah_operator_desa_kelurahan'));
+            return view('dashboard.dashboard_admin_data',$data,compact('jumlah_kecamatan','jumlah_desa_kelurahan','jumlah_operator_desa_kelurahan','jumlah_berkas_pengurusan_yang_belum_selesai','jumlah_berkas_pengurusan_yang_sudah_selesai'));
         }else{
             return view('login.login_admin_data');
         }

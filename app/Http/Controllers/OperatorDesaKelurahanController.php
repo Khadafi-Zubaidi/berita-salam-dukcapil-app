@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BerkasPengurusan;
 use App\Models\DesaKelurahan;
 use App\Models\OperatorDesaKelurahan;
 use Illuminate\Http\Request;
@@ -127,6 +128,57 @@ class OperatorDesaKelurahanController extends Controller
         if (session()->has('LoggedOperator')){
             session()->pull('LoggedOperator');
             return redirect('login_operator');
+        }else{
+            return view('login.login_operator');
+        }
+    }
+
+    public function tambah_data_berkas_oleh_operator(){
+        if (session()->has('LoggedOperator')){
+            $data_admin_untuk_dashboard = OperatorDesaKelurahan::where('id','=',session('LoggedOperator'))->first();
+            $data = [
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tambah_data_oleh_operator.tambah_data_berkas_oleh_operator',$data);
+        }else{
+            return view('login.login_redaktur');
+        }
+    }
+
+    public function simpan_data_baru_permohonan_oleh_operator(Request $request){
+        if (session()->has('LoggedOperator')){
+            $request->validate([
+                'nama_pemohon'=>'required',
+                'alamat_pemohon'=>'required',
+                'jenis_permohonan'=>'required',
+                'file' => 'required|mimes:zip',
+            ],[
+                'nama_pemohon.required'=>'Nama Pemohon tidak boleh kosong',
+                'alamat_pemohon.required'=>'Alamat Pemohon tidak boleh kosong',
+                'jenis_permohonan.required'=>'Jenis Permohonan tidak boleh kosong',
+                'file.required'=>'Berkas tidak boleh kosong',
+                'file.mimes'=>'Berkas harus dalam bentuk (ZIP)',
+            ]);
+            $data_admin_untuk_dashboard = OperatorDesaKelurahan::where('id','=',session('LoggedOperator'))->first();
+
+            $data_baru = new BerkasPengurusan();
+            $data_baru->id_operator_desa_kelurahan = $data_admin_untuk_dashboard->id;
+            $data_baru->nama_pemohon = $request->nama_pemohon;
+            $data_baru->alamat_pemohon = $request->alamat_pemohon;
+            $data_baru->jenis_permohonan = $request->jenis_permohonan;
+            $tanggal_pengajuan = date("d/m/Y");
+            $data_baru->tanggal_pengajuan = $tanggal_pengajuan;
+            $bulan_pengajuan = date("m");
+            $data_baru->bulan_pengajuan = $bulan_pengajuan;
+            //simpan berkas
+            $extension = $request->file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $request->file->move(public_path('berkas_permohonan'),$filename);
+            $data = $filename;
+            $data_baru->berkas_permohonan = $data;
+            //akhir simpan berkas
+            $data_baru->save();
+            return redirect('dashboard_operator');
         }else{
             return view('login.login_operator');
         }

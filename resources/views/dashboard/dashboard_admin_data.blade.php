@@ -63,6 +63,24 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-file"></i>
+                                    <p>
+                                        Belum Selesai
+                                        <span class="right badge badge-danger">{{$jumlah_berkas_pengurusan_yang_belum_selesai}}</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-file"></i>
+                                    <p>
+                                        Sudah Selesai
+                                        <span class="right badge badge-success">{{$jumlah_berkas_pengurusan_yang_sudah_selesai}}</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{route('logout_admin_data')}}" class="nav-link">
                                     <i class="nav-icon fas fa-sign-out-alt"></i>
                                     <p>

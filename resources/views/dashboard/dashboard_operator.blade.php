@@ -28,15 +28,15 @@
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
-                                <a href="{{route('logout_operator')}}" class="nav-link">
-                                    <i class="nav-icon fas fa-file"></i>
+                                <a href="{{route('tambah_data_berkas_oleh_operator')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-plus"></i>
                                     <p>
-                                        Pengajuan Berkas
+                                        Permohonan Baru
                                     </p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('logout_operator')}}" class="nav-link">
+                                <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-file"></i>
                                     <p>
                                         Belum Selesai
@@ -45,7 +45,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('logout_operator')}}" class="nav-link">
+                                <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-file"></i>
                                     <p>
                                         Sudah Selesai
