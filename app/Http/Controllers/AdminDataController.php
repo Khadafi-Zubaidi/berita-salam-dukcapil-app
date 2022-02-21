@@ -44,10 +44,12 @@ class AdminDataController extends Controller
                 ->count();
             $jumlah_desa_kelurahan = DB::table('desa_kelurahans')
                 ->count();
+            $jumlah_operator_desa_kelurahan = DB::table('operator_desa_kelurahans')
+                ->count();
             $data = [
                 'LoggedUserInfo'=>$data_admin_untuk_dashboard,
             ];
-            return view('dashboard.dashboard_admin_data',$data,compact('jumlah_kecamatan','jumlah_desa_kelurahan'));
+            return view('dashboard.dashboard_admin_data',$data,compact('jumlah_kecamatan','jumlah_desa_kelurahan','jumlah_operator_desa_kelurahan'));
         }else{
             return view('login.login_admin_data');
         }
@@ -347,4 +349,12 @@ class AdminDataController extends Controller
         $data_dihapus->delete();
         return response()->json($data_dihapus);
     }
+
+    public function simpan_perubahan_data_password_operator_desa_kelurahan_oleh_admin_data(Request $request){
+        $data_perubahan = OperatorDesaKelurahan::find($request->id3);
+        $data_perubahan->password = Hash::make($request->password3);
+        $data_perubahan->save();
+        return response()->json($data_perubahan);
+    }
+    
 }

@@ -8,7 +8,7 @@
                         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                        <a href="#" class="nav-link">Dashboard Admin Data</a>
+                        <a href="#" class="nav-link">Dashboard Operator {{$NamaDesa->nama_desa_kelurahan}} Kecamatan {{$NamaKecamatan->nama_kecamatan}}</a>
                     </li>
                 </ul>
             </nav>
@@ -19,51 +19,42 @@
                 <div class="sidebar">
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="{{asset('foto_admin_data')}}/{{$LoggedUserInfo->foto}}" class="img-circle elevation-2" alt="User Image">
+                            <img src="{{asset('foto_operator_desa_kelurahan')}}/{{$LoggedUserInfo->foto}}" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
-                            <a href="#" class="d-block">{{$LoggedUserInfo->nama}}</a>
+                            <a href="#" class="d-block">{{$LoggedUserInfo->nama_operator}}</a>
                         </div>
                     </div>
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-database"></i>
+                                <a href="{{route('logout_operator')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-file"></i>
                                     <p>
-                                        Master Data
-                                        <i class="right fas fa-angle-left"></i>
+                                        Pengajuan Berkas
                                     </p>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{route('tampil_data_kecamatan_oleh_admin_data')}}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Kecamatan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('tampil_data_desa_kelurahan_oleh_admin_data')}}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Desa/Kelurahan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Op. Kecamatan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('tampil_data_operator_desa_kelurahan_oleh_admin_data')}}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Op. Desa/Kelurahan</p>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('logout_admin_data')}}" class="nav-link">
+                                <a href="{{route('logout_operator')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-file"></i>
+                                    <p>
+                                        Belum Selesai
+                                        <span class="right badge badge-danger">{{$jumlah_berkas_pengurusan_yang_belum_selesai}}</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('logout_operator')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-file"></i>
+                                    <p>
+                                        Sudah Selesai
+                                        <span class="right badge badge-success">{{$jumlah_berkas_pengurusan_yang_sudah_selesai}}</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('logout_operator')}}" class="nav-link">
                                     <i class="nav-icon fas fa-sign-out-alt"></i>
                                     <p>
                                         Keluar Aplikasi
@@ -129,8 +120,8 @@
                                                         <!-- small box -->
                                                         <div class="small-box bg-info">
                                                             <div class="inner">
-                                                                <h3>{{$jumlah_kecamatan}}</h3>
-                                                                <p>Kecamatan</p>
+                                                                <h3>{{$jumlah_berkas_pengurusan}}</h3>
+                                                                <p>Berkas Pengurusan</p>
                                                             </div>
                                                             <div class="icon">
                                                                 <i class="ion ion-person"></i>
@@ -139,10 +130,10 @@
                                                     </div>
                                                     <div class="col-lg-4 col-6">
                                                         <!-- small box -->
-                                                        <div class="small-box bg-info">
+                                                        <div class="small-box bg-success">
                                                             <div class="inner">
-                                                                <h3>{{$jumlah_desa_kelurahan}}</h3>
-                                                                <p>Desa/Kelurahan</p>
+                                                                <h3>{{$jumlah_berkas_pengurusan_yang_belum_selesai}}</h3>
+                                                                <p>Belum Selesai</p>
                                                             </div>
                                                             <div class="icon">
                                                                 <i class="ion ion-person"></i>
@@ -151,10 +142,10 @@
                                                     </div>
                                                     <div class="col-lg-4 col-6">
                                                         <!-- small box -->
-                                                        <div class="small-box bg-info">
+                                                        <div class="small-box bg-danger">
                                                             <div class="inner">
-                                                                <h3>{{$jumlah_operator_desa_kelurahan}}</h3>
-                                                                <p>Op. Desa/Kelurahan</p>
+                                                                <h3>{{$jumlah_berkas_pengurusan_yang_sudah_selesai}}</h3>
+                                                                <p>Sudah Selesai</p>
                                                             </div>
                                                             <div class="icon">
                                                                 <i class="ion ion-person"></i>
@@ -172,7 +163,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title">Profile Admin Data</h5>
+                                        <h5 class="card-title">Profile Operator</h5>
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                                 <i class="fas fa-minus"></i>
@@ -186,10 +177,10 @@
                                                     <div class="card-body box-profile">
                                                         <div class="text-center">
                                                             <img class="profile-user-img img-fluid img-circle"
-                                                                 src="{{asset('foto_admin_data')}}/{{$LoggedUserInfo->foto}}"
+                                                                 src="{{asset('foto_operator_desa_kelurahan')}}/{{$LoggedUserInfo->foto}}"
                                                                  alt="User profile picture">
                                                         </div>
-                                                        <h5 class="profile-username text-center">{{$LoggedUserInfo->nama}}</h5>
+                                                        <h5 class="profile-username text-center">{{$LoggedUserInfo->nama_operator}}</h5>
                                                         <p class="text-muted text-center">NIP. {{$LoggedUserInfo->nip}}</p>
                                                     </div>
                                                 </div>
@@ -206,7 +197,7 @@
                                                     <div class="card-body">
                                                         <div class="tab-content">
                                                             <div class="active tab-pane" id="ubah-profile">
-                                                                <form method="post" action="{{route('simpan_perubahan_data_profil_admin_data')}}">
+                                                                <form method="post" action="{{route('simpan_perubahan_data_profil_operator')}}">
                                                                     @csrf
                                                                     <input name="id" type="hidden" class="form-control" value="{{$LoggedUserInfo->id}}">
                                                                     <div class="form-group">
@@ -225,7 +216,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>Nama</label>
-                                                                        <input id="nama" name="nama"type="text" class="form-control @error('nama') is-invalid @enderror" placeholder="Masukkan Nama" value="{{$LoggedUserInfo->nama}}">
+                                                                        <input id="nama" name="nama"type="text" class="form-control @error('nama') is-invalid @enderror" placeholder="Masukkan Nama" value="{{$LoggedUserInfo->nama_operator}}">
                                                                         @error('nama')
                                                                         <div class="invalid-feedback">{{$message}}</div>
                                                                         @enderror
@@ -250,7 +241,7 @@
                                                                 </form>
                                                             </div>
                                                             <div class="tab-pane" id="ubah-password">
-                                                                <form method="post" action="{{route('simpan_perubahan_data_password_admin_data')}}">
+                                                                <form method="post" action="{{route('simpan_perubahan_data_password_operator')}}">
                                                                     @csrf
                                                                     <input name="id" type="hidden" class="form-control" value="{{$LoggedUserInfo->id}}">
                                                                     <div class="form-group">
@@ -266,7 +257,7 @@
                                                                 </form>
                                                             </div>
                                                             <div class="tab-pane" id="ubah-foto">
-                                                                <form method="post" action="{{route('simpan_perubahan_data_foto_admin_data')}}" enctype="multipart/form-data">
+                                                                <form method="post" action="{{route('simpan_perubahan_data_foto_operator')}}" enctype="multipart/form-data">
                                                                     @csrf
                                                                     <input name="id" type="hidden" class="form-control" value="{{$LoggedUserInfo->id}}">
                                                                     <label>Upload File</label><br>

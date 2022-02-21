@@ -108,6 +108,7 @@
                                                                 <td>{{$dt->nama_kecamatan}}</td>
                                                                 <td>
                                                                     <a href="javascript:void(0)" onclick="ubahData({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><i class="fa fa-edit"></i></a>
+                                                                    <a href="javascript:void(0)" onclick="ubahDataPassword({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><i class="fa fa-key"></i></a>
                                                                     <a href="javascript:void(0)" onclick="hapusData({{$dt->id}})" class="btn btn-danger btn-block btn-sm"><i class="fa fa-trash"></i></a>
                                                                 </td>
                                                             </tr>
@@ -271,6 +272,85 @@
                                                                             },
                                                                             success:function(response){
                                                                                 $("#hapusDataModal").modal('hide');
+                                                                                window.location = "{{route('tampil_data_operator_desa_kelurahan_oleh_admin_data')}}";
+                                                                            }
+                                                                        })
+                                                                    })
+                                                                }
+                                                            </script>
+                                                            <!-- Ubah Data Password -->
+                                                            <div class="modal fade" id="ubahDataPasswordModal">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content bg-warning">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title">Ubah Data Password Operator Desa/Kelurahan</h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form id="ubahDataPasswordForm" action="" method="post">
+                                                                                @csrf
+                                                                                <input type="hidden" id="id3"/>
+                                                                                <label>NIP *</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="number" id="nip3" class="form-control" disabled>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Nama Operator *</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="nama_operator3" class="form-control" disabled>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Password *</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="password3" class="form-control" required>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <button type="submit" class="btn btn-primary btn-block">Simpan Perubahan Password</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <script>
+                                                                function ubahDataPassword(id)
+                                                                {
+                                                                    $.get('/operator_desa_kelurahans/'+id,function(operator_desa_kelurahan){
+                                                                        $("#id3").val(operator_desa_kelurahan.id);
+                                                                        $("#nip3").val(operator_desa_kelurahan.nip);
+                                                                        $("#nama_operator3").val(operator_desa_kelurahan.nama_operator);    
+                                                                        $("#ubahDataPasswordModal").modal('toggle');
+                                                                    })
+                                                                    $("#ubahDataPasswordForm").submit(function (e){
+                                                                        e.preventDefault();
+                                                                        let id3 = $("#id3").val();
+                                                                        let password3 = $("#password3").val();
+                                                                        let _token = $("input[name=_token]").val();
+                                                                        $.ajax({
+                                                                            url:"{{route('operator_desa_kelurahan.update_password')}}",
+                                                                            type: "PUT",
+                                                                            data:{
+                                                                                id3:id3,
+                                                                                password3:password3,
+                                                                                _token:_token
+                                                                            },
+                                                                            success:function(response){
+                                                                                $("#ubahDataPasswordModal").modal('hide');
                                                                                 window.location = "{{route('tampil_data_operator_desa_kelurahan_oleh_admin_data')}}";
                                                                             }
                                                                         })

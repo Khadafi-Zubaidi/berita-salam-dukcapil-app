@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminAppController;
 use App\Http\Controllers\AdminDataController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\OperatorDesaKelurahanController;
 use App\Http\Controllers\RedakturController;
 use App\Http\Controllers\ReporterController;
 
@@ -94,6 +95,8 @@ Route::put('/operator_desa_kelurahan1',[AdminDataController::class,'simpan_perub
 Route::get('tambah_data_operator_desa_kelurahan_oleh_admin_data',[AdminDataController::class,'tambah_data_operator_desa_kelurahan_oleh_admin_data'])->name('tambah_data_operator_desa_kelurahan_oleh_admin_data');
 Route::post('simpan_data_baru_operator_desa_kelurahan_oleh_admin_data',[AdminDataController::class,'simpan_data_baru_operator_desa_kelurahan_oleh_admin_data'])->name('simpan_data_baru_operator_desa_kelurahan_oleh_admin_data');
 Route::put('/operator_desa_kelurahan2',[AdminDataController::class,'hapus_data_operator_desa_kelurahan'])->name('operator_desa_kelurahan.hapus_data');
+Route::put('/operator_desa_kelurahan3',[AdminDataController::class,'simpan_perubahan_data_password_operator_desa_kelurahan_oleh_admin_data'])->name('operator_desa_kelurahan.update_password');
+
 
 //Redaktur
 Route::get('login_redaktur',[RedakturController::class,'login_redaktur'])->middleware('RedakturLoggedIn');
@@ -229,3 +232,11 @@ Route::post('simpan_data_baru_berita_oleh_reporter',[ReporterController::class,'
 Route::get('/beritas6/{id}',[ReporterController::class,'get_id_berita_by_reporter6']);
 Route::put('/berita6',[ReporterController::class,'deleteData'])->name('berita.deletedata');
 
+//Operator
+Route::get('login_operator',[OperatorDesaKelurahanController::class,'login_operator'])->middleware('OperatorLoggedIn');
+Route::post('cek_login_operator',[OperatorDesaKelurahanController::class,'cek_login_operator'])->name('cek_login_operator');
+Route::get('dashboard_operator',[OperatorDesaKelurahanController::class,'dashboard_operator'])->name('dashboard_operator');
+Route::post('simpan_perubahan_data_profil_operator',[OperatorDesaKelurahanController::class,'simpan_perubahan_data_profil_operator'])->name('simpan_perubahan_data_profil_operator');
+Route::post('simpan_perubahan_data_password_operator',[OperatorDesaKelurahanController::class,'simpan_perubahan_data_password_operator'])->name('simpan_perubahan_data_password_operator');
+Route::post('simpan_perubahan_data_foto_operator',[OperatorDesaKelurahanController::class,'simpan_perubahan_data_foto_operator'])->name('simpan_perubahan_data_foto_operator');
+Route::get('logout_operator',[OperatorDesaKelurahanController::class,'logout_operator'])->name('logout_operator');
