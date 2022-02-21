@@ -217,4 +217,22 @@ class OperatorDesaKelurahanController extends Controller
         $data_berkas_diperbaharui->save();
         return response()->json($data_berkas_diperbaharui);
     }
+
+    public function tampil_data_berkas_permohonan_sudah_selesai_oleh_operator(){
+        if (session()->has('LoggedOperator')){
+            $data_admin_untuk_dashboard = OperatorDesaKelurahan::where('id','=',session('LoggedOperator'))->first();
+            $data_tabel = DB::table('berkas_pengurusans')
+                        ->where('id_operator_desa_kelurahan','=',$data_admin_untuk_dashboard->id)
+                        ->where('status', '=', 'S')
+                        ->orderBy('id', 'desc')
+                        ->get();
+            $data = [
+                'DataTabel'=>$data_tabel,
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_operator.tampil_data_berkas_permohonan_sudah_selesai_oleh_operator',$data);
+        }else{
+            return view('login.login_admin_data');
+        }
+    }
 }
