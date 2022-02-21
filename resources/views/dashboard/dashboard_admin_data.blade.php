@@ -72,7 +72,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{route('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data')}}" class="nav-link">
                                     <i class="nav-icon fas fa-file"></i>
                                     <p>
                                         Sudah Selesai

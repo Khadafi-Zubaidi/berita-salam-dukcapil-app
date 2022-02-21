@@ -7,6 +7,7 @@ use App\Models\BerkasPengurusan;
 use App\Models\DesaKelurahan;
 use App\Models\Kecamatan;
 use App\Models\OperatorDesaKelurahan;
+use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -403,6 +404,34 @@ class AdminDataController extends Controller
         $data_berkas_diperbaharui->status = $status;
         $data_berkas_diperbaharui->save();
         return response()->json($data_berkas_diperbaharui);
+    }
+
+    public function tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data(){
+        if (session()->has('LoggedAdminData')){
+            $data_admin_untuk_dashboard = AdminData::where('id','=',session('LoggedAdminData'))->first();
+            $data_tabel = DB::table('berkas_pengurusans')
+                        ->where('status', '=', 'S')
+                        ->orderBy('id', 'desc')
+                        ->get();
+            $data = [
+                'DataTabel'=>$data_tabel,
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_admin_data.tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data',$data);
+        }else{
+            return view('login.login_admin_data');
+        }
+    }
+
+    public function hapus_berkas_permohonan_oleh_admin_data(Request $request){
+        $berkas_dihapus = BerkasPengurusan::find($request->id);
+        $nama_berkas_dihapus = $request->berkas_permohonan;
+        if(file_exists(public_path('berkas_permohonan/'.$nama_berkas_dihapus))){
+            unlink(public_path('berkas_permohonan/'.$nama_berkas_dihapus));
+        }
+        $nama_berkas_permohonan_terbaru = "Fisik Telah Dibackup";
+        $berkas_dihapus->berkas_permohonan = $nama_berkas_permohonan_terbaru;
+        $berkas_dihapus->save();
     }
 
         

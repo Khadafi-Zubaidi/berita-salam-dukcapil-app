@@ -100,6 +100,8 @@ Route::put('/operator_desa_kelurahan3',[AdminDataController::class,'simpan_perub
 Route::get('tampil_data_berkas_permohonan_belum_selesai_oleh_admin_data',[AdminDataController::class,'tampil_data_berkas_permohonan_belum_selesai_oleh_admin_data'])->name('tampil_data_berkas_permohonan_belum_selesai_oleh_admin_data');
 Route::get('/berkas_pengurusans/{id}',[AdminDataController::class,'get_id_berkas_pengurusan_by_admin_data']);
 Route::post('/berkas_pengurusan1',[AdminDataController::class,'unggah_berkas_permohonan_selesai'])->name('berkas_permohonan.upload_berkas_permohonan_selesai');
+Route::get('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data',[AdminDataController::class,'tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data'])->name('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data');
+Route::put('/berkas_pengurusan3',[AdminDataController::class,'hapus_berkas_permohonan_oleh_admin_data'])->name('berkas_permohonan.hapus_berkas');
 
 //Redaktur
 Route::get('login_redaktur',[RedakturController::class,'login_redaktur'])->middleware('RedakturLoggedIn');
