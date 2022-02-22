@@ -434,5 +434,12 @@ class AdminDataController extends Controller
         $berkas_dihapus->save();
     }
 
+    public function simpan_perubahan_data_catatan_penting_oleh_admin_data(Request $request){
+        $data_perubahan = BerkasPengurusan::find($request->id);
+        $data_perubahan->isi_canting = $request->isi_canting;
+        $data_perubahan->save();
+        return response()->json($data_perubahan);
+    }
+
         
 }

@@ -102,6 +102,7 @@ Route::get('/berkas_pengurusans/{id}',[AdminDataController::class,'get_id_berkas
 Route::post('/berkas_pengurusan1',[AdminDataController::class,'unggah_berkas_permohonan_selesai'])->name('berkas_permohonan.upload_berkas_permohonan_selesai');
 Route::get('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data',[AdminDataController::class,'tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data'])->name('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data');
 Route::put('/berkas_pengurusan3',[AdminDataController::class,'hapus_berkas_permohonan_oleh_admin_data'])->name('berkas_permohonan.hapus_berkas');
+Route::put('/berkas_pengurusan4',[AdminDataController::class,'simpan_perubahan_data_catatan_penting_oleh_admin_data'])->name('berkas_pengurusan.isi_canting');
 
 //Redaktur
 Route::get('login_redaktur',[RedakturController::class,'login_redaktur'])->middleware('RedakturLoggedIn');

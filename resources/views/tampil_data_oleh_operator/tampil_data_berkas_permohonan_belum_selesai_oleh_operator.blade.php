@@ -53,6 +53,33 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
+                                <div class="card card-danger">
+                                  <div class="card-header">
+                                    <h3 class="card-title">Perhatian</h3>
+                    
+                                    <div class="card-tools">
+                                      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                      </button>
+                                    </div>
+                                    <!-- /.card-tools -->
+                                  </div>
+                                  <!-- /.card-header -->
+                                  <div class="card-body">
+                                    <p>
+                                        <strong>Penting Untuk Diketahui !!!</strong> 
+                                        <ol>
+                                            <li>Jika status pengurusan permohonan Belum Selesai, maka pastikan Anda untuk mengecek <button>Catatan Penting</button> dari kami.</li>
+                                            <li>Untuk mengirim dokumen kelengkapan guna perbaikan, maka Anda dapat menekan tombol <button>Unggah Berkas Permohonan Lagi</button>.</li>
+                                        </ol> 
+                                    </p>
+                                  </div>
+                                  <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                              </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
                                         <h5 class="card-title">Data Berkas Permohonan Yang Belum Selesai</h5>
@@ -95,7 +122,8 @@
                                                                     @endif
                                                                 </td>
                                                                 <td>
-                                                                    <a href="/berkas_permohonan/{{$dt->berkas_permohonan}}" class="btn btn-warning btn-block btn-sm"><small>Unduh Berkas Permohonan</small></a>
+                                                                    <a href="/berkas_permohonan/{{$dt->berkas_permohonan}}" class="btn btn-info btn-block btn-sm"><small>Unduh Berkas Permohonan</small></a>
+                                                                    <a href="javascript:void(0)" onclick="lihatCanting({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Catatan Penting</small></a>
                                                                     <a href="javascript:void(0)" onclick="unggahBerkasPermohonanLagi({{$dt->id}})" class="btn btn-danger btn-block btn-sm"><small>Unggah Berkas Permohonan Lagi</small></a>
                                                                 </td>
                                                             </tr>
@@ -192,6 +220,79 @@
                                                                             }
                                                                         });
                                                                     });
+                                                                }
+                                                            </script>
+                                                            <!-- Lihat Data Canting -->
+                                                            <div class="modal fade" id="ubahDataModal">
+                                                                <div class="modal-dialog modal-lg">
+                                                                    <div class="modal-content bg-warning">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title">Catatan Penting</h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form id="ubahDataForm" action="" method="post">
+                                                                                @csrf
+                                                                                <input type="hidden" id="id2"/>
+                                                                                <label>Nama Pemohon</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="nama_pemohon2" class="form-control" disabled>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Alamat Pemohon</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="alamat_pemohon2" class="form-control" disabled>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Jenis Permohonan</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="jenis_permohonan2" class="form-control" disabled>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Tanggal Pengajuan</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="tanggal_pengajuan2" class="form-control" disabled>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Catatan Penting</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <textarea id="isi_canting2"></textarea>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <script>
+                                                                function lihatCanting(id)
+                                                                {
+                                                                    $.get('/berkas_pengurusans/'+id,function(berkas_pengurusan){
+                                                                        $("#id2").val(berkas_pengurusan.id);
+                                                                        $("#nama_pemohon2").val(berkas_pengurusan.nama_pemohon);
+                                                                        $("#alamat_pemohon2").val(berkas_pengurusan.alamat_pemohon);
+                                                                        $("#jenis_permohonan2").val(berkas_pengurusan.jenis_permohonan);
+                                                                        $("#tanggal_pengajuan2").val(berkas_pengurusan.tanggal_pengajuan);
+                                                                        $("#isi_canting2").summernote('code', berkas_pengurusan.isi_canting);
+                                                                        $("#ubahDataModal").modal('toggle');
+                                                                    })
                                                                 }
                                                             </script> 
                                                         @endforeach
