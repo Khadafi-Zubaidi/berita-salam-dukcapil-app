@@ -115,6 +115,8 @@ Route::get('logout_redaktur',[RedakturController::class,'logout_redaktur'])->nam
 Route::get('tampil_data_reporter_oleh_redaktur',[RedakturController::class,'tampil_data_reporter_oleh_redaktur'])->name('tampil_data_reporter_oleh_redaktur');
 Route::get('/reporters1/{id}',[RedakturController::class,'get_id_reporter_by_redaktur']);
 Route::put('/reporter',[RedakturController::class,'simpan_perubahan_data_reporter_oleh_redaktur'])->name('reporter.updatedata');
+Route::put('/reporter2',[RedakturController::class,'simpan_perubahan_data_password_reporter_oleh_redaktur'])->name('reporter.updatedatapasswordolehredaktur');
+
 Route::get('tambah_data_reporter_oleh_redaktur',[RedakturController::class,'tambah_data_reporter_oleh_redaktur'])->name('tambah_data_reporter_oleh_redaktur');
 Route::post('simpan_data_baru_reporter_oleh_redaktur',[RedakturController::class,'simpan_data_baru_reporter_oleh_redaktur'])->name('simpan_data_baru_reporter_oleh_redaktur');
 Route::get('tampil_data_reporter_oleh_redaktur',[RedakturController::class,'tampil_data_reporter_oleh_redaktur'])->name('tampil_data_reporter_oleh_redaktur');

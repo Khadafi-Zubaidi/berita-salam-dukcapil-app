@@ -275,6 +275,7 @@
                                                                             <form id="hapusDataForm" action="" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" id="id6"/>
+                                                                                <input type="hidden" id="foto6"/>
                                                                                 <label>Judul *</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="text" id="judul6" class="form-control" disabled>
@@ -285,7 +286,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-12">
-                                                                                    <button type="submit" class="btn btn-danger btn-block">Hapus Data</button>
+                                                                                    <button type="submit" class="btn btn-info btn-block">Hapus Data</button>
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -298,17 +299,20 @@
                                                                     $.get('/beritas6/'+id,function(berita){
                                                                         $("#id6").val(berita.id);
                                                                         $("#judul6").val(berita.judul);
+                                                                        $("#foto6").val(berita.foto);
                                                                         $("#hapusDataModal").modal('toggle');
                                                                     })
                                                                     $("#hapusDataForm").submit(function (e){
                                                                         e.preventDefault();
                                                                         let id = $("#id6").val();
+                                                                        let foto = $("#foto6").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
                                                                             url:"{{route('berita.deletedata')}}",
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id:id,
+                                                                                foto:foto,
                                                                                 _token:_token
                                                                             },
                                                                             success:function(response){

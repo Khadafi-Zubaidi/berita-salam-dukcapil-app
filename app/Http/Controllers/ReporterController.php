@@ -209,6 +209,10 @@ class ReporterController extends Controller
     }
 
     public function deleteData(Request $request){
+        $nama_foto_dihapus = $request->foto;
+        if(file_exists(public_path('foto_berita/'.$nama_foto_dihapus))){
+            unlink(public_path('foto_berita/'.$nama_foto_dihapus));
+        }
         $data_berita_dihapus = Berita::find($request->id);
         $data_berita_dihapus->delete();
         return response()->json($data_berita_dihapus);

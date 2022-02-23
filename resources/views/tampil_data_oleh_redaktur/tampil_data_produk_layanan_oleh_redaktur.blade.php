@@ -291,6 +291,7 @@
                                                                             <form id="hapusDataForm" action="" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" id="id6"/>
+                                                                                <input type="hidden" id="foto6"/>
                                                                                 <label>Nama Produk Pelayanan *</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="text" id="nama_produk_layanan6" class="form-control" disabled>
@@ -301,7 +302,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-12">
-                                                                                    <button type="submit" class="btn btn-danger btn-block">Hapus Data</button>
+                                                                                    <button type="submit" class="btn btn-info btn-block">Hapus Data</button>
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -314,17 +315,20 @@
                                                                     $.get('/produklayanans6/'+id,function(produklayanan){
                                                                         $("#id6").val(produklayanan.id);
                                                                         $("#nama_produk_layanan6").val(produklayanan.nama_produk_layanan);
+                                                                        $("#foto6").val(produklayanan.foto);
                                                                         $("#hapusDataModal").modal('toggle');
                                                                     })
                                                                     $("#hapusDataForm").submit(function (e){
                                                                         e.preventDefault();
                                                                         let id = $("#id6").val();
+                                                                        let foto = $("#foto6").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
                                                                             url:"{{route('produklayanan6.deletedata')}}",
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id:id,
+                                                                                foto:foto,
                                                                                 _token:_token
                                                                             },
                                                                             success:function(response){

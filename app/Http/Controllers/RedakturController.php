@@ -156,10 +156,19 @@ class RedakturController extends Controller
         $data_perubahan->jabatan = $request->jabatan;
         $data_perubahan->pangkat_golongan = $request->pangkat_golongan;
         $data_perubahan->aktif = $request->aktif;
+        //$data_perubahan->password = Hash::make($request->password);
+        $data_perubahan->save();
+        return response()->json($data_perubahan);
+    }
+
+    public function simpan_perubahan_data_password_reporter_oleh_redaktur(Request $request){
+        $data_perubahan = Reporter::find($request->id);
         $data_perubahan->password = Hash::make($request->password);
         $data_perubahan->save();
         return response()->json($data_perubahan);
     }
+
+
 
     public function tambah_data_reporter_oleh_redaktur(){
         if (session()->has('LoggedRedaktur')){
@@ -381,6 +390,10 @@ class RedakturController extends Controller
     }
 
     public function deleteData(Request $request){
+        $nama_foto_dihapus = $request->foto;
+        if(file_exists(public_path('foto_carousel/'.$nama_foto_dihapus))){
+            unlink(public_path('foto_carousel/'.$nama_foto_dihapus));
+        }
         $data_berita_dihapus = Carousel::find($request->id);
         $data_berita_dihapus->delete();
         return response()->json($data_berita_dihapus);
@@ -392,6 +405,10 @@ class RedakturController extends Controller
     }
 
     public function deleteDataReporter(Request $request){
+        $nama_foto_dihapus = $request->foto;
+        if(file_exists(public_path('foto_reporter/'.$nama_foto_dihapus))){
+            unlink(public_path('foto_reporter/'.$nama_foto_dihapus));
+        }
         $data_berita_dihapus = Reporter::find($request->id);
         $data_berita_dihapus->delete();
         return response()->json($data_berita_dihapus);
@@ -435,6 +452,10 @@ class RedakturController extends Controller
     }
 
     public function deleteDataProdukLayanan(Request $request){
+        $nama_foto_dihapus = $request->foto;
+        if(file_exists(public_path('foto_produk_layanan/'.$nama_foto_dihapus))){
+            unlink(public_path('foto_produk_layanan/'.$nama_foto_dihapus));
+        }
         $data_berita_dihapus = ProdukLayanan::find($request->id);
         $data_berita_dihapus->delete();
         return response()->json($data_berita_dihapus);
@@ -526,6 +547,10 @@ class RedakturController extends Controller
     }
 
     public function hapus_data_inovasi_oleh_redaktur(Request $request){
+        $nama_foto_dihapus = $request->foto;
+        if(file_exists(public_path('foto_inovasi/'.$nama_foto_dihapus))){
+            unlink(public_path('foto_inovasi/'.$nama_foto_dihapus));
+        }
         $data_dihapus = Inovasi::find($request->id);
         $data_dihapus->delete();
         return response()->json($data_dihapus);
@@ -657,6 +682,10 @@ class RedakturController extends Controller
     }
 
     public function hapus_data_jdih_oleh_redaktur(Request $request){
+        $nama_foto_dihapus = $request->berkas;
+        if(file_exists(public_path('jdih/'.$nama_foto_dihapus))){
+            unlink(public_path('jdih/'.$nama_foto_dihapus));
+        }
         $data_dihapus = Jdih::find($request->id);
         $data_dihapus->delete();
         return response()->json($data_dihapus);

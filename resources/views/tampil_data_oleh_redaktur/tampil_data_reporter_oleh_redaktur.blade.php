@@ -104,6 +104,7 @@
                                                                     @endif</td>
                                                                 <td>
                                                                     <a href="javascript:void(0)" onclick="ubahData({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><i class="fa fa-user-edit"></i></a>
+                                                                    <a href="javascript:void(0)" onclick="ubahDataPassword({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><i class="fa fa-key"></i></a>
                                                                     <a href="javascript:void(0)" onclick="hapusData({{$dt->id}})" class="btn btn-danger btn-block btn-sm"><i class="fa fa-trash"></i></a>
                                                                 </td>
                                                             </tr>
@@ -166,16 +167,6 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <label>Password * (Hanya untuk merubah Password)</label><br>
-                                                                                <div class="input-group mb-3">
-                                                                                    <input type="text" id="password1" class="form-control" required>
-                                                                                    <div class="input-group-append">
-                                                                                        <div class="input-group-text">
-                                                                                            <span class="fas fa-id-card"></span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <label>Jika tidak melakukan perubahan apapun, sebaiknya tekan tombol X di atas. Jangan tekan tombol di bawah ini.</label><br>
                                                                                 <div class="col-12">
                                                                                     <button type="submit" class="btn btn-primary btn-block">Simpan Perubahan Data</button>
                                                                                 </div>
@@ -204,7 +195,6 @@
                                                                         let jabatan = $("#jabatan1").val();
                                                                         let pangkat_golongan = $("#pangkat_golongan1").val();
                                                                         let aktif = $("#aktif1").val();
-                                                                        let password = $("#password1").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
                                                                             url:"{{route('reporter.updatedata')}}",
@@ -216,11 +206,90 @@
                                                                                 jabatan:jabatan,
                                                                                 pangkat_golongan:pangkat_golongan,
                                                                                 aktif:aktif,
-                                                                                password:password,
                                                                                 _token:_token
                                                                             },
                                                                             success:function(response){
                                                                                 $("#ubahDataModal").modal('hide');
+                                                                                window.location = "{{route('tampil_data_reporter_oleh_redaktur')}}";
+                                                                            }
+                                                                        })
+                                                                    })
+                                                                }
+                                                            </script>
+                                                            <!-- Ubah Data -->
+                                                            <div class="modal fade" id="ubahDataPasswordModal">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content bg-warning">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title">Ubah Data Password</h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form id="ubahDataPasswordForm" action="" method="post">
+                                                                                @csrf
+                                                                                <input type="hidden" id="id2"/>
+                                                                                <label>NIP *</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="nip2" class="form-control" disabled>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Nama *</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="nama2" class="form-control" disabled>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Password Baru *</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="password2" class="form-control" required>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Jika tidak ingin melakukan perubahan data Password, klik pada tombol Close (X) pada bagian atas.</label><br>
+                                                                                <div class="col-12">
+                                                                                    <button type="submit" class="btn btn-primary btn-block">Simpan Perubahan Password</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <script>
+                                                                function ubahDataPassword(id)
+                                                                {
+                                                                    $.get('/reporters1/'+id,function(reporter){
+                                                                        $("#id2").val(reporter.id);
+                                                                        $("#nip2").val(reporter.nip);
+                                                                        $("#nama2").val(reporter.nama);
+                                                                        $("#ubahDataPasswordModal").modal('toggle');
+                                                                    })
+                                                                    $("#ubahDataPasswordForm").submit(function (e){
+                                                                        e.preventDefault();
+                                                                        let id = $("#id2").val();
+                                                                        let password = $("#password2").val();
+                                                                        let _token = $("input[name=_token]").val();
+                                                                        $.ajax({
+                                                                            url:"{{route('reporter.updatedatapasswordolehredaktur')}}",
+                                                                            type: "PUT",
+                                                                            data:{
+                                                                                id:id,
+                                                                                password:password,
+                                                                                _token:_token
+                                                                            },
+                                                                            success:function(response){
+                                                                                $("#ubahDataPasswordModal").modal('hide');
                                                                                 window.location = "{{route('tampil_data_reporter_oleh_redaktur')}}";
                                                                             }
                                                                         })
@@ -241,6 +310,7 @@
                                                                             <form id="hapusDataForm" action="" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" id="id6"/>
+                                                                                <input type="hidden" id="foto6"/>
                                                                                 <label>NIP *</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="text" id="nip6" class="form-control" disabled>
@@ -251,7 +321,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-12">
-                                                                                    <button type="submit" class="btn btn-danger btn-block">Hapus Data</button>
+                                                                                    <button type="submit" class="btn btn-info btn-block">Hapus Data</button>
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -264,17 +334,20 @@
                                                                     $.get('/reporters6/'+id,function(reporter){
                                                                         $("#id6").val(reporter.id);
                                                                         $("#nip6").val(reporter.nip);
+                                                                        $("#foto6").val(reporter.foto);
                                                                         $("#hapusDataModal").modal('toggle');
                                                                     })
                                                                     $("#hapusDataForm").submit(function (e){
                                                                         e.preventDefault();
                                                                         let id = $("#id6").val();
+                                                                        let foto = $("#foto6").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
                                                                             url:"{{route('reporter.deletedata')}}",
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id:id,
+                                                                                foto:foto,
                                                                                 _token:_token
                                                                             },
                                                                             success:function(response){

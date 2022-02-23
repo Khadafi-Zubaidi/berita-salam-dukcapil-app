@@ -252,6 +252,7 @@
                                                                             <form id="hapusDataForm" action="" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" id="id3"/>
+                                                                                <input type="hidden" id="foto3"/>
                                                                                 <label>Nama Inovasi *</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="text" id="nama_inovasi3" class="form-control" disabled>
@@ -262,7 +263,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-12">
-                                                                                    <button type="submit" class="btn btn-danger btn-block">Hapus Data</button>
+                                                                                    <button type="submit" class="btn btn-info btn-block">Hapus Data</button>
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -274,18 +275,21 @@
                                                                 {
                                                                     $.get('/inovasis1/'+id,function(inovasi){
                                                                         $("#id3").val(inovasi.id);
+                                                                        $("#foto3").val(inovasi.foto);
                                                                         $("#nama_inovasi3").val(inovasi.nama_inovasi);
                                                                         $("#hapusDataModal").modal('toggle');
                                                                     })
                                                                     $("#hapusDataForm").submit(function (e){
                                                                         e.preventDefault();
                                                                         let id = $("#id3").val();
+                                                                        let foto = $("#foto3").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
                                                                             url:"{{route('inovasi.deletedata')}}",
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id:id,
+                                                                                foto:foto,
                                                                                 _token:_token
                                                                             },
                                                                             success:function(response){

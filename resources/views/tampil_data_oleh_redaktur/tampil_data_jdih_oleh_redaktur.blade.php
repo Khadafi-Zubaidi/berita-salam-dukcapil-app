@@ -100,7 +100,7 @@
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content bg-warning">
                                                                         <div class="modal-header">
-                                                                            <h4 class="modal-title">Ubah Data JDIH</h4>
+                                                                            <h4 class="modal-title">Ubah Data</h4>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
@@ -221,12 +221,13 @@
                                                                             <form id="hapusDataForm" action="" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" id="id6"/>
+                                                                                <input type="hidden" id="berkas6"/>
                                                                                 <label>Nama Peraturan *</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="text" id="nama_peraturan6" class="form-control" disabled>
                                                                                 </div>
                                                                                 <div class="col-12">
-                                                                                    <button type="submit" class="btn btn-danger btn-block">Hapus Data</button>
+                                                                                    <button type="submit" class="btn btn-info btn-block">Hapus Data</button>
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -238,18 +239,21 @@
                                                                 {
                                                                     $.get('/jdihs/'+id,function(jdih){
                                                                         $("#id6").val(jdih.id);
+                                                                        $("#berkas6").val(jdih.berkas);
                                                                         $("#nama_peraturan6").summernote('code', jdih.nama_peraturan);
                                                                         $("#hapusDataModal").modal('toggle');
                                                                     })
                                                                     $("#hapusDataForm").submit(function (e){
                                                                         e.preventDefault();
                                                                         let id = $("#id6").val();
+                                                                        let berkas = $("#berkas6").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
                                                                             url:"{{route('jdih.deletedata')}}",
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id:id,
+                                                                                berkas:berkas,
                                                                                 _token:_token
                                                                             },
                                                                             success:function(response){
