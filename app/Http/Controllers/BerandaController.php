@@ -15,6 +15,7 @@ use App\Models\StrukturOrganisasi;
 use App\Models\Tupoksi;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BerandaController extends Controller
 {
@@ -71,7 +72,9 @@ class BerandaController extends Controller
 
     public function tampil_arsip_berita(){
         $data_carousel = Carousel::orderBy('id', 'desc')->limit(3)->get();
-        $data_berita = Berita::orderBy('id', 'desc')->get();
+        $data_berita = DB::table('beritas')
+                        ->where('diperiksa_oleh_redaktur', '=', 'S')
+                        ->get();
         $data = [
             'DataCarousel'=>$data_carousel,
             'DataBerita'=>$data_berita,
