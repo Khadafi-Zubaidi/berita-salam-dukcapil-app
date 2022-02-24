@@ -808,6 +808,10 @@ class RedakturController extends Controller
     }
 
     public function hapus_data_sop_oleh_redaktur(Request $request){
+        $nama_foto_dihapus = $request->berkas;
+        if(file_exists(public_path('sop/'.$nama_foto_dihapus))){
+            unlink(public_path('sop/'.$nama_foto_dihapus));
+        }
         $data_dihapus = Sop::find($request->id);
         $data_dihapus->delete();
         return response()->json($data_dihapus);
@@ -885,6 +889,10 @@ class RedakturController extends Controller
     }
 
     public function hapus_data_formulir_oleh_redaktur(Request $request){
+        $nama_foto_dihapus = $request->berkas;
+        if(file_exists(public_path('formulir/'.$nama_foto_dihapus))){
+            unlink(public_path('formulir/'.$nama_foto_dihapus));
+        }
         $data_dihapus = Formulir::find($request->id);
         $data_dihapus->delete();
         return response()->json($data_dihapus);
