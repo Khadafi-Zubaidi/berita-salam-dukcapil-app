@@ -333,7 +333,7 @@ class AdminDataController extends Controller
                 'pangkat_golongan'=>'required',
             ],[
                 'id_desa_kelurahan.required'=>'ID Desa/Kelurahan tidak boleh kosong',
-                'nip.required'=>'NIP tidak boleh kosong',
+                'nip.required'=>'ID Operator tidak boleh kosong',
                 'nama_operator.required'=>'Nama Operator tidak boleh kosong',
                 'jabatan.required'=>'Jabatan tidak boleh kosong',
                 'password.required'=>'Password tidak boleh kosong',
@@ -370,8 +370,20 @@ class AdminDataController extends Controller
         if (session()->has('LoggedAdminData')){
             $data_admin_untuk_dashboard = AdminData::where('id','=',session('LoggedAdminData'))->first();
             $data_tabel = DB::table('berkas_pengurusans')
-                        ->where('status', '=', 'B')
-                        ->orderBy('id', 'desc')
+                        ->join('operator_desa_kelurahans', 'berkas_pengurusans.id_operator_desa_kelurahan', '=', 'operator_desa_kelurahans.id')
+                        ->join('desa_kelurahans', 'operator_desa_kelurahans.id_desa_kelurahan', '=', 'desa_kelurahans.id')
+                        ->join('kecamatans', 'desa_kelurahans.id_kecamatan', '=', 'kecamatans.id')
+                        ->select('berkas_pengurusans.id',
+                                'berkas_pengurusans.nama_pemohon',
+                                'berkas_pengurusans.alamat_pemohon',
+                                'berkas_pengurusans.jenis_permohonan',
+                                'berkas_pengurusans.tanggal_pengajuan',
+                                'desa_kelurahans.nama_desa_kelurahan',
+                                'berkas_pengurusans.berkas_permohonan',
+                                'kecamatans.nama_kecamatan',
+                                'berkas_pengurusans.status')
+                        ->where('berkas_pengurusans.status', '=', 'B')
+                        ->orderBy('berkas_pengurusans.id', 'desc')
                         ->get();
             $data = [
                 'DataTabel'=>$data_tabel,

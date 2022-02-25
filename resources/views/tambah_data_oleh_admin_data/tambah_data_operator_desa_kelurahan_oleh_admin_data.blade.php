@@ -75,7 +75,7 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                    <label>NIP *</label><br>
+                                                    <label>ID Operator *</label><br>
                                                     <div class="input-group mb-3">
                                                         <input type="number" name="nip" class="form-control @error('nip') is-invalid @enderror" value="{{ old('nip')}}">
                                                         <div class="input-group-append">

@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\BerkasPengurusan;
 use App\Models\DesaKelurahan;
 use App\Models\OperatorDesaKelurahan;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class OperatorDesaKelurahanController extends Controller
 {
@@ -20,7 +24,7 @@ class OperatorDesaKelurahanController extends Controller
             'nip'=>'required',
             'password'=>'required',
         ],[
-            'nip.required'=>'NIP tidak boleh kosong',
+            'nip.required'=>'ID Operator tidak boleh kosong',
             'password.required'=>'Password tidak boleh kosong',
         ]);
         $cek_login = OperatorDesaKelurahan::where('nip','=',$request->nip)->where('aktif','=','Y')->first();
@@ -177,6 +181,9 @@ class OperatorDesaKelurahanController extends Controller
             $data = $filename;
             $data_baru->berkas_permohonan = $data;
             //akhir simpan berkas
+            //generate random string untuk nomor pendaftaran
+            $randomString = Str::random(10);
+            $data_baru->nomor_pendaftaran = $randomString;
             $data_baru->save();
             return redirect('dashboard_operator');
         }else{
@@ -198,7 +205,7 @@ class OperatorDesaKelurahanController extends Controller
             ];
             return view('tampil_data_oleh_operator.tampil_data_berkas_permohonan_belum_selesai_oleh_operator',$data);
         }else{
-            return view('login.login_admin_data');
+            return view('login.login_operator');
         }
     }
 
@@ -232,7 +239,14 @@ class OperatorDesaKelurahanController extends Controller
             ];
             return view('tampil_data_oleh_operator.tampil_data_berkas_permohonan_sudah_selesai_oleh_operator',$data);
         }else{
-            return view('login.login_admin_data');
+            return view('login.login_operator');
         }
     }
+
+    public function cetak_bukti_pendaftaran_oleh_operator($id){
+        $data_berkas = BerkasPengurusan::find($id);
+        $pdf = Pdf::loadView('bukti_pendaftaran', compact('data_berkas'));
+        return $pdf->download('bukti_pendaftaran.pdf');
+    }
+
 }

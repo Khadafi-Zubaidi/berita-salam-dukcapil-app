@@ -78,7 +78,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
-                                                            <th>NIP</th>
+                                                            <th>ID Operator</th>
                                                             <th>Nama Operator</th>
                                                             <th>Jabatan</th>
                                                             <th>Pangkat/Golongan</th>
@@ -126,7 +126,7 @@
                                                                             <form id="ubahDataForm" action="" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" id="id1"/>
-                                                                                <label>NIP *</label><br>
+                                                                                <label>ID Operator *</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="number" id="nip1" class="form-control" required>
                                                                                     <div class="input-group-append">
@@ -234,7 +234,7 @@
                                                                             <form id="hapusDataForm" action="" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" id="id2"/>
-                                                                                <label>NIP *</label><br>
+                                                                                <label>ID Operator *</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="text" id="nip2" class="form-control" disabled>
                                                                                     <div class="input-group-append">
@@ -292,7 +292,7 @@
                                                                             <form id="ubahDataPasswordForm" action="" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" id="id3"/>
-                                                                                <label>NIP *</label><br>
+                                                                                <label>ID Operator *</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="number" id="nip3" class="form-control" disabled>
                                                                                     <div class="input-group-append">

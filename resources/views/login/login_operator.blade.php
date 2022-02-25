@@ -23,8 +23,8 @@
                                 @endif
                             </div>
                             <div class="form-group first">
-                                <label for="nip">NIP</label>
-                                <input name="nip" type="text" class="form-control @error('nip') is-invalid @enderror" placeholder="NIP Anda" id="nip">
+                                <label for="nip">ID Operator</label>
+                                <input name="nip" type="text" class="form-control @error('nip') is-invalid @enderror" placeholder="ID Operator" id="nip">
                                 @error('nip')
                                 <div class="invalid-feedback">{{$message}}</div>
                                 @enderror

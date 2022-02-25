@@ -71,6 +71,7 @@
                                             <li>Pastikan Anda sudah melakukan scan terhadap dokumen-dokumen yang dilampirkan serta melakukan kompres ke dalam bentuk (.ZIP). Silahkan hubungi Admin Data untuk keterangan lebih lanjut.</li>
                                             <li>Seluruh kolom yang bertanda bintang (*) wajib diisi.</li>
                                             <li>Untuk mengisi berkas, klik pada tombol <button>Choose File</button> lalu pilih file Zip sebagaimana dimaksud pada point paling atas.</li>
+                                            <li><strong>Untuk Pengurusan Dokumen Terkait Kartu Tanda Penduduk Hanya Bisa Dilayani Secara Langsung di Kantor Dinas Kependudukan dan Pencatatan Sipil Kabupaten Sumbawa Barat.</strong></li>
                                         </ol>
                                     </p>
                                   </div>
@@ -79,6 +80,7 @@
                                 <!-- /.card -->
                               </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">

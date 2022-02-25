@@ -114,6 +114,15 @@
     </script>
     <script>
         $(function () {
+          $('#dokumen_hasil3').summernote({
+                focus: true,
+                width: 800,
+                height: 250,
+            });
+        });
+    </script>
+    <script>
+        $(function () {
           $('#nama_peraturan1').summernote({
                 focus: true,
                 width: 800,

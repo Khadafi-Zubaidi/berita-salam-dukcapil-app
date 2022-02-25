@@ -19,12 +19,15 @@ class CreateBerkasPengurusansTable extends Migration
             $table->string('nama_pemohon')->nullable();
             $table->string('alamat_pemohon')->nullable();
             $table->string('jenis_permohonan')->nullable();
-            $table->string('berkas_pengajuan')->nullable();
+            $table->string('berkas_permohonan')->nullable();
             $table->string('berkas_selesai')->nullable();
             $table->string('tanggal_pengajuan')->nullable();
             $table->string('tanggal_penyelesaian')->nullable();
             $table->string('bulan_pengajuan')->nullable();
             $table->string('status')->default('B');
+            $table->text('isi_canting');
+            $table->string('nomor_pendaftaran')->nullable();
+            $table->text('dokumen_hasil');
             $table->timestamps();
         });
     }

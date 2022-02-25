@@ -74,6 +74,8 @@
                                                             <th>Alamat Pemohon</th>
                                                             <th>Jenis Permohonan</th>
                                                             <th>Tanggal Pengajuan</th>
+                                                            <th>Desa/Kelurahan</th>
+                                                            <th>Kecamatan</th>
                                                             <th>Status</th>
                                                             <th>Aksi</th>
                                                         </tr>
@@ -87,6 +89,8 @@
                                                                 <td>{{$dt->alamat_pemohon}}</td>
                                                                 <td>{{$dt->jenis_permohonan}}</td>
                                                                 <td>{{$dt->tanggal_pengajuan}}</td>
+                                                                <td>{{$dt->nama_desa_kelurahan}}</td>
+                                                                <td>{{$dt->nama_kecamatan}}</td>
                                                                 <td>
                                                                     @if ($dt->status == 'B')
                                                                         <span class="badge badge-danger">Belum</span>
