@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aduan;
+use App\Models\AkuntabilitasKinerja;
 use App\Models\Berita;
 use App\Models\Carousel;
 use App\Models\Formulir;
 use App\Models\Inovasi;
 use App\Models\Jdih;
 use App\Models\ProdukLayanan;
+use App\Models\ProfilKependudukan;
 use App\Models\Redaktur;
 use App\Models\Reporter;
 use App\Models\SambutanDinas;
@@ -655,6 +657,7 @@ class RedakturController extends Controller
         return response()->json($data_foto_diperbaharui);
     }
 
+    //JDIH
     public function tampil_data_jdih_oleh_redaktur(){
         if (session()->has('LoggedRedaktur')){
             $data_admin_untuk_dashboard = Redaktur::where('id','=',session('LoggedRedaktur'))->first();
@@ -734,6 +737,170 @@ class RedakturController extends Controller
             return redirect('tampil_data_jdih_oleh_redaktur'); 
         }
         
+    }
+
+    //Akuntabilitas Kinerja
+    public function tampil_data_akuntabilitas_kinerja_oleh_redaktur(){
+        if (session()->has('LoggedRedaktur')){
+            $data_admin_untuk_dashboard = Redaktur::where('id','=',session('LoggedRedaktur'))->first();
+            $data_tabel = AkuntabilitasKinerja::orderBy('id', 'desc')->get();
+            $data = [
+                'DataTabel'=>$data_tabel,
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_redaktur.tampil_data_tampil_data_akuntabilitas_kinerja_oleh_redaktur_oleh_redaktur',$data);
+        }else{
+            return view('login.login_redaktur');
+        }
+    }
+
+    public function get_id_akuntabilitas_kinerja_by_redaktur($id){
+        $data = AkuntabilitasKinerja::find($id);
+        return response()->json($data);
+    }
+
+    public function simpan_perubahan_data_akuntabilitas_kinerja_oleh_redaktur(Request $request){
+        $data_perubahan = AkuntabilitasKinerja::find($request->id);
+        $data_perubahan->judul = $request->judul;
+        $data_perubahan->save();
+        return response()->json($data_perubahan);
+    }
+
+    public function simpan_perubahan_file_akuntabilitas_kinerja_oleh_redaktur(Request $request){
+        if($request->hasfile('file')){
+            $data_foto_diperbaharui = AkuntabilitasKinerja::find($request->id2);
+            $request->validate([
+                'file' => 'required|mimes:pdf',
+            ]);
+            $extension = $request->file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $request->file->move(public_path('akuntabilitas_kinerja'),$filename);
+            $data = $filename;
+            $data_foto_diperbaharui->berkas = $data;
+            $data_foto_diperbaharui->save();
+            return redirect('tampil_data_akuntabilitas_kinerja_oleh_redaktur'); 
+        }
+        
+    }
+
+    public function hapus_data_akuntabilitas_kinerja_oleh_redaktur(Request $request){
+        $nama_foto_dihapus = $request->berkas;
+        if(file_exists(public_path('akuntabilitas_kinerja/'.$nama_foto_dihapus))){
+            unlink(public_path('akuntabilitas_kinerja/'.$nama_foto_dihapus));
+        }
+        $data_dihapus = AkuntabilitasKinerja::find($request->id);
+        $data_dihapus->delete();
+        return response()->json($data_dihapus);
+    }
+
+    public function tambah_data_akuntabilitas_kinerja_oleh_redaktur(){
+        if (session()->has('LoggedRedaktur')){
+            $data_admin_untuk_dashboard = Redaktur::where('id','=',session('LoggedRedaktur'))->first();
+            $data = [
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tambah_data_oleh_redaktur.tambah_data_akuntabilitas_kinerja_oleh_redaktur',$data);
+        }else{
+            return view('login.login_redaktur');
+        }
+    }
+
+    public function simpan_data_baru_akuntabilitas_kinerja_oleh_redaktur(Request $request){
+        if (session()->has('LoggedRedaktur')){
+            $request->validate([
+                'judul'=>'required',
+            ],[
+                'judul.required'=>'Judul Dokumen tidak boleh kosong',
+            ]);
+            $data_baru = new AkuntabilitasKinerja();
+            $data_baru->judul = $request->judul;
+            $data_baru->save();
+            return redirect('tampil_data_akuntabilitas_kinerja_oleh_redaktur');
+        }else{
+            return view('login.login_redaktur');
+        }
+    }
+
+    //Profil Kependudukan
+    public function tampil_data_profil_kependudukan_oleh_redaktur(){
+        if (session()->has('LoggedRedaktur')){
+            $data_admin_untuk_dashboard = Redaktur::where('id','=',session('LoggedRedaktur'))->first();
+            $data_tabel = ProfilKependudukan::orderBy('id', 'desc')->get();
+            $data = [
+                'DataTabel'=>$data_tabel,
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_redaktur.tampil_data_profil_kependudukan_oleh_redaktur',$data);
+        }else{
+            return view('login.login_redaktur');
+        }
+    }
+
+    public function get_id_profil_kependudukan_by_redaktur($id){
+        $data = ProfilKependudukan::find($id);
+        return response()->json($data);
+    }
+
+    public function simpan_perubahan_data_profil_kependudukan_oleh_redaktur(Request $request){
+        $data_perubahan = ProfilKependudukan::find($request->id);
+        $data_perubahan->judul = $request->judul;
+        $data_perubahan->save();
+        return response()->json($data_perubahan);
+    }
+
+    public function simpan_perubahan_file_profil_kependudukan_oleh_redaktur(Request $request){
+        if($request->hasfile('file')){
+            $data_foto_diperbaharui = ProfilKependudukan::find($request->id2);
+            $request->validate([
+                'file' => 'required|mimes:pdf',
+            ]);
+            $extension = $request->file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $request->file->move(public_path('profil_kependudukan'),$filename);
+            $data = $filename;
+            $data_foto_diperbaharui->berkas = $data;
+            $data_foto_diperbaharui->save();
+            return redirect('tampil_data_profil_kependudukan_oleh_redaktur'); 
+        }
+        
+    }
+
+    public function hapus_data_profil_kependudukan_oleh_redaktur(Request $request){
+        $nama_foto_dihapus = $request->berkas;
+        if(file_exists(public_path('profil_kependudukan/'.$nama_foto_dihapus))){
+            unlink(public_path('profil_kependudukan/'.$nama_foto_dihapus));
+        }
+        $data_dihapus = ProfilKependudukan::find($request->id);
+        $data_dihapus->delete();
+        return response()->json($data_dihapus);
+    }
+
+    public function tambah_data_profil_kependudukan_oleh_redaktur(){
+        if (session()->has('LoggedRedaktur')){
+            $data_admin_untuk_dashboard = Redaktur::where('id','=',session('LoggedRedaktur'))->first();
+            $data = [
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tambah_data_oleh_redaktur.tambah_data_profil_kependudukan_oleh_redaktur',$data);
+        }else{
+            return view('login.login_redaktur');
+        }
+    }
+
+    public function simpan_data_baru_profil_kependudukan_oleh_redaktur(Request $request){
+        if (session()->has('LoggedRedaktur')){
+            $request->validate([
+                'judul'=>'required',
+            ],[
+                'judul.required'=>'Judul Dokumen tidak boleh kosong',
+            ]);
+            $data_baru = new ProfilKependudukan();
+            $data_baru->judul = $request->judul;
+            $data_baru->save();
+            return redirect('tampil_data_profil_kependudukan_oleh_redaktur');
+        }else{
+            return view('login.login_redaktur');
+        }
     }
 
     public function tampil_data_sop_oleh_redaktur(){

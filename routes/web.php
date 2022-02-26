@@ -209,12 +209,21 @@ Route::get('/tupoksis/{id}',[RedakturController::class,'get_id_tupoksi_by_redakt
 Route::put('/tupoksi1',[RedakturController::class,'simpan_perubahan_data_tupoksi_oleh_redaktur'])->name('tupoksi.updatedata');
 Route::post('/tupoksi2',[RedakturController::class,'simpan_perubahan_file_tupoksi_oleh_redaktur'])->name('tupoksi.updatefile');
 
+Route::get('tampil_data_akuntabilitas_kinerja_oleh_redaktur',[RedakturController::class,'tampil_data_akuntabilitas_kinerja_oleh_redaktur'])->name('tampil_data_akuntabilitas_kinerja_oleh_redaktur');
+Route::get('/akuntabilitas_kinerja/{id}',[RedakturController::class,'get_id_akuntabilitas_kinerja_by_redaktur']);
+Route::put('/akuntabilitas_kinerja1',[RedakturController::class,'simpan_perubahan_data_akuntabilitas_kinerja_oleh_redaktur'])->name('akuntabulitas_kinerja.update_data');
+Route::post('/akuntabilitas_kinerja2',[RedakturController::class,'simpan_perubahan_file_akuntabilitas_kinerja_oleh_redaktur'])->name('akuntabulitas_kinerja.update_berkas');
+Route::put('/akuntabilitas_kinerja3',[RedakturController::class,'hapus_data_akuntabilitas_kinerja_oleh_redaktur'])->name('akuntabulitas_kinerja.delete_data');
+Route::get('tambah_data_akuntabilitas_kinerja_oleh_redaktur',[RedakturController::class,'tambah_data_akuntabilitas_kinerja_oleh_redaktur'])->name('tambah_data_akuntabilitas_kinerja_oleh_redaktur');
+Route::post('simpan_data_baru_akuntabilitas_kinerja_oleh_redaktur',[RedakturController::class,'simpan_data_baru_akuntabilitas_kinerja_oleh_redaktur'])->name('simpan_data_baru_akuntabilitas_kinerja_oleh_redaktur');
 
-
-
-
-
-
+Route::get('tampil_data_profil_kependudukan_oleh_redaktur',[RedakturController::class,'tampil_data_profil_kependudukan_oleh_redaktur'])->name('tampil_data_profil_kependudukan_oleh_redaktur');
+Route::get('/profil_kependudukan/{id}',[RedakturController::class,'get_id_profil_kependudukan_by_redaktur']);
+Route::put('/profil_kependudukan1',[RedakturController::class,'simpan_perubahan_data_profil_kependudukan_oleh_redaktur'])->name('profil_kependudukan.update_data');
+Route::post('/profil_kependudukan2',[RedakturController::class,'simpan_perubahan_file_profil_kependudukan_oleh_redaktur'])->name('profil_kependudukan.update_berkas');
+Route::put('/profil_kependudukan3',[RedakturController::class,'hapus_data_profil_kependudukan_oleh_redaktur'])->name('profil_kependudukan.delete_data');
+Route::get('tambah_data_profil_kependudukan_oleh_redaktur',[RedakturController::class,'tambah_data_profil_kependudukan_oleh_redaktur'])->name('tambah_data_profil_kependudukan_oleh_redaktur');
+Route::post('simpan_data_baru_profil_kependudukan_oleh_redaktur',[RedakturController::class,'simpan_data_baru_profil_kependudukan_oleh_redaktur'])->name('simpan_data_baru_profil_kependudukan_oleh_redaktur');
 
 
 

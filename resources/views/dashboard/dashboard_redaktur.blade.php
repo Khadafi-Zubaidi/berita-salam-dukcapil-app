@@ -108,6 +108,18 @@
                                             <p>Tupoksi</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_akuntabilitas_kinerja_oleh_redaktur')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Akuntabilitas Kinerja</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_profil_kependudukan_oleh_redaktur')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Profil Kependudukan</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
