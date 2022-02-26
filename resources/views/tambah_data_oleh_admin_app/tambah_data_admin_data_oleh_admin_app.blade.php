@@ -69,20 +69,7 @@
                                                     @csrf
                                                     <label>NIP (18 karakter tanpa spasi) *</label><br>
                                                     <div class="input-group mb-3">
-                                                        <input type="text" name="nip" class="form-control @error('nip') is-invalid @enderror" onkeypress='return validateQty(event);' maxlength="18" value="{{ old('nip')}}">
-                                                        <script>
-                                                            function validateQty(event) {
-                                                                var key = window.event ? event.keyCode : event.which;
-                                                                if (event.keyCode == 8 || event.keyCode == 46
-                                                                    || event.keyCode == 37 || event.keyCode == 39) {
-                                                                    return true;
-                                                                }
-                                                                else if ( key < 48 || key > 57 ) {
-                                                                    return false;
-                                                                }
-                                                                else return true;
-                                                            };
-                                                        </script>
+                                                        <input type="number" name="nip" class="form-control @error('nip') is-invalid @enderror" maxlength="18" value="{{ old('nip')}}">
                                                         <div class="input-group-append">
                                                             <div class="input-group-text">
                                                                 <span class="fas fa-id-card"></span>

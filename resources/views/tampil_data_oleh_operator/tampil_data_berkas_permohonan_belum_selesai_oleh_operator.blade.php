@@ -65,13 +65,15 @@
                                   </div>
                                   <!-- /.card-header -->
                                   <div class="card-body">
-                                    <p>
-                                        <strong>Penting Untuk Diketahui !!!</strong> 
-                                        <ol>
-                                            <li>Jika status pengurusan permohonan Belum Selesai, maka pastikan Anda untuk mengecek <button>Catatan Penting</button> dari kami.</li>
-                                            <li>Untuk mengirim dokumen kelengkapan guna perbaikan, maka Anda dapat menekan tombol <button>Unggah Berkas Permohonan Lagi</button>.</li>
-                                        </ol> 
-                                    </p>
+                                    <div class="col-md-12">
+                                        <p>
+                                            <strong>Penting Untuk Diketahui !!!</strong> 
+                                            <ol>
+                                                <li>Jika status pengurusan permohonan Belum Selesai, maka pastikan Anda untuk mengecek Catatan Penting dengan cara mengklik tombol <button><small>Catatan Penting</small></li>
+                                                <li>Untuk mengirim dokumen kelengkapan guna perbaikan, maka Anda dapat menekan tombol <button><small>Unggah Berkas Permohonan Lagi</small></button></li>
+                                            </ol> 
+                                        </p>
+                                    </div>
                                   </div>
                                   <!-- /.card-body -->
                                 </div>
@@ -127,7 +129,7 @@
                                                                     <a href="/berkas_permohonan/{{$dt->berkas_permohonan}}" class="btn btn-info btn-block btn-sm"><small>Unduh Berkas Permohonan</small></a>
                                                                     <a href="javascript:void(0)" onclick="lihatCanting({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Catatan Penting</small></a>
                                                                     <a href="{{action('App\Http\Controllers\OperatorDesaKelurahanController@cetak_bukti_pendaftaran_oleh_operator', $dt->id)}}" class="btn btn-success btn-block btn-sm"><small>Cetak Bukti Pendaftaran</small></a>
-                                                                    <a href="javascript:void(0)" onclick="lihatDokumenKeluaran({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Dokumen Keluaran</small></a>
+                                                                    <a href="javascript:void(0)" onclick="lihatDokumenKeluaran({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Lihat Daftar Dokumen Hasil</small></a>
                                                                     <a href="javascript:void(0)" onclick="unggahBerkasPermohonanLagi({{$dt->id}})" class="btn btn-danger btn-block btn-sm"><small>Unggah Berkas Permohonan Lagi</small></a>
                                                                 </td>
                                                             </tr>
@@ -304,7 +306,7 @@
                                                                 <div class="modal-dialog modal-lg">
                                                                     <div class="modal-content bg-warning">
                                                                         <div class="modal-header">
-                                                                            <h4 class="modal-title">Dokumen Hasil</h4>
+                                                                            <h4 class="modal-title">Lihat Daftar Dokumen Hasil</h4>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>

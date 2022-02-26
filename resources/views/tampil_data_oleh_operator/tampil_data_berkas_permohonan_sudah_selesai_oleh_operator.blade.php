@@ -95,9 +95,73 @@
                                                                     @endif
                                                                 </td>
                                                                 <td>
+                                                                    <a href="javascript:void(0)" onclick="lihatDokumenKeluaran({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Daftar Dokumen Hasil</small></a>
                                                                     <a href="/berkas_permohonan_selesai/{{$dt->berkas_selesai}}" class="btn btn-success btn-block btn-sm"><small>Unduh Dokumen Hasil</small></a>
                                                                 </td>
                                                             </tr>
+                                                            <!-- Lihat Dokumen Keluaran -->
+                                                            <div class="modal fade" id="ubahDataModal2">
+                                                                <div class="modal-dialog modal-lg">
+                                                                    <div class="modal-content bg-warning">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title">Lihat Daftar Dokumen Hasil</h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form id="ubahDataForm2" action="" method="post">
+                                                                                @csrf
+                                                                                <input type="hidden" id="id3"/>
+                                                                                <label>Nama Pemohon</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="nama_pemohon3" class="form-control" disabled>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Tanggal Pengajuan</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="tanggal_pengajuan3" class="form-control" disabled>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Nomor Pendaftaran</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="nomor_pendaftaran3" class="form-control" disabled>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Dokumen Hasil</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <textarea id="dokumen_hasil3"></textarea>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <script>
+                                                                function lihatDokumenKeluaran(id)
+                                                                {
+                                                                    $.get('/berkas_pengurusans/'+id,function(berkas_pengurusan){
+                                                                        $("#id3").val(berkas_pengurusan.id);
+                                                                        $("#nama_pemohon3").val(berkas_pengurusan.nama_pemohon);
+                                                                        $("#tanggal_pengajuan3").val(berkas_pengurusan.tanggal_pengajuan);
+                                                                        $("#nomor_pendaftaran3").val(berkas_pengurusan.nomor_pendaftaran);
+                                                                        $("#dokumen_hasil3").summernote('code', berkas_pengurusan.dokumen_hasil);
+                                                                        $("#ubahDataModal2").modal('toggle');
+                                                                    })
+                                                                }
+                                                            </script>
                                                         @endforeach
                                                     </tbody>
                                                 </table>

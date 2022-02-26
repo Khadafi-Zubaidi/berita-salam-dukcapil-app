@@ -181,7 +181,7 @@
                                                                  alt="User profile picture">
                                                         </div>
                                                         <h5 class="profile-username text-center">{{$LoggedUserInfo->nama_operator}}</h5>
-                                                        <p class="text-muted text-center">NIP. {{$LoggedUserInfo->nip}}</p>
+                                                        <p class="text-muted text-center">ID Operator<br>{{$LoggedUserInfo->nip}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -201,22 +201,12 @@
                                                                     @csrf
                                                                     <input name="id" type="hidden" class="form-control" value="{{$LoggedUserInfo->id}}">
                                                                     <div class="form-group">
-                                                                        <label>NIP (tanpa spasi)</label>
-                                                                        <input id="nip" name="nip" type="text" class="form-control" placeholder="Masukkan NIP" value="{{$LoggedUserInfo->nip}}" onkeypress="return isNumber(event)">
-                                                                        <script>
-                                                                            function isNumber(evt) {
-                                                                                evt = (evt) ? evt : window.event;
-                                                                                var charCode = (evt.which) ? evt.which : evt.keyCode;
-                                                                                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-                                                                                    return false;
-                                                                                }
-                                                                                return true;
-                                                                            }
-                                                                        </script>
+                                                                        <label>ID Operator (tanpa spasi)</label>
+                                                                        <input id="nip" name="nip" type="number" class="form-control" placeholder="Masukkan ID Operator" value="{{$LoggedUserInfo->nip}}">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>Nama</label>
-                                                                        <input id="nama" name="nama"type="text" class="form-control @error('nama') is-invalid @enderror" placeholder="Masukkan Nama" value="{{$LoggedUserInfo->nama_operator}}">
+                                                                        <input id="nama_operator" name="nama_operator"type="text" class="form-control @error('nama_operator') is-invalid @enderror" placeholder="Masukkan Nama" value="{{$LoggedUserInfo->nama_operator}}">
                                                                         @error('nama')
                                                                         <div class="invalid-feedback">{{$message}}</div>
                                                                         @enderror

@@ -100,8 +100,8 @@
                                                                 </td>
                                                                 <td>
                                                                     <a href="/berkas_permohonan/{{$dt->berkas_permohonan}}" class="btn btn-info btn-block btn-sm"><small>Unduh Berkas Permohonan</small></a>
-                                                                    <a href="javascript:void(0)" onclick="ubahDataCanting({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Input Canting</small></a>
-                                                                    <a href="javascript:void(0)" onclick="unggahBerkasPermohonanSelesai({{$dt->id}})" class="btn btn-success btn-block btn-sm"><small>Unggah Berkas Permohonan Selesai</small></a>
+                                                                    <a href="javascript:void(0)" onclick="ubahDataCanting({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Input Canting & Dokumen Hasil</small></a>
+                                                                    <a href="javascript:void(0)" onclick="unggahBerkasPermohonanSelesai({{$dt->id}})" class="btn btn-success btn-block btn-sm"><small>Unggah Dokumen Hasil</small></a>
                                                                 </td>
                                                             </tr>
                                                             <!-- Ubah Foto -->
@@ -253,6 +253,10 @@
                                                                                 <div class="input-group mb-3">
                                                                                     <textarea id="isi_canting2"></textarea>
                                                                                 </div>
+                                                                                <label>Dokumen Hasil *</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <textarea id="dokumen_hasil2"></textarea>
+                                                                                </div>
                                                                                 <div class="col-12">
                                                                                     <button type="submit" class="btn btn-primary btn-block">Simpan Catatan Penting</button>
                                                                                 </div>
@@ -271,12 +275,14 @@
                                                                         $("#jenis_permohonan2").val(berkas_pengurusan.jenis_permohonan);
                                                                         $("#tanggal_pengajuan2").val(berkas_pengurusan.tanggal_pengajuan);
                                                                         $("#isi_canting2").summernote('code', berkas_pengurusan.isi_canting);
+                                                                        $("#dokumen_hasil2").summernote('code', berkas_pengurusan.dokumen_hasil);
                                                                         $("#ubahDataModal").modal('toggle');
                                                                     })
                                                                     $("#ubahDataForm").submit(function (e){
                                                                         e.preventDefault();
                                                                         let id = $("#id2").val();
                                                                         let isi_canting = $("#isi_canting2").val();
+                                                                        let dokumen_hasil = $("#dokumen_hasil2").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
                                                                             url:"{{route('berkas_pengurusan.isi_canting')}}",
@@ -284,6 +290,7 @@
                                                                             data:{
                                                                                 id:id,
                                                                                 isi_canting:isi_canting,
+                                                                                dokumen_hasil:dokumen_hasil,
                                                                                 _token:_token
                                                                             },
                                                                             success:function(response){

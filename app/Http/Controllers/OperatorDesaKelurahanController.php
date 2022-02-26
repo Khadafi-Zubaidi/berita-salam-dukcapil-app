@@ -75,16 +75,16 @@ class OperatorDesaKelurahanController extends Controller
     public function simpan_perubahan_data_profil_operator(Request $request){
         if (session()->has('LoggedOperator')){
             $request->validate([
-                'nama'=>'required',
+                'nama_operator'=>'required',
                 'jabatan'=>'required',
                 'pangkat_golongan'=>'required',
             ],[
-                'nama.required'=>'Nama tidak boleh kosong',
+                'nama_operator.required'=>'Nama Operator tidak boleh kosong',
                 'jabatan.required'=>'Jabatan tidak boleh kosong',
                 'pangkat_golongan.required'=>'Pangkat dan Golongan tidak boleh kosong',
             ]);
             $admin_data = OperatorDesaKelurahan::find($request->id);
-            $admin_data->nama = $request->nama;
+            $admin_data->nama_operator = $request->nama_operator;
             $admin_data->jabatan = $request->jabatan;
             $admin_data->pangkat_golongan = $request->pangkat_golongan;
             $admin_data->save();
@@ -244,8 +244,11 @@ class OperatorDesaKelurahanController extends Controller
     }
 
     public function cetak_bukti_pendaftaran_oleh_operator($id){
+        //$data_admin_untuk_dashboard = OperatorDesaKelurahan::where('id','=',session('LoggedOperator'))->first();
+        //$data_desa_kelurahan = DB::table('berkas_pengurusans')
         $data_berkas = BerkasPengurusan::find($id);
-        $pdf = Pdf::loadView('bukti_pendaftaran', compact('data_berkas'));
+        //$pdf = Pdf::loadView('bukti_pendaftaran', compact('data_berkas'));
+        $pdf = Pdf::loadView('bukti_pendaftaran.bukti_pendaftaran', compact('data_berkas'));
         return $pdf->download('bukti_pendaftaran.pdf');
     }
 

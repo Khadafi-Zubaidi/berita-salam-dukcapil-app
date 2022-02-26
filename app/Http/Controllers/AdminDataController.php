@@ -449,6 +449,7 @@ class AdminDataController extends Controller
     public function simpan_perubahan_data_catatan_penting_oleh_admin_data(Request $request){
         $data_perubahan = BerkasPengurusan::find($request->id);
         $data_perubahan->isi_canting = $request->isi_canting;
+        $data_perubahan->dokumen_hasil = $request->dokumen_hasil;
         $data_perubahan->save();
         return response()->json($data_perubahan);
     }
