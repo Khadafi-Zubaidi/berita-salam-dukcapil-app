@@ -39,6 +39,11 @@ Route::get('tampil_arsip_sop',[BerandaController::class,'tampil_arsip_sop'])->na
 Route::get('tampil_arsip_formulir',[BerandaController::class,'tampil_arsip_formulir'])->name('tampil_arsip_formulir');
 Route::get('tampil_struktur_organisasi',[BerandaController::class,'tampil_struktur_organisasi'])->name('tampil_struktur_organisasi');
 Route::get('tampil_arsip_tupoksi',[BerandaController::class,'tampil_arsip_tupoksi'])->name('tampil_arsip_tupoksi');
+Route::get('tampil_arsip_akuntabilitas_kinerja',[BerandaController::class,'tampil_arsip_akuntabilitas_kinerja'])->name('tampil_arsip_akuntabilitas_kinerja');
+Route::get('tampil_arsip_profil_kependudukan',[BerandaController::class,'tampil_arsip_profil_kependudukan'])->name('tampil_arsip_profil_kependudukan');
+Route::get('tampil_arsip_standar_pelayanan',[BerandaController::class,'tampil_arsip_standar_pelayanan'])->name('tampil_arsip_standar_pelayanan');
+Route::get('tampil_arsip_data_agregat_kependudukan_smt_1',[BerandaController::class,'tampil_arsip_data_agregat_kependudukan_smt_1'])->name('tampil_arsip_data_agregat_kependudukan_smt_1');
+Route::get('tampil_arsip_data_agregat_kependudukan_smt_2',[BerandaController::class,'tampil_arsip_data_agregat_kependudukan_smt_2'])->name('tampil_arsip_data_agregat_kependudukan_smt_2');
 
 
 
@@ -103,6 +108,7 @@ Route::post('/berkas_pengurusan1',[AdminDataController::class,'unggah_berkas_per
 Route::get('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data',[AdminDataController::class,'tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data'])->name('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data');
 Route::put('/berkas_pengurusan3',[AdminDataController::class,'hapus_berkas_permohonan_oleh_admin_data'])->name('berkas_permohonan.hapus_berkas');
 Route::put('/berkas_pengurusan4',[AdminDataController::class,'simpan_perubahan_data_catatan_penting_oleh_admin_data'])->name('berkas_pengurusan.isi_canting');
+Route::get('cetak_laporan_rekap_pengurusan',[AdminDataController::class,'cetak_laporan_rekap_pengurusan'])->name('cetak_laporan_rekap_pengurusan');
 
 //Redaktur
 Route::get('login_redaktur',[RedakturController::class,'login_redaktur'])->middleware('RedakturLoggedIn');
@@ -224,6 +230,46 @@ Route::post('/profil_kependudukan2',[RedakturController::class,'simpan_perubahan
 Route::put('/profil_kependudukan3',[RedakturController::class,'hapus_data_profil_kependudukan_oleh_redaktur'])->name('profil_kependudukan.delete_data');
 Route::get('tambah_data_profil_kependudukan_oleh_redaktur',[RedakturController::class,'tambah_data_profil_kependudukan_oleh_redaktur'])->name('tambah_data_profil_kependudukan_oleh_redaktur');
 Route::post('simpan_data_baru_profil_kependudukan_oleh_redaktur',[RedakturController::class,'simpan_data_baru_profil_kependudukan_oleh_redaktur'])->name('simpan_data_baru_profil_kependudukan_oleh_redaktur');
+
+Route::get('tampil_data_agregat_kependudukan_semester_satu_oleh_redaktur',[RedakturController::class,'tampil_data_agregat_kependudukan_semester_satu_oleh_redaktur'])->name('tampil_data_agregat_kependudukan_semester_satu_oleh_redaktur');
+Route::get('/agregat_kependudukan_semester_satu/{id}',[RedakturController::class,'get_id_profil_data_agregat_kependudukan_semester_satu_by_redaktur']);
+Route::put('/agregat_kependudukan_semester_satu1',[RedakturController::class,'simpan_perubahan_data_agregat_kependudukan_semester_satu_oleh_redaktur'])->name('agregat_kependudukan_semester_satu.update_data');
+Route::post('/agregat_kependudukan_semester_satu2',[RedakturController::class,'simpan_perubahan_file_data_agregat_kependudukan_semester_satu_oleh_redaktur'])->name('agregat_kependudukan_semester_satu.update_berkas');
+Route::put('/agregat_kependudukan_semester_satu3',[RedakturController::class,'hapus_data_agregat_kependudukan_semester_satu_oleh_redaktur'])->name('agregat_kependudukan_semester_satu.delete_data');
+Route::get('tambah_data_agregat_kependudukan_semester_satu_oleh_redaktur',[RedakturController::class,'tambah_data_agregat_kependudukan_semester_satu_oleh_redaktur'])->name('tambah_data_agregat_kependudukan_semester_satu_oleh_redaktur');
+Route::post('simpan_data_baru_agregat_kependudukan_semester_satu_oleh_redaktur',[RedakturController::class,'simpan_data_baru_agregat_kependudukan_semester_satu_oleh_redaktur'])->name('simpan_data_baru_agregat_kependudukan_semester_satu_oleh_redaktur');
+
+Route::get('tampil_data_agregat_kependudukan_semester_dua_oleh_redaktur',[RedakturController::class,'tampil_data_agregat_kependudukan_semester_dua_oleh_redaktur'])->name('tampil_data_agregat_kependudukan_semester_dua_oleh_redaktur');
+Route::get('/agregat_kependudukan_semester_dua/{id}',[RedakturController::class,'get_id_profil_data_agregat_kependudukan_semester_dua_by_redaktur']);
+Route::put('/agregat_kependudukan_semester_dua1',[RedakturController::class,'simpan_perubahan_data_agregat_kependudukan_semester_dua_oleh_redaktur'])->name('agregat_kependudukan_semester_dua.update_data');
+Route::post('/agregat_kependudukan_semester_dua2',[RedakturController::class,'simpan_perubahan_file_data_agregat_kependudukan_semester_dua_oleh_redaktur'])->name('agregat_kependudukan_semester_dua.update_berkas');
+Route::put('/agregat_kependudukan_semester_dua3',[RedakturController::class,'hapus_data_agregat_kependudukan_semester_dua_oleh_redaktur'])->name('agregat_kependudukan_semester_dua.delete_data');
+Route::get('tambah_data_agregat_kependudukan_semester_dua_oleh_redaktur',[RedakturController::class,'tambah_data_agregat_kependudukan_semester_dua_oleh_redaktur'])->name('tambah_data_agregat_kependudukan_semester_dua_oleh_redaktur');
+Route::post('simpan_data_baru_agregat_kependudukan_semester_dua_oleh_redaktur',[RedakturController::class,'simpan_data_baru_agregat_kependudukan_semester_dua_oleh_redaktur'])->name('simpan_data_baru_agregat_kependudukan_semester_dua_oleh_redaktur');
+
+Route::get('tampil_data_standar_pelayanan_oleh_redaktur',[RedakturController::class,'tampil_data_standar_pelayanan_oleh_redaktur'])->name('tampil_data_standar_pelayanan_oleh_redaktur');
+Route::get('/standar_pelayanan/{id}',[RedakturController::class,'get_id_standar_pelayanan_by_redaktur']);
+Route::put('/standar_pelayanan1',[RedakturController::class,'simpan_perubahan_data_standar_pelayanan_oleh_redaktur'])->name('standar_pelayanan.update_data');
+Route::post('/standar_pelayanan2',[RedakturController::class,'simpan_perubahan_file_standar_pelayanan_oleh_redaktur'])->name('standar_pelayanan.update_berkas');
+Route::put('/standar_pelayanan3',[RedakturController::class,'hapus_data_standar_pelayanan_oleh_redaktur'])->name('standar_pelayanan.delete_data');
+Route::get('tambah_data_standar_pelayanan_oleh_redaktur',[RedakturController::class,'tambah_data_standar_pelayanan_oleh_redaktur'])->name('tambah_data_standar_pelayanan_oleh_redaktur');
+Route::post('simpan_data_baru_standar_pelayanan_oleh_redaktur',[RedakturController::class,'simpan_data_baru_standar_pelayanan_oleh_redaktur'])->name('simpan_data_baru_standar_pelayanan_oleh_redaktur');
+
+Route::get('tampil_data_visi_misi_oleh_redaktur',[RedakturController::class,'tampil_data_visi_misi_oleh_redaktur'])->name('tampil_data_visi_misi_oleh_redaktur');
+Route::get('/visi_misi/{id}',[RedakturController::class,'get_id_visi_misi_by_redaktur']);
+Route::put('/visi_misi1',[RedakturController::class,'simpan_perubahan_data_visi_misi_oleh_redaktur'])->name('visi_misi.update_data');
+Route::post('/visi_misi2',[RedakturController::class,'simpan_perubahan_file_visi_misi_oleh_redaktur'])->name('visi_misi.update_berkas');
+Route::put('/visi_misi3',[RedakturController::class,'hapus_data_visi_misi_oleh_redaktur'])->name('visi_misi.delete_data');
+Route::get('tambah_data_visi_misi_oleh_redaktur',[RedakturController::class,'tambah_data_visi_misi_oleh_redaktur'])->name('tambah_data_visi_misi_oleh_redaktur');
+Route::post('simpan_data_baru_visi_misi_oleh_redaktur',[RedakturController::class,'simpan_data_baru_visi_misi_oleh_redaktur'])->name('simpan_data_baru_visi_misi_oleh_redaktur');
+
+Route::get('tampil_data_tugas_pokok_fungsi_oleh_redaktur',[RedakturController::class,'tampil_data_tugas_pokok_fungsi_oleh_redaktur'])->name('tampil_data_tugas_pokok_fungsi_oleh_redaktur');
+Route::get('/tugas_pokok_fungsi/{id}',[RedakturController::class,'get_id_tugas_pokok_fungsi_by_redaktur']);
+Route::put('/tugas_pokok_fungsi1',[RedakturController::class,'simpan_perubahan_data_tugas_pokok_fungsi_oleh_redaktur'])->name('tugas_pokok_fungsi.update_data');
+Route::post('/tugas_pokok_fungsi2',[RedakturController::class,'simpan_perubahan_file_tugas_pokok_fungsi_oleh_redaktur'])->name('tugas_pokok_fungsi.update_berkas');
+Route::put('/tugas_pokok_fungsi3',[RedakturController::class,'hapus_data_tugas_pokok_fungsi_oleh_redaktur'])->name('tugas_pokok_fungsi.delete_data');
+Route::get('tambah_data_tugas_pokok_fungsi_oleh_redaktur',[RedakturController::class,'tambah_data_tugas_pokok_fungsi_oleh_redaktur'])->name('tambah_data_tugas_pokok_fungsi_oleh_redaktur');
+Route::post('simpan_data_baru_tugas_pokok_fungsi_oleh_redaktur',[RedakturController::class,'simpan_data_baru_tugas_pokok_fungsi_oleh_redaktur'])->name('simpan_data_baru_tugas_pokok_fungsi_oleh_redaktur');
 
 
 

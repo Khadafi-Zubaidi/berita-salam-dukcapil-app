@@ -106,6 +106,7 @@
       </div>
 
     </nav>
+
   </header>
   <!-- Navigation -->
 
@@ -190,7 +191,7 @@
               <!-- Grid row -->
               <div class="text-center mb-2 mt-2">
                 <hr>  
-                <h3>Arsip Formulir</h3>
+                <h3>Arsip Data Agregat Kependudukan Semester I</h3>
                 <hr>  
               </div>
                 <div class="card">
@@ -199,18 +200,18 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Formulir</th>
+                                    <th>Nama Dokumen</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php $no = 1; @endphp
-                                @foreach($DataFormulir as $dformulir)
+                                @foreach($DataAg1 as $dt)
                                 <tr>
                                     <td>{{$no++}}</td>
-                                    <td>{!! $dformulir->nama_formulir !!}</td>
+                                    <td>{!! $dt->judul !!}</td>
                                     <td>
-                                        <a href="/formulir/{{$dformulir->berkas}}" target="_blank" class="btn btn-success btn-block btn-sm">Lihat Berkas</a>
+                                        <a href="/data_agregat_semester_satu/{{$dt->berkas}}" target="_blank" class="btn btn-success btn-block btn-sm">Lihat Berkas</a>
                                     </td>
                                 </tr>
                                 @endforeach

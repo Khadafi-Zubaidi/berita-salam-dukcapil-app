@@ -33,81 +33,75 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent-4">
           <ul class="navbar-nav">
             <li class="nav-item ml-4 mb-0">
-                <a class="nav-link waves-effect waves-light font-weight-bold" href="/">BERANDA
+                <a class="nav-link waves-effect waves-light font-weight-bold" href="/">Beranda
                   <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item dropdown ml-4 mb-0">
               <a class="nav-link dropdown-toggle waves-effect waves-light font-weight-bold" id="navbarDropdownMenuLink"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> PROFIL
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Profil
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item waves-effect waves-light" href="{{route('tampil_visi_misi')}}">Visi dan Misi</a>
                 <a class="dropdown-item waves-effect waves-light" href="{{route('tampil_struktur_organisasi')}}">Struktur Organisasi</a>
                 <a class="dropdown-item waves-effect waves-light" href="{{route('tampil_arsip_tupoksi')}}">Tugas Pokok dan Fungsi</a>
+                <a class="dropdown-item waves-effect waves-light" href="{{route('tampil_arsip_akuntabilitas_kinerja')}}">Akuntabilitas Kinerja</a>
+                <a class="dropdown-item waves-effect waves-light" href="{{route('tampil_arsip_profil_kependudukan')}}">Profil Kependudukan</a>
               </div>
             </li>
             <li class="nav-item ml-4 mb-0">
-                <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_berita')}}">BERITA
+                <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_berita')}}">Berita
                   <span class="sr-only"></span>
                 </a>
             </li>
             <li class="nav-item ml-4 mb-0">
-              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_produk_layanan')}}">PRODUK LAYANAN
+              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_produk_layanan')}}">Produk Layanan
+                <span class="sr-only"></span>
+              </a>
+            </li>
+            <li class="nav-item dropdown ml-4 mb-0">
+              <a class="nav-link dropdown-toggle waves-effect waves-light font-weight-bold" id="navbarDropdownMenuLink"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Standar Layanan
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item waves-effect waves-light" href="{{route('tampil_arsip_standar_pelayanan')}}">Standar Pelayanan</a>
+                <a class="dropdown-item waves-effect waves-light" href="{{route('tampil_arsip_sop')}}">SOP</a>
+              </div>
+            </li>
+            <li class="nav-item ml-4 mb-0">
+              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_inovasi')}}">Inovasi
+                <span class="sr-only"></span>
+              </a>
+            </li>
+            <li class="nav-item dropdown ml-4 mb-0">
+              <a class="nav-link dropdown-toggle waves-effect waves-light font-weight-bold" id="navbarDropdownMenuLink"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Data Kependudukan
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item waves-effect waves-light" href="{{route('tampil_arsip_data_agregat_kependudukan_smt_1')}}">Data Agregat Semester I</a>
+                <a class="dropdown-item waves-effect waves-light" href="{{route('tampil_arsip_data_agregat_kependudukan_smt_2')}}">Data Agregat Semester II</a>
+              </div>
+            </li>
+            <li class="nav-item ml-4 mb-0">
+              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_jdih')}}">Peraturan
                 <span class="sr-only"></span>
               </a>
             </li>
             <li class="nav-item ml-4 mb-0">
-              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_inovasi')}}">INOVASI
-                <span class="sr-only"></span>
-              </a>
-            </li>
-            <li class="nav-item ml-4 mb-0">
-              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_jdih')}}">JDIH
-                <span class="sr-only"></span>
-              </a>
-            </li>
-            <li class="nav-item ml-4 mb-0">
-              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_sop')}}">SOP
-                <span class="sr-only"></span>
-              </a>
-            </li>
-            <li class="nav-item ml-4 mb-0">
-              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_formulir')}}">UNDUH
+              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_arsip_formulir')}}">Form Layanan
                 <span class="sr-only"></span>
               </a>
             </li>
             
             <li class="nav-item ml-4 mb-0">
-              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_kolom_aduan')}}">HUBUNGI KAMI
+              <a class="nav-link waves-effect waves-light font-weight-bold" href="{{route('tampil_kolom_aduan')}}">Hubungi Kami
                 <span class="sr-only">(current)</span>
               </a>
             </li>
           </ul>
         </div>
 
-        <ul class="navbar-nav ml-auto nav-flex-icons">
-          <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-              <i class="fab fa-twitter"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-              <i class="fab fa-google-plus-g"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-              <i class="fab fa-instagram"></i>
-            </a>
-          </li>
-        </ul>
+
 
       </div>
 

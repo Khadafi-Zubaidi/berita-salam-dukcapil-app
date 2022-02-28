@@ -103,7 +103,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('tampil_data_tupoksi_oleh_redaktur')}}" class="nav-link">
+                                        <a href="{{route('tampil_data_tugas_pokok_fungsi_oleh_redaktur')}}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Tupoksi</p>
                                         </a>
@@ -118,6 +118,30 @@
                                         <a href="{{route('tampil_data_profil_kependudukan_oleh_redaktur')}}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Profil Kependudukan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_agregat_kependudukan_semester_satu_oleh_redaktur')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>D.A Smt. I</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_agregat_kependudukan_semester_dua_oleh_redaktur')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>D.A Smt. II</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_standar_pelayanan_oleh_redaktur')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Standar Pelayanan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_visi_misi_oleh_redaktur')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Visi Misi</p>
                                         </a>
                                     </li>
                                 </ul>

@@ -16,6 +16,7 @@ class CreateBerkasPengurusansTable extends Migration
         Schema::create('berkas_pengurusans', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_operator_desa_kelurahan')->nullable();
+            $table->bigInteger('id_desa_kelurahan')->nullable();
             $table->string('nama_pemohon')->nullable();
             $table->string('alamat_pemohon')->nullable();
             $table->string('jenis_permohonan')->nullable();

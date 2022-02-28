@@ -3,17 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aduan;
+use App\Models\AkuntabilitasKinerja;
 use App\Models\Carousel;
 use App\Models\Berita;
+use App\Models\DataAgregatSemesterDua;
+use App\Models\DataAgregatSemesterSatu;
 use App\Models\Formulir;
 use App\Models\Inovasi;
 use App\Models\Jdih;
 use App\Models\ProdukLayanan;
+use App\Models\ProfilKependudukan;
 use App\Models\SambutanDinas;
 use App\Models\Sop;
+use App\Models\StandarPelayanan;
 use App\Models\StrukturOrganisasi;
+use App\Models\TugasPokokFungsi;
 use App\Models\Tupoksi;
 use App\Models\Video;
+use App\Models\VisiMisi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -64,10 +71,12 @@ class BerandaController extends Controller
 
     public function tampil_visi_misi(){
         $data_carousel = Carousel::orderBy('id', 'desc')->limit(3)->get();
+        $data_visi_misi = VisiMisi::orderBy('id', 'desc')->limit(1)->get();
         $data = [
             'DataCarousel'=>$data_carousel,
+            'DataVisiMisi'=>$data_visi_misi,
         ];
-        return view('beranda.visimisi',$data);
+        return view('beranda.tampil_visi_misi',$data);
     }
 
     public function tampil_arsip_berita(){
@@ -178,12 +187,62 @@ class BerandaController extends Controller
 
     public function tampil_arsip_tupoksi(){
         $data_carousel = Carousel::orderBy('id', 'desc')->limit(3)->get();
-        $data_tupoksi = Tupoksi::orderBy('id', 'asc')->get();
+        $data_tupoksi = TugasPokokFungsi::orderBy('id', 'desc')->get();
         $data = [
             'DataCarousel'=>$data_carousel,
             'DataTupoksi'=>$data_tupoksi,
         ];
         return view('beranda.tampil_arsip_tupoksi',$data);
+    }
+
+    public function tampil_arsip_akuntabilitas_kinerja(){
+        $data_carousel = Carousel::orderBy('id', 'desc')->limit(3)->get();
+        $data_akuntabilitas_kinerja = AkuntabilitasKinerja::orderBy('id', 'desc')->get();
+        $data = [
+            'DataCarousel'=>$data_carousel,
+            'DataAkuntabilitasKinerja'=>$data_akuntabilitas_kinerja,
+        ];
+        return view('beranda.tampil_arsip_akuntabilitas_kinerja',$data);
+    }
+
+    public function tampil_arsip_profil_kependudukan(){
+        $data_carousel = Carousel::orderBy('id', 'desc')->limit(3)->get();
+        $data_profil_kependudukan = ProfilKependudukan::orderBy('id', 'desc')->get();
+        $data = [
+            'DataCarousel'=>$data_carousel,
+            'DataProfilKependudukan'=>$data_profil_kependudukan,
+        ];
+        return view('beranda.tampil_arsip_profil_kependudukan',$data);
+    }
+
+    public function tampil_arsip_standar_pelayanan(){
+        $data_carousel = Carousel::orderBy('id', 'desc')->limit(3)->get();
+        $data_standar_pelayanan = StandarPelayanan::orderBy('id', 'desc')->get();
+        $data = [
+            'DataCarousel'=>$data_carousel,
+            'DataStandarPelayanan'=>$data_standar_pelayanan,
+        ];
+        return view('beranda.tampil_arsip_standar_pelayanan',$data);
+    }
+
+    public function tampil_arsip_data_agregat_kependudukan_smt_1(){
+        $data_carousel = Carousel::orderBy('id', 'desc')->limit(3)->get();
+        $data_ag1 = DataAgregatSemesterSatu::orderBy('id', 'desc')->get();
+        $data = [
+            'DataCarousel'=>$data_carousel,
+            'DataAg1'=>$data_ag1,
+        ];
+        return view('beranda.tampil_arsip_data_agregat_kependudukan_smt_1',$data);
+    }
+
+    public function tampil_arsip_data_agregat_kependudukan_smt_2(){
+        $data_carousel = Carousel::orderBy('id', 'desc')->limit(3)->get();
+        $data_ag2 = DataAgregatSemesterDua::orderBy('id', 'desc')->get();
+        $data = [
+            'DataCarousel'=>$data_carousel,
+            'DataAg2'=>$data_ag2,
+        ];
+        return view('beranda.tampil_arsip_data_agregat_kependudukan_smt_2',$data);
     }
 
 }

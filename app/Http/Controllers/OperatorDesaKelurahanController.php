@@ -167,6 +167,7 @@ class OperatorDesaKelurahanController extends Controller
 
             $data_baru = new BerkasPengurusan();
             $data_baru->id_operator_desa_kelurahan = $data_admin_untuk_dashboard->id;
+            $data_baru->id_desa_kelurahan = $data_admin_untuk_dashboard->id_desa_kelurahan;
             $data_baru->nama_pemohon = $request->nama_pemohon;
             $data_baru->alamat_pemohon = $request->alamat_pemohon;
             $data_baru->jenis_permohonan = $request->jenis_permohonan;

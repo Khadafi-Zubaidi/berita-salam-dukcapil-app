@@ -49,12 +49,6 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Op. Kecamatan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a href="{{route('tampil_data_operator_desa_kelurahan_oleh_admin_data')}}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Op. Desa/Kelurahan</p>
@@ -77,6 +71,14 @@
                                     <p>
                                         Sudah Selesai
                                         <span class="right badge badge-success">{{$jumlah_berkas_pengurusan_yang_sudah_selesai}}</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('cetak_laporan_rekap_pengurusan')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-file"></i>
+                                    <p>
+                                        Rekapitulasi
                                     </p>
                                 </a>
                             </li>

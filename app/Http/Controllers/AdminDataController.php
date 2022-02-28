@@ -454,5 +454,26 @@ class AdminDataController extends Controller
         return response()->json($data_perubahan);
     }
 
+    public function cetak_laporan_rekap_pengurusan(){
+        if (session()->has('LoggedAdminData')){
+            $data_admin_untuk_dashboard = AdminData::where('id','=',session('LoggedAdminData'))->first();
+            $data_tabel = DB::table('berkas_pengurusans')
+            ->join('desa_kelurahans', 'berkas_pengurusans.id_desa_kelurahan', '=', 'desa_kelurahans.id')
+            ->join('kecamatans', 'desa_kelurahans.id_kecamatan', '=', 'kecamatans.id')
+            ->select('desa_kelurahans.nama_desa_kelurahan',
+                     'kecamatans.nama_kecamatan',
+                     DB::raw('count(*) as jumlah'))
+            ->groupBy('berkas_pengurusans.id_desa_kelurahan')
+            ->get();
+            $data = [
+                'DataTabel'=>$data_tabel,
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_admin_data.laporan_rekap_pengurusan',$data);
+        }else{
+            return view('login.login_admin_data');
+        }
+    }
+
         
 }

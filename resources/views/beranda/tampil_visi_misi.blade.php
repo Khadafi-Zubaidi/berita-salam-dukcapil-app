@@ -106,6 +106,8 @@
       </div>
 
     </nav>
+    <!-- Navbar -->
+
   </header>
   <!-- Navigation -->
 
@@ -190,32 +192,16 @@
               <!-- Grid row -->
               <div class="text-center mb-2 mt-2">
                 <hr>  
-                <h3>Arsip Formulir</h3>
+                <h3>Visi dan Misi</h3>
                 <hr>  
               </div>
                 <div class="card">
                     <div class="card-body">
-                        <table id="example1" class="table table-striped" cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Formulir</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $no = 1; @endphp
-                                @foreach($DataFormulir as $dformulir)
-                                <tr>
-                                    <td>{{$no++}}</td>
-                                    <td>{!! $dformulir->nama_formulir !!}</td>
-                                    <td>
-                                        <a href="/formulir/{{$dformulir->berkas}}" target="_blank" class="btn btn-success btn-block btn-sm">Lihat Berkas</a>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        @foreach($DataVisiMisi as $dso)
+                            <div align="center">
+                                <img src="{{asset('visi_misi')}}/{{$dso->berkas}}" width="1024px" height="768px"  alt="User Image">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
