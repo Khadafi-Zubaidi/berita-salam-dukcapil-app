@@ -75,6 +75,7 @@
                                                             <th>Jenis Permohonan</th>
                                                             <th>Tanggal Pengajuan</th>
                                                             <th>Status</th>
+                                                            <th>No.Pendaftaran</th>
                                                             <th>Aksi</th>
                                                         </tr>
                                                     </thead>
@@ -94,9 +95,11 @@
                                                                         <span class="badge badge-success">Sudah</span>
                                                                     @endif
                                                                 </td>
+                                                                <td>{{$dt->nomor_pendaftaran}}</td>
                                                                 <td>
                                                                     <a href="javascript:void(0)" onclick="lihatDokumenKeluaran({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Daftar Dokumen Hasil</small></a>
                                                                     <a href="/berkas_permohonan_selesai/{{$dt->berkas_selesai}}" class="btn btn-success btn-block btn-sm"><small>Unduh Dokumen Hasil</small></a>
+                                                                    <a href="{{action('App\Http\Controllers\OperatorDesaKelurahanController@cetak_bukti_pendaftaran_oleh_operator', $dt->id)}}" class="btn btn-info btn-block btn-sm"><small>Cetak Bukti Pendaftaran</small></a>
                                                                 </td>
                                                             </tr>
                                                             <!-- Lihat Dokumen Keluaran -->
