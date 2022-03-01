@@ -99,6 +99,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
+                                                            <th>NIK Pemohon</th>
                                                             <th>Nama Pemohon</th>
                                                             <th>Alamat Pemohon</th>
                                                             <th>Jenis Permohonan</th>
@@ -113,19 +114,21 @@
                                                         @foreach($DataTabel as $dt)
                                                             <tr>
                                                                 <td>{{$no++}}</td>
+                                                                <td>{{$dt->nik_pemohon}}</td>
                                                                 <td>{{$dt->nama_pemohon}}</td>
                                                                 <td>{{$dt->alamat_pemohon}}</td>
-                                                                <td>{{$dt->jenis_permohonan}}</td>
+                                                                <td>{!! $dt->jenis_permohonan !!}</td>
                                                                 <td>{{$dt->tanggal_pengajuan}}</td>
                                                                 <td>{{$dt->nomor_pendaftaran}}</td>
                                                                 <td>
                                                                     @if ($dt->status == 'B')
-                                                                        <span class="badge badge-danger">Belum</span>
+                                                                        <span class="badge badge-danger">Belum Selesai</span>
                                                                     @else
-                                                                        <span class="badge badge-success">Sudah</span>
+                                                                        <span class="badge badge-success">Sudah Selesai</span>
                                                                     @endif
                                                                 </td>
                                                                 <td>
+                                                                    <a href="javascript:void(0)" onclick="ubahData({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Ubah Data Permohonan</small></a>
                                                                     <a href="/berkas_permohonan/{{$dt->berkas_permohonan}}" class="btn btn-info btn-block btn-sm"><small>Unduh Berkas Permohonan</small></a>
                                                                     <a href="javascript:void(0)" onclick="lihatCanting({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Catatan Penting</small></a>
                                                                     <a href="{{action('App\Http\Controllers\OperatorDesaKelurahanController@cetak_bukti_pendaftaran_oleh_operator', $dt->id)}}" class="btn btn-success btn-block btn-sm"><small>Cetak Bukti Pendaftaran</small></a>
@@ -133,6 +136,99 @@
                                                                     <a href="javascript:void(0)" onclick="unggahBerkasPermohonanLagi({{$dt->id}})" class="btn btn-danger btn-block btn-sm"><small>Unggah Berkas Permohonan Lagi</small></a>
                                                                 </td>
                                                             </tr>
+                                                            <!-- Ubah Data Permohonan -->
+                                                            <div class="modal fade" id="Modal7">
+                                                                <div class="modal-dialog modal-lg">
+                                                                    <div class="modal-content bg-warning">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title">Ubah Data Permohonan</h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form id="Form7" action="" method="post">
+                                                                                @csrf
+                                                                                <input type="hidden" id="id7"/>
+                                                                                <label>NIK Pemohon</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="number" id="nik_pemohon7" class="form-control">
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Nama Pemohon</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="nama_pemohon7" class="form-control">
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Alamat Pemohon</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="alamat_pemohon7" class="form-control">
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Jenis Permohonan</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <div class="col-md-12">
+                                                                                        <textarea id="jenis_permohonan"></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <button type="submit" class="btn btn-primary btn-block">Simpan Perubahan Data</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <script>
+                                                                function ubahData(id)
+                                                                {
+                                                                    $.get('/berkas_pengurusans/'+id,function(berkas_pengurusan){
+                                                                        $("#id7").val(berkas_pengurusan.id);
+                                                                        $("#nik_pemohon7").val(berkas_pengurusan.nik_pemohon);
+                                                                        $("#nama_pemohon7").val(berkas_pengurusan.nama_pemohon);
+                                                                        $("#alamat_pemohon7").val(berkas_pengurusan.alamat_pemohon);
+                                                                        $("#jenis_permohonan").summernote('code', berkas_pengurusan.jenis_permohonan);
+                                                                        $("#Modal7").modal('toggle');
+                                                                    })
+                                                                    $("#Form7").submit(function (e){
+                                                                        e.preventDefault();
+                                                                        let id = $("#id7").val();
+                                                                        let nik_pemohon = $("#nik_pemohon7").val();
+                                                                        let nama_pemohon = $("#nama_pemohon7").val();
+                                                                        let alamat_pemohon = $("#alamat_pemohon7").val();
+                                                                        let jenis_permohonan = $("#jenis_permohonan").val();
+                                                                        let _token = $("input[name=_token]").val();
+                                                                        $.ajax({
+                                                                            url:"{{route('berkas_permohonan.pembaharuan_data')}}",
+                                                                            type: "PUT",
+                                                                            data:{
+                                                                                id:id,
+                                                                                nik_pemohon:nik_pemohon,
+                                                                                nama_pemohon:nama_pemohon,
+                                                                                alamat_pemohon:alamat_pemohon,
+                                                                                jenis_permohonan:jenis_permohonan,
+                                                                                _token:_token
+                                                                            },
+                                                                            success:function(response){
+                                                                                $("#Modal7").modal('hide');
+                                                                                window.location = "{{route('tampil_data_berkas_permohonan_belum_selesai_oleh_operator')}}";
+                                                                            }
+                                                                        })
+                                                                    })
+                                                                }
+                                                            </script>
                                                             <!-- Ubah Foto -->
                                                             <div class="modal fade" id="editDataFotoModal">
                                                                 <div class="modal-dialog modal-lg">
@@ -260,15 +356,6 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <label>Jenis Permohonan</label><br>
-                                                                                <div class="input-group mb-3">
-                                                                                    <input type="text" id="jenis_permohonan2" class="form-control" disabled>
-                                                                                    <div class="input-group-append">
-                                                                                        <div class="input-group-text">
-                                                                                            <span class="fas fa-id-card"></span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
                                                                                 <label>Tanggal Pengajuan</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="text" id="tanggal_pengajuan2" class="form-control" disabled>
@@ -280,7 +367,9 @@
                                                                                 </div>
                                                                                 <label>Catatan Penting</label><br>
                                                                                 <div class="input-group mb-3">
-                                                                                    <textarea id="isi_canting2"></textarea>
+                                                                                    <div class="col-md-12">
+                                                                                        <textarea id="isi_canting2"></textarea>
+                                                                                    </div>
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -294,7 +383,6 @@
                                                                         $("#id2").val(berkas_pengurusan.id);
                                                                         $("#nama_pemohon2").val(berkas_pengurusan.nama_pemohon);
                                                                         $("#alamat_pemohon2").val(berkas_pengurusan.alamat_pemohon);
-                                                                        $("#jenis_permohonan2").val(berkas_pengurusan.jenis_permohonan);
                                                                         $("#tanggal_pengajuan2").val(berkas_pengurusan.tanggal_pengajuan);
                                                                         $("#isi_canting2").summernote('code', berkas_pengurusan.isi_canting);
                                                                         $("#ubahDataModal").modal('toggle');
@@ -344,7 +432,9 @@
                                                                                 </div>
                                                                                 <label>Dokumen Hasil</label><br>
                                                                                 <div class="input-group mb-3">
-                                                                                    <textarea id="dokumen_hasil3"></textarea>
+                                                                                    <div class="col-md-12">
+                                                                                        <textarea id="dokumen_hasil3"></textarea>
+                                                                                    </div>
                                                                                 </div>
                                                                             </form>
                                                                         </div>

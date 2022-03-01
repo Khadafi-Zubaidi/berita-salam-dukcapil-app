@@ -152,22 +152,25 @@ class OperatorDesaKelurahanController extends Controller
     public function simpan_data_baru_permohonan_oleh_operator(Request $request){
         if (session()->has('LoggedOperator')){
             $request->validate([
+                'nik_pemohon'=>'required',
                 'nama_pemohon'=>'required',
                 'alamat_pemohon'=>'required',
                 'jenis_permohonan'=>'required',
-                'file' => 'required|mimes:zip',
+                'file' => 'required|mimes:zip,rar',
             ],[
+                'nik_pemohon.required'=>'NIK Pemohon tidak boleh kosong',
                 'nama_pemohon.required'=>'Nama Pemohon tidak boleh kosong',
                 'alamat_pemohon.required'=>'Alamat Pemohon tidak boleh kosong',
                 'jenis_permohonan.required'=>'Jenis Permohonan tidak boleh kosong',
                 'file.required'=>'Berkas tidak boleh kosong',
-                'file.mimes'=>'Berkas harus dalam bentuk (ZIP)',
+                'file.mimes'=>'Berkas harus dalam bentuk (ZIP/RAR)',
             ]);
             $data_admin_untuk_dashboard = OperatorDesaKelurahan::where('id','=',session('LoggedOperator'))->first();
 
             $data_baru = new BerkasPengurusan();
             $data_baru->id_operator_desa_kelurahan = $data_admin_untuk_dashboard->id;
             $data_baru->id_desa_kelurahan = $data_admin_untuk_dashboard->id_desa_kelurahan;
+            $data_baru->nik_pemohon = $request->nik_pemohon;
             $data_baru->nama_pemohon = $request->nama_pemohon;
             $data_baru->alamat_pemohon = $request->alamat_pemohon;
             $data_baru->jenis_permohonan = $request->jenis_permohonan;
@@ -251,6 +254,16 @@ class OperatorDesaKelurahanController extends Controller
         //$pdf = Pdf::loadView('bukti_pendaftaran', compact('data_berkas'));
         $pdf = Pdf::loadView('bukti_pendaftaran.bukti_pendaftaran', compact('data_berkas'));
         return $pdf->download('bukti_pendaftaran.pdf');
+    }
+
+    public function simpan_perubahan_data_berkas_permohonan_oleh_operator(Request $request){
+        $data_perubahan = BerkasPengurusan::find($request->id);
+        $data_perubahan->nik_pemohon = $request->nik_pemohon;
+        $data_perubahan->nama_pemohon = $request->nama_pemohon;
+        $data_perubahan->alamat_pemohon = $request->alamat_pemohon;
+        $data_perubahan->jenis_permohonan = $request->jenis_permohonan;
+        $data_perubahan->save();
+        return response()->json($data_perubahan);
     }
 
 }

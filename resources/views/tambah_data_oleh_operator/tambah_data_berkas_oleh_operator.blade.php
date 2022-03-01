@@ -68,9 +68,9 @@
                                     <p>
                                         <strong>Penting Untuk Diketahui !!!</strong> Sebelum Anda mengisi formulir ini. 
                                         <ol>
-                                            <li>Pastikan Anda sudah melakukan scan terhadap dokumen-dokumen yang dilampirkan serta melakukan kompres ke dalam bentuk (.ZIP). Silahkan hubungi Admin Data untuk keterangan lebih lanjut.</li>
+                                            <li>Pastikan Anda sudah melakukan scan terhadap dokumen-dokumen yang dilampirkan (.JPG) serta melakukan kompres ke dalam bentuk (.ZIP atau .RAR). Silahkan hubungi Admin Data untuk keterangan lebih lanjut.</li>
                                             <li>Seluruh kolom yang bertanda bintang (*) wajib diisi.</li>
-                                            <li>Untuk mengisi berkas, klik pada tombol <button>Choose File</button> lalu pilih file Zip sebagaimana dimaksud pada point paling atas.</li>
+                                            <li>Untuk mengisi berkas, klik pada tombol <button>Choose File</button> lalu pilih file .ZIP atau .RAR sebagaimana dimaksud pada point paling atas.</li>
                                             <li><strong>Untuk Pengurusan Dokumen Terkait Kartu Tanda Penduduk Hanya Bisa Dilayani Secara Langsung di Kantor Dinas Kependudukan dan Pencatatan Sipil Kabupaten Sumbawa Barat.</strong></li>
                                         </ol>
                                     </p>
@@ -97,6 +97,18 @@
                                             <div class="col-md-12">
                                                 <form action="{{route('simpan_data_baru_permohonan_oleh_operator')}}" method="post" enctype="multipart/form-data">
                                                     @csrf
+                                                    <label>NIK Pemohon *</label><br>
+                                                    <div class="input-group mb-3">
+                                                        <input type="number" name="nik_pemohon" class="form-control @error('nik_pemohon') is-invalid @enderror" value="{{ old('nik_pemohon')}}">
+                                                        <div class="input-group-append">
+                                                            <div class="input-group-text">
+                                                                <span class="fas fa-id-card"></span>
+                                                            </div>
+                                                        </div>
+                                                        @error('nik_pemohon')
+                                                        <div class="invalid-feedback">{{$message}}</div>
+                                                        @enderror
+                                                    </div>
                                                     <label>Nama Pemohon *</label><br>
                                                     <div class="input-group mb-3">
                                                         <input type="text" name="nama_pemohon" class="form-control @error('nama_pemohon') is-invalid @enderror" value="{{ old('nama_pemohon')}}">
@@ -123,17 +135,11 @@
                                                     </div>
                                                     <label>Jenis Permohonan *</label><br>
                                                     <div class="input-group mb-3">
-                                                        <input type="text" name="jenis_permohonan" class="form-control @error('jenis_permohonan') is-invalid @enderror" value="{{ old('jenis_permohonan')}}">
-                                                        <div class="input-group-append">
-                                                            <div class="input-group-text">
-                                                                <span class="fas fa-id-card"></span>
-                                                            </div>
+                                                        <div class="col-md-12">
+                                                            <textarea name="jenis_permohonan"id="summernote"></textarea>
                                                         </div>
-                                                        @error('jenis_permohonan')
-                                                        <div class="invalid-feedback">{{$message}}</div>
-                                                        @enderror
                                                     </div>
-                                                    <label>Berkas * </label><br>
+                                                    <label>Berkas *</label><br>
                                                     <div class="input-group mb-3">
                                                         <input type="file" id="file" name="file" class="form-control">
                                                         @error('file')

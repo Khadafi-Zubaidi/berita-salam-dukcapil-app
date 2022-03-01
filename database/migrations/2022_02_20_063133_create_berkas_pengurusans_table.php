@@ -17,6 +17,7 @@ class CreateBerkasPengurusansTable extends Migration
             $table->id();
             $table->bigInteger('id_operator_desa_kelurahan')->nullable();
             $table->bigInteger('id_desa_kelurahan')->nullable();
+            $table->string('nik_pemohon')->nullable();
             $table->string('nama_pemohon')->nullable();
             $table->string('alamat_pemohon')->nullable();
             $table->string('jenis_permohonan')->nullable();
@@ -29,6 +30,12 @@ class CreateBerkasPengurusansTable extends Migration
             $table->text('isi_canting');
             $table->string('nomor_pendaftaran')->nullable();
             $table->text('dokumen_hasil');
+            $table->integer('jml_kk')->default(0);
+            $table->integer('jml_ktp')->default(0);
+            $table->integer('jml_skp')->default(0);
+            $table->integer('jml_kia')->default(0);
+            $table->integer('jml_akta_kelahiran')->default(0);
+            $table->integer('jml_akta_kematian')->default(0);
             $table->timestamps();
         });
     }

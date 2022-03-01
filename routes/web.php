@@ -308,5 +308,6 @@ Route::post('simpan_data_baru_permohonan_oleh_operator',[OperatorDesaKelurahanCo
 Route::get('tampil_data_berkas_permohonan_belum_selesai_oleh_operator',[OperatorDesaKelurahanController::class,'tampil_data_berkas_permohonan_belum_selesai_oleh_operator'])->name('tampil_data_berkas_permohonan_belum_selesai_oleh_operator');
 Route::post('/berkas_pengurusan2',[OperatorDesaKelurahanController::class,'unggah_berkas_permohonan_lagi_oleh_operator'])->name('berkas_permohonan.upload_berkas_permohonan_lagi');
 Route::get('tampil_data_berkas_permohonan_sudah_selesai_oleh_operator',[OperatorDesaKelurahanController::class,'tampil_data_berkas_permohonan_sudah_selesai_oleh_operator'])->name('tampil_data_berkas_permohonan_sudah_selesai_oleh_operator');
+Route::put('/berkas_pengurusan3',[OperatorDesaKelurahanController::class,'simpan_perubahan_data_berkas_permohonan_oleh_operator'])->name('berkas_permohonan.pembaharuan_data');
 //cetak bukti pendaftaran menggunakan DOMPDF
 Route::get('/cetak_bukti_pendaftaran_oleh_operator/{id}',[OperatorDesaKelurahanController::class,'cetak_bukti_pendaftaran_oleh_operator'])->name('cetak_bukti_pendaftaran_oleh_operator');

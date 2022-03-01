@@ -87,7 +87,7 @@
                                                                 <td>{{$no++}}</td>
                                                                 <td>{{$dt->nama_pemohon}}</td>
                                                                 <td>{{$dt->alamat_pemohon}}</td>
-                                                                <td>{{$dt->jenis_permohonan}}</td>
+                                                                <td>{!!$dt->jenis_permohonan!!}</td>
                                                                 <td>{{$dt->tanggal_pengajuan}}</td>
                                                                 <td>{{$dt->nama_desa_kelurahan}}</td>
                                                                 <td>{{$dt->nama_kecamatan}}</td>
@@ -231,15 +231,6 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <label>Jenis Permohonan</label><br>
-                                                                                <div class="input-group mb-3">
-                                                                                    <input type="text" id="jenis_permohonan2" class="form-control" disabled>
-                                                                                    <div class="input-group-append">
-                                                                                        <div class="input-group-text">
-                                                                                            <span class="fas fa-id-card"></span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
                                                                                 <label>Tanggal Pengajuan</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="text" id="tanggal_pengajuan2" class="form-control" disabled>
@@ -251,11 +242,15 @@
                                                                                 </div>
                                                                                 <label>Catatan Penting *</label><br>
                                                                                 <div class="input-group mb-3">
-                                                                                    <textarea id="isi_canting2"></textarea>
+                                                                                    <div class="col-md-12">
+                                                                                        <textarea id="isi_canting2"></textarea>
+                                                                                    </div>
                                                                                 </div>
                                                                                 <label>Dokumen Hasil *</label><br>
                                                                                 <div class="input-group mb-3">
-                                                                                    <textarea id="dokumen_hasil2"></textarea>
+                                                                                    <div class="col-md-12">
+                                                                                        <textarea id="dokumen_hasil2"></textarea>
+                                                                                    </div>
                                                                                 </div>
                                                                                 <div class="col-12">
                                                                                     <button type="submit" class="btn btn-primary btn-block">Simpan Catatan Penting</button>
@@ -272,7 +267,6 @@
                                                                         $("#id2").val(berkas_pengurusan.id);
                                                                         $("#nama_pemohon2").val(berkas_pengurusan.nama_pemohon);
                                                                         $("#alamat_pemohon2").val(berkas_pengurusan.alamat_pemohon);
-                                                                        $("#jenis_permohonan2").val(berkas_pengurusan.jenis_permohonan);
                                                                         $("#tanggal_pengajuan2").val(berkas_pengurusan.tanggal_pengajuan);
                                                                         $("#isi_canting2").summernote('code', berkas_pengurusan.isi_canting);
                                                                         $("#dokumen_hasil2").summernote('code', berkas_pengurusan.dokumen_hasil);

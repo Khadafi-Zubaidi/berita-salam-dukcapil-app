@@ -40,161 +40,240 @@
     <script>
         $(function () {
           $('#summernote').summernote({
-                focus: true,
                 height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#summernote1').summernote({
-                focus: true,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#summernote2').summernote({
-                focus: true,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#summernote3').summernote({
-                focus: true,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#summernote4').summernote({
-                focus: true,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#summernote5').summernote({
-                focus: true,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#isi_aduan1').summernote({
-                focus: true,
-                width: 800,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#isi_berita1').summernote({
-                focus: true,
-                width: 800,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#isi_canting2').summernote({
-                focus: true,
-                width: 800,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#dokumen_hasil2').summernote({
-                focus: true,
-                width: 800,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#dokumen_hasil3').summernote({
-                focus: true,
-                width: 800,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#nama_peraturan1').summernote({
-                focus: true,
-                width: 800,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#nama_sop1').summernote({
-                focus: true,
-                width: 800,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#nama_formulir1').summernote({
-                focus: true,
-                width: 800,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#deskripsi1').summernote({
-                focus: true,
-                width: 800,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#dasar_hukum1').summernote({
-                focus: true,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#persyaratan1').summernote({
-                focus: true,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#prosedur_mekanisme1').summernote({
-                focus: true,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
     <script>
         $(function () {
           $('#waktu_penyelesaian1').summernote({
-                focus: true,
-                height: 250,
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+          $('#jenis_permohonan').summernote({
+            height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol']],
+                ]
             });
         });
     </script>
