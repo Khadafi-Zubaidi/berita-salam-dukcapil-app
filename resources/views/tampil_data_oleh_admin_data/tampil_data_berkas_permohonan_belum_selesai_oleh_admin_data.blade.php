@@ -204,7 +204,7 @@
                                                                 <div class="modal-dialog modal-lg">
                                                                     <div class="modal-content bg-warning">
                                                                         <div class="modal-header">
-                                                                            <h4 class="modal-title">Input Catatan Penting</h4>
+                                                                            <h4 class="modal-title">Input Catatan Penting dan Dokumen Hasil</h4>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
@@ -252,8 +252,73 @@
                                                                                         <textarea id="dokumen_hasil2"></textarea>
                                                                                     </div>
                                                                                 </div>
+                                                                                <label>Input Jumlah Dokumen Hasil *</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <div class="col-md-6">
+                                                                                        <label>Jumlah KK</label><br>
+                                                                                        <div class="input-group mb-3">
+                                                                                            <input type="number" id="jml_kk2" class="form-control">
+                                                                                            <div class="input-group-append">
+                                                                                                <div class="input-group-text">
+                                                                                                    <span class="fas fa-id-card"></span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        &nbsp;
+                                                                                        <label>Jumlah SKP</label><br>
+                                                                                        <div class="input-group mb-3">
+                                                                                            <input type="number" id="jml_skp2" class="form-control">
+                                                                                            <div class="input-group-append">
+                                                                                                <div class="input-group-text">
+                                                                                                    <span class="fas fa-id-card"></span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        &nbsp;
+                                                                                        <label>Jumlah KIA</label><br>
+                                                                                        <div class="input-group mb-3">
+                                                                                            <input type="number" id="jml_kia2" class="form-control">
+                                                                                            <div class="input-group-append">
+                                                                                                <div class="input-group-text">
+                                                                                                    <span class="fas fa-id-card"></span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <label>Jumlah Akta Kelahiran</label><br>
+                                                                                        <div class="input-group mb-3">
+                                                                                            <input type="number" id="jml_akta_kelahiran2" class="form-control">
+                                                                                            <div class="input-group-append">
+                                                                                                <div class="input-group-text">
+                                                                                                    <span class="fas fa-id-card"></span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        &nbsp;
+                                                                                        <label>Jumlah Akta Kematian</label><br>
+                                                                                        <div class="input-group mb-3">
+                                                                                            <input type="number" id="jml_akta_kematian2" class="form-control">
+                                                                                            <div class="input-group-append">
+                                                                                                <div class="input-group-text">
+                                                                                                    <span class="fas fa-id-card"></span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        &nbsp;
+                                                                                        <label>Jumlah Dokumen Lainnya (Non KTP)</label><br>
+                                                                                        <div class="input-group mb-3">
+                                                                                            <input type="number" id="jml_lain_lain2" class="form-control">
+                                                                                            <div class="input-group-append">
+                                                                                                <div class="input-group-text">
+                                                                                                    <span class="fas fa-id-card"></span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                                 <div class="col-12">
-                                                                                    <button type="submit" class="btn btn-primary btn-block">Simpan Catatan Penting</button>
+                                                                                    <button type="submit" class="btn btn-primary btn-block">Simpan</button>
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -270,6 +335,12 @@
                                                                         $("#tanggal_pengajuan2").val(berkas_pengurusan.tanggal_pengajuan);
                                                                         $("#isi_canting2").summernote('code', berkas_pengurusan.isi_canting);
                                                                         $("#dokumen_hasil2").summernote('code', berkas_pengurusan.dokumen_hasil);
+                                                                        $("#jml_kk2").val(berkas_pengurusan.jml_kk);
+                                                                        $("#jml_skp2").val(berkas_pengurusan.jml_skp);
+                                                                        $("#jml_kia2").val(berkas_pengurusan.jml_kia);
+                                                                        $("#jml_akta_kelahiran2").val(berkas_pengurusan.jml_akta_kelahiran);
+                                                                        $("#jml_akta_kematian2").val(berkas_pengurusan.jml_akta_kematian);
+                                                                        $("#jml_lain_lain2").val(berkas_pengurusan.jml_lain_lain);
                                                                         $("#ubahDataModal").modal('toggle');
                                                                     })
                                                                     $("#ubahDataForm").submit(function (e){
@@ -277,6 +348,12 @@
                                                                         let id = $("#id2").val();
                                                                         let isi_canting = $("#isi_canting2").val();
                                                                         let dokumen_hasil = $("#dokumen_hasil2").val();
+                                                                        let jml_kk = $("#jml_kk2").val();
+                                                                        let jml_skp = $("#jml_skp2").val();
+                                                                        let jml_kia = $("#jml_kia2").val();
+                                                                        let jml_akta_kelahiran = $("#jml_akta_kelahiran2").val();
+                                                                        let jml_akta_kematian = $("#jml_akta_kematian2").val();
+                                                                        let jml_lain_lain = $("#jml_lain_lain2").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
                                                                             url:"{{route('berkas_pengurusan.isi_canting')}}",
@@ -285,6 +362,12 @@
                                                                                 id:id,
                                                                                 isi_canting:isi_canting,
                                                                                 dokumen_hasil:dokumen_hasil,
+                                                                                jml_kk:jml_kk,
+                                                                                jml_skp:jml_skp,
+                                                                                jml_kia:jml_kia,
+                                                                                jml_akta_kelahiran:jml_akta_kelahiran,
+                                                                                jml_akta_kematian:jml_akta_kematian,
+                                                                                jml_lain_lain:jml_lain_lain,
                                                                                 _token:_token
                                                                             },
                                                                             success:function(response){

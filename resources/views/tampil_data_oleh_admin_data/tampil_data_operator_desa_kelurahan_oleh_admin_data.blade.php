@@ -128,7 +128,7 @@
                                                                                 <input type="hidden" id="id1"/>
                                                                                 <label>ID Operator *</label><br>
                                                                                 <div class="input-group mb-3">
-                                                                                    <input type="number" id="nip1" class="form-control" required>
+                                                                                    <input type="number" id="nip1" class="form-control" disabled>
                                                                                     <div class="input-group-append">
                                                                                         <div class="input-group-text">
                                                                                             <span class="fas fa-id-card"></span>
@@ -194,7 +194,6 @@
                                                                     $("#ubahDataForm").submit(function (e){
                                                                         e.preventDefault();
                                                                         let id = $("#id1").val();
-                                                                        let nip = $("#nip1").val();
                                                                         let nama_operator = $("#nama_operator1").val();
                                                                         let jabatan = $("#jabatan1").val();
                                                                         let pangkat_golongan = $("#pangkat_golongan1").val();
@@ -205,7 +204,6 @@
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id:id,
-                                                                                nip:nip,
                                                                                 nama_operator:nama_operator,
                                                                                 jabatan:jabatan,
                                                                                 pangkat_golongan:pangkat_golongan,

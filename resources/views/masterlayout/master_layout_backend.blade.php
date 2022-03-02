@@ -136,7 +136,7 @@
     <script>
         $(function () {
           $('#isi_canting2').summernote({
-            height: 250,
+            height: 100,
                 toolbar: [
                     // [groupName, [list of button]]
                     ['style', ['bold', 'italic', 'underline']],
@@ -148,7 +148,7 @@
     <script>
         $(function () {
           $('#dokumen_hasil2').summernote({
-            height: 250,
+            height: 100,
                 toolbar: [
                     // [groupName, [list of button]]
                     ['style', ['bold', 'italic', 'underline']],

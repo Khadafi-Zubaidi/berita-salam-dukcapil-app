@@ -29,9 +29,9 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
                                 <a href="{{route('dashboard_admin_data')}}" class="nav-link">
-                                    <i class="nav-icon fas fa-home"></i>
+                                    <i class="nav-icon fas fa-arrow-left"></i>
                                     <p>
-                                        Kembali ke Beranda
+                                        Sebelumnya
                                     </p>
                                 </a>
                             </li>
@@ -55,7 +55,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title">Laporan Rekapitulasi Pengurusan Dokumen</h5>
+                                        <h5 class="card-title">Formulir Rekapitulasi Pengurusan Dokumen</h5>
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                                 <i class="fas fa-minus"></i>
@@ -65,28 +65,41 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                @csrf
-                                                <table id="example1" class="table table-bordered table-striped" style="width:100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>No</th>
-                                                            <th>Desa / Kelurahan</th>
-                                                            <th>Kecamatan</th>
-                                                            <th>Jumlah</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @php $no = 1; @endphp
-                                                        @foreach($DataTabel as $dt)
-                                                            <tr>
-                                                                <td>{{$no++}}</td>
-                                                                <td>{{$dt->nama_desa_kelurahan}}</td>
-                                                                <td>{{$dt->nama_kecamatan}}</td>
-                                                                <td>{{$dt->jumlah}}</td>
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
+                                                <form action="{{route('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan')}}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label>Pilih Bulan *</label><br>
+                                                        <select name="bulan_pengajuan">
+                                                            <option value="Januari">Januari</option>
+                                                            <option value="Februari">Februari</option>
+                                                            <option value="Maret">Maret</option>
+                                                            <option value="April">April</option>
+                                                            <option value="Mei">Mei</option>
+                                                            <option value="Juni">Juni</option>
+                                                            <option value="Juli">Juli</option>
+                                                            <option value="Agustus">Agustus</option>
+                                                            <option value="September">September</option>
+                                                            <option value="Oktober">Oktober</option>
+                                                            <option value="Nopember">Nopember</option>
+                                                            <option value="Desember">Desember</option>
+                                                        </select>
+                                                    </div>
+                                                    <label>Tahun *</label><br>
+                                                    <div class="input-group mb-3">
+                                                        <input type="number" name="tahun_pengajuan" class="form-control @error('tahun_pengajuan') is-invalid @enderror" value="{{ old('tahun_pengajuan')}}">
+                                                        <div class="input-group-append">
+                                                            <div class="input-group-text">
+                                                                <span class="fas fa-id-card"></span>
+                                                            </div>
+                                                        </div>
+                                                        @error('tahun_pengajuan')
+                                                        <div class="invalid-feedback">{{$message}}</div>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <button type="submit" class="btn btn-success btn-block">Simpan</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

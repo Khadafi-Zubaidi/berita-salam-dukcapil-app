@@ -108,7 +108,9 @@ Route::post('/berkas_pengurusan1',[AdminDataController::class,'unggah_berkas_per
 Route::get('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data',[AdminDataController::class,'tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data'])->name('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data');
 Route::put('/berkas_pengurusan3',[AdminDataController::class,'hapus_berkas_permohonan_oleh_admin_data'])->name('berkas_permohonan.hapus_berkas');
 Route::put('/berkas_pengurusan4',[AdminDataController::class,'simpan_perubahan_data_catatan_penting_oleh_admin_data'])->name('berkas_pengurusan.isi_canting');
-Route::get('cetak_laporan_rekap_pengurusan',[AdminDataController::class,'cetak_laporan_rekap_pengurusan'])->name('cetak_laporan_rekap_pengurusan');
+Route::get('tampil_form_cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan',[AdminDataController::class,'tampil_form_cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan'])->name('tampil_form_cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan');
+Route::post('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan',[AdminDataController::class,'cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan'])->name('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan');
+
 
 //Redaktur
 Route::get('login_redaktur',[RedakturController::class,'login_redaktur'])->middleware('RedakturLoggedIn');

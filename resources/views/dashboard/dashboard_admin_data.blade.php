@@ -57,30 +57,68 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('tampil_data_berkas_permohonan_belum_selesai_oleh_admin_data')}}" class="nav-link">
+                                <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-file"></i>
                                     <p>
-                                        Belum Selesai
-                                        <span class="right badge badge-danger">{{$jumlah_berkas_pengurusan_yang_belum_selesai}}</span>
+                                        Permhn dr Desa
+                                        <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_berkas_permohonan_belum_selesai_oleh_admin_data')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                Belum Selesai
+                                                <span class="right badge badge-danger">{{$jumlah_berkas_pengurusan_yang_belum_selesai}}</span>
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                Sudah Selesai
+                                                <span class="right badge badge-success">{{$jumlah_berkas_pengurusan_yang_sudah_selesai}}</span>
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data')}}" class="nav-link">
-                                    <i class="nav-icon fas fa-file"></i>
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-print"></i>
                                     <p>
-                                        Sudah Selesai
-                                        <span class="right badge badge-success">{{$jumlah_berkas_pengurusan_yang_sudah_selesai}}</span>
+                                        Laporan (B/T)
+                                        <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('cetak_laporan_rekap_pengurusan')}}" class="nav-link">
-                                    <i class="nav-icon fas fa-file"></i>
-                                    <p>
-                                        Rekapitulasi
-                                    </p>
-                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_form_cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                Desa
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                Faskes
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                KUA
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('logout_admin_data')}}" class="nav-link">

@@ -26,16 +26,17 @@ class CreateBerkasPengurusansTable extends Migration
             $table->string('tanggal_pengajuan')->nullable();
             $table->string('tanggal_penyelesaian')->nullable();
             $table->string('bulan_pengajuan')->nullable();
+            $table->string('tahun_pengajuan')->nullable();
             $table->string('status')->default('B');
             $table->text('isi_canting');
             $table->string('nomor_pendaftaran')->nullable();
             $table->text('dokumen_hasil');
             $table->integer('jml_kk')->default(0);
-            $table->integer('jml_ktp')->default(0);
             $table->integer('jml_skp')->default(0);
             $table->integer('jml_kia')->default(0);
             $table->integer('jml_akta_kelahiran')->default(0);
             $table->integer('jml_akta_kematian')->default(0);
+            $table->integer('jml_lain_lain')->default(0);
             $table->timestamps();
         });
     }

@@ -177,7 +177,35 @@ class OperatorDesaKelurahanController extends Controller
             $tanggal_pengajuan = date("d/m/Y");
             $data_baru->tanggal_pengajuan = $tanggal_pengajuan;
             $bulan_pengajuan = date("m");
-            $data_baru->bulan_pengajuan = $bulan_pengajuan;
+            //konversi angka bulan ke nama bulan
+            if($bulan_pengajuan=="01") {
+                $nama_bulan = "Januari";
+            }elseif($bulan_pengajuan=="02") {
+                $nama_bulan = "Februari";
+            }elseif($bulan_pengajuan=="03") {
+                $nama_bulan = "Maret";
+            }elseif($bulan_pengajuan=="04") {
+                $nama_bulan = "April";
+            }elseif($bulan_pengajuan=="05") {
+                $nama_bulan = "Mei";
+            }elseif($bulan_pengajuan=="06") {
+                $nama_bulan = "Juni";
+            }elseif($bulan_pengajuan=="07") {
+                $nama_bulan = "Juli";
+            }elseif($bulan_pengajuan=="08") {
+                $nama_bulan = "Agustus";
+            }elseif($bulan_pengajuan=="09") {
+                $nama_bulan = "September";
+            }elseif($bulan_pengajuan=="10") {
+                $nama_bulan = "Oktober";
+            }elseif($bulan_pengajuan=="11") {
+                $nama_bulan = "Nopember";
+            }else{
+                $nama_bulan = "Desember";
+            }
+            $data_baru->bulan_pengajuan = $nama_bulan;
+            $tahun_pengajuan = date("Y");
+            $data_baru->tahun_pengajuan = $tahun_pengajuan;
             //simpan berkas
             $extension = $request->file->getClientOriginalExtension();
             $filename = time().'.'.$extension;

@@ -291,10 +291,17 @@ class AdminDataController extends Controller
 
     public function simpan_perubahan_data_operator_desa_kelurahan_oleh_admin_data(Request $request){
         $data_perubahan = OperatorDesaKelurahan::find($request->id);
-        $data_perubahan->nip = $request->nip;
         $data_perubahan->nama_operator = $request->nama_operator;
-        $data_perubahan->jabatan = $request->jabatan;
-        $data_perubahan->pangkat_golongan = $request->pangkat_golongan;
+        if($request->filled('jabatan')) {
+            $data_perubahan->jabatan = $request->jabatan;
+        } else {
+            $data_perubahan->jabatan = '-';
+        }
+        if($request->filled('pangkat_golongan')) {
+            $data_perubahan->pangkat_golongan = $request->pangkat_golongan;
+        } else {
+            $data_perubahan->pangkat_golongan = '-';
+        }
         $data_perubahan->aktif = $request->aktif;
         $data_perubahan->save();
         return response()->json($data_perubahan);
@@ -326,26 +333,31 @@ class AdminDataController extends Controller
         if (session()->has('LoggedAdminData')){
             $request->validate([
                 'id_desa_kelurahan'=>'required',
-                'nip'=>'required',
+                'nip'=>'required|unique:operator_desa_kelurahans',
                 'nama_operator'=>'required',
-                'jabatan'=>'required',
                 'password'=>'required',
-                'pangkat_golongan'=>'required',
             ],[
                 'id_desa_kelurahan.required'=>'ID Desa/Kelurahan tidak boleh kosong',
                 'nip.required'=>'ID Operator tidak boleh kosong',
+                'nip.unique'=>'ID Operator sudah digunakan',
                 'nama_operator.required'=>'Nama Operator tidak boleh kosong',
-                'jabatan.required'=>'Jabatan tidak boleh kosong',
                 'password.required'=>'Password tidak boleh kosong',
-                'pangkat_golongan.required'=>'Pangkat/Golongan tidak boleh kosong',
             ]);
             $data_baru = new OperatorDesaKelurahan();
             $data_baru->id_desa_kelurahan = $request->id_desa_kelurahan;
             $data_baru->nip = $request->nip;
             $data_baru->nama_operator = $request->nama_operator;
-            $data_baru->jabatan = $request->jabatan;
+            if($request->filled('jabatan')) {
+                $data_baru->jabatan = $request->jabatan;
+            } else {
+                $data_baru->jabatan = '-';
+            }
             $data_baru->password = Hash::make($request->password);
-            $data_baru->pangkat_golongan = $request->pangkat_golongan;
+            if($request->filled('pangkat_golongan')) {
+                $data_baru->pangkat_golongan = $request->pangkat_golongan;
+            } else {
+                $data_baru->pangkat_golongan = '-';
+            }
             $data_baru->save();
             return redirect('tampil_data_operator_desa_kelurahan_oleh_admin_data');
         }else{
@@ -450,26 +462,85 @@ class AdminDataController extends Controller
         $data_perubahan = BerkasPengurusan::find($request->id);
         $data_perubahan->isi_canting = $request->isi_canting;
         $data_perubahan->dokumen_hasil = $request->dokumen_hasil;
+        if($request->filled('jml_kk')) {
+            $data_perubahan->jml_kk = $request->jml_kk;
+        } else {
+            $data_perubahan->jml_kk = 0;
+        }
+        if($request->filled('jml_skp')) {
+            $data_perubahan->jml_skp = $request->jml_skp;
+        } else {
+            $data_perubahan->jml_skp = 0;
+        }
+        if($request->filled('jml_kia')) {
+            $data_perubahan->jml_kia = $request->jml_kia;
+        } else {
+            $data_perubahan->jml_kia = 0;
+        }
+        if($request->filled('jml_akta_kelahiran')) {
+            $data_perubahan->jml_akta_kelahiran = $request->jml_akta_kelahiran;
+        } else {
+            $data_perubahan->jml_akta_kelahiran = 0;
+        }
+        if($request->filled('jml_akta_kematian')) {
+            $data_perubahan->jml_akta_kematian = $request->jml_akta_kematian;
+        } else {
+            $data_perubahan->jml_akta_kematian = 0;
+        }
+        if($request->filled('jml_lain_lain')) {
+            $data_perubahan->jml_lain_lain = $request->jml_lain_lain;
+        } else {
+            $data_perubahan->jml_lain_lain = 0;
+        }
         $data_perubahan->save();
         return response()->json($data_perubahan);
     }
 
-    public function cetak_laporan_rekap_pengurusan(){
+    public function tampil_form_cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan(){
         if (session()->has('LoggedAdminData')){
             $data_admin_untuk_dashboard = AdminData::where('id','=',session('LoggedAdminData'))->first();
+            $data = [
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_admin_data.tampil_form_cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan',$data);
+        }else{
+            return view('login.login_admin_data');
+        }
+    }
+
+    public function cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan(Request $request){
+        if (session()->has('LoggedAdminData')){
+            $data_admin_untuk_dashboard = AdminData::where('id','=',session('LoggedAdminData'))->first();
+            $request->validate([
+                'bulan_pengajuan'=>'required',
+                'tahun_pengajuan'=>'required',
+            ],[
+                'bulan_pengajuan.required'=>'Bulan tidak boleh kosong',
+                'tahun_pengajuan.required'=>'Tahun tidak boleh kosong',
+            ]);
+            $bulan = $request->bulan_pengajuan;
+            $tahun = $request->tahun_pengajuan;
             $data_tabel = DB::table('berkas_pengurusans')
             ->join('desa_kelurahans', 'berkas_pengurusans.id_desa_kelurahan', '=', 'desa_kelurahans.id')
             ->join('kecamatans', 'desa_kelurahans.id_kecamatan', '=', 'kecamatans.id')
             ->select('desa_kelurahans.nama_desa_kelurahan',
                      'kecamatans.nama_kecamatan',
+                     DB::raw('sum(jml_kk) as jumlah_kk'),
+                     DB::raw('sum(jml_skp) as jumlah_skp'),
+                     DB::raw('sum(jml_kia) as jumlah_kia'),
+                     DB::raw('sum(jml_akta_kelahiran) as jumlah_akta_kelahiran'),
+                     DB::raw('sum(jml_akta_kematian) as jumlah_akta_kematian'),
+                     DB::raw('sum(jml_lain_lain) as jumlah_lain_lain'),
                      DB::raw('count(*) as jumlah'))
+            ->where('berkas_pengurusans.bulan_pengajuan', '=', $bulan)
+            ->where('berkas_pengurusans.tahun_pengajuan', '=', $tahun)
             ->groupBy('berkas_pengurusans.id_desa_kelurahan')
             ->get();
             $data = [
                 'DataTabel'=>$data_tabel,
                 'LoggedUserInfo'=>$data_admin_untuk_dashboard,
             ];
-            return view('tampil_data_oleh_admin_data.laporan_rekap_pengurusan',$data);
+            return view('tampil_data_oleh_admin_data.cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan',$data,compact('bulan','tahun'));
         }else{
             return view('login.login_admin_data');
         }
