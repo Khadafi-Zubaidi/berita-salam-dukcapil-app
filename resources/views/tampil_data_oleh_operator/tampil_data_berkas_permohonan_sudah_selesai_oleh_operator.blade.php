@@ -86,7 +86,7 @@
                                                                 <td>{{$no++}}</td>
                                                                 <td>{{$dt->nama_pemohon}}</td>
                                                                 <td>{{$dt->alamat_pemohon}}</td>
-                                                                <td>{{$dt->jenis_permohonan}}</td>
+                                                                <td>{!!$dt->jenis_permohonan!!}</td>
                                                                 <td>{{$dt->tanggal_pengajuan}}</td>
                                                                 <td>
                                                                     @if ($dt->status == 'B')
@@ -100,6 +100,7 @@
                                                                     <a href="javascript:void(0)" onclick="lihatDokumenKeluaran({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Daftar Dokumen Hasil</small></a>
                                                                     <a href="/berkas_permohonan_selesai/{{$dt->berkas_selesai}}" class="btn btn-success btn-block btn-sm"><small>Unduh Dokumen Hasil</small></a>
                                                                     <a href="{{action('App\Http\Controllers\OperatorDesaKelurahanController@cetak_bukti_pendaftaran_oleh_operator', $dt->id)}}" class="btn btn-info btn-block btn-sm"><small>Cetak Bukti Pendaftaran</small></a>
+                                                                    <a href="{{action('App\Http\Controllers\OperatorDesaKelurahanController@cetak_bukti_pengambilan_oleh_operator', $dt->id)}}" class="btn btn-danger btn-block btn-sm"><small>Cetak Bukti Pengambilan Dokumen</small></a>
                                                                 </td>
                                                             </tr>
                                                             <!-- Lihat Dokumen Keluaran -->

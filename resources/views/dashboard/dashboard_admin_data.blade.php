@@ -87,9 +87,9 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-print"></i>
+                                    <i class="nav-icon fas fa-search"></i>
                                     <p>
-                                        Laporan (B/T)
+                                        Prev. Rekap (B/T)
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
@@ -103,7 +103,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data')}}" class="nav-link">
+                                        <a href="#" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>
                                                 Faskes
@@ -111,7 +111,42 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data')}}" class="nav-link">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                KUA
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-file-excel"></i>
+                                    <p>
+                                        Export Rekap (B/T)
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_form_cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan_excell')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                Desa
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                Faskes
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>
                                                 KUA

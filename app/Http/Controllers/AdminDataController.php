@@ -7,11 +7,11 @@ use App\Models\BerkasPengurusan;
 use App\Models\DesaKelurahan;
 use App\Models\Kecamatan;
 use App\Models\OperatorDesaKelurahan;
-use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\LaporanDesaBulanTahunExport;
 
 class AdminDataController extends Controller
 {
@@ -545,6 +545,32 @@ class AdminDataController extends Controller
             return view('login.login_admin_data');
         }
     }
+
+    public function tampil_form_cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan_excell(){
+        if (session()->has('LoggedAdminData')){
+            $data_admin_untuk_dashboard = AdminData::where('id','=',session('LoggedAdminData'))->first();
+            $data = [
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_admin_data.tampil_form_cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan_excell',$data);
+        }else{
+            return view('login.login_admin_data');
+        }
+    }
+
+    public function cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan_excell(Request $request){
+        $request->validate([
+            'bulan_pengajuan'=>'required',
+            'tahun_pengajuan'=>'required',
+        ],[
+            'bulan_pengajuan.required'=>'Bulan tidak boleh kosong',
+            'tahun_pengajuan.required'=>'Tahun tidak boleh kosong',
+        ]);
+        $request->bulan_pengajuan;
+        $request->tahun_pengajuan;
+        return Excel::download(new LaporanDesaBulanTahunExport($request->bulan_pengajuan,$request->tahun_pengajuan), 'Laporan_Rekap_Desa_Kelurahan.xlsx');
+    }
+
 
         
 }

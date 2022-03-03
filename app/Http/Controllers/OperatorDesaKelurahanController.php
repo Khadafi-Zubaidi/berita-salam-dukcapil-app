@@ -166,7 +166,20 @@ class OperatorDesaKelurahanController extends Controller
                 'file.mimes'=>'Berkas harus dalam bentuk (ZIP/RAR)',
             ]);
             $data_admin_untuk_dashboard = OperatorDesaKelurahan::where('id','=',session('LoggedOperator'))->first();
-
+            //$id_operator = $data_admin_untuk_dashboard->id;
+            //$id_desa_kul = $data_admin_untuk_dashboard->id_desa_kelurahan;
+            //get nama desa
+            $data_nama_desa_kul = DB::table('desa_kelurahans')
+                                ->select('desa_kelurahans.nama_desa_kelurahan')
+                                ->where('desa_kelurahans.id','=',$data_admin_untuk_dashboard->id_desa_kelurahan)
+                                ->get();
+            //get nama kecamatan
+            $data_nama_kecamatan  = DB::table('operator_desa_kelurahans')
+                                ->join('desa_kelurahans', 'operator_desa_kelurahans.id_desa_kelurahan', '=', 'desa_kelurahans.id')
+                                ->join('kecamatans', 'desa_kelurahans.id_kecamatan', '=', 'kecamatans.id')
+                                ->select('kecamatans.nama_kecamatan')
+                                ->where('operator_desa_kelurahans.id','=',$data_admin_untuk_dashboard->id)
+                                ->get();
             $data_baru = new BerkasPengurusan();
             $data_baru->id_operator_desa_kelurahan = $data_admin_untuk_dashboard->id;
             $data_baru->id_desa_kelurahan = $data_admin_untuk_dashboard->id_desa_kelurahan;
@@ -206,6 +219,8 @@ class OperatorDesaKelurahanController extends Controller
             $data_baru->bulan_pengajuan = $nama_bulan;
             $tahun_pengajuan = date("Y");
             $data_baru->tahun_pengajuan = $tahun_pengajuan;
+            $data_baru->nama_desa_kelurahan = $data_nama_desa_kul;
+            $data_baru->nama_kecamatan = $data_nama_kecamatan;
             //simpan berkas
             $extension = $request->file->getClientOriginalExtension();
             $filename = time().'.'.$extension;
@@ -276,13 +291,35 @@ class OperatorDesaKelurahanController extends Controller
     }
 
     public function cetak_bukti_pendaftaran_oleh_operator($id){
-        //$data_admin_untuk_dashboard = OperatorDesaKelurahan::where('id','=',session('LoggedOperator'))->first();
-        //$data_desa_kelurahan = DB::table('berkas_pengurusans')
-        $data_berkas = BerkasPengurusan::find($id);
-        //$pdf = Pdf::loadView('bukti_pendaftaran', compact('data_berkas'));
-        $pdf = Pdf::loadView('bukti_pendaftaran.bukti_pendaftaran', compact('data_berkas'));
-        return $pdf->download('bukti_pendaftaran.pdf');
+        //$data_berkas = BerkasPengurusan::find($id);
+        //$pdf = Pdf::loadView('bukti_pendaftaran.bukti_pendaftaran', compact('data_berkas'));
+        //return $pdf->download('bukti_pendaftaran.pdf');
+        if (session()->has('LoggedOperator')){
+            $data_admin_untuk_dashboard = OperatorDesaKelurahan::where('id','=',session('LoggedOperator'))->first();
+            $nama_operator = $data_admin_untuk_dashboard->nama_operator;
+            $data_berkas = BerkasPengurusan::find($id);
+            $pdf = Pdf::loadView('bukti_pendaftaran.bukti_pendaftaran2', compact('data_berkas','nama_operator'));
+            return $pdf->download('bukti_pendaftaran.pdf');
+        }else{
+            return view('login.login_operator');
+        }
     }
+
+    public function cetak_bukti_pengambilan_oleh_operator($id){
+        //$data_berkas = BerkasPengurusan::find($id);
+        //$pdf = Pdf::loadView('bukti_pendaftaran.bukti_pendaftaran', compact('data_berkas'));
+        //return $pdf->download('bukti_pendaftaran.pdf');
+        if (session()->has('LoggedOperator')){
+            $data_admin_untuk_dashboard = OperatorDesaKelurahan::where('id','=',session('LoggedOperator'))->first();
+            $nama_operator = $data_admin_untuk_dashboard->nama_operator;
+            $data_berkas = BerkasPengurusan::find($id);
+            $pdf = Pdf::loadView('bukti_pengambilan.bukti_pengambilan', compact('data_berkas','nama_operator'));
+            return $pdf->download('bukti_pengambilan.pdf');
+        }else{
+            return view('login.login_operator');
+        }
+    }
+
 
     public function simpan_perubahan_data_berkas_permohonan_oleh_operator(Request $request){
         $data_perubahan = BerkasPengurusan::find($request->id);

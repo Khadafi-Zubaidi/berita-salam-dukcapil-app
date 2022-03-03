@@ -144,15 +144,6 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <label>Jenis Permohonan</label><br>
-                                                                                <div class="input-group mb-3">
-                                                                                    <input type="text" id="jenis_permohonan1" class="form-control" disabled>
-                                                                                    <div class="input-group-append">
-                                                                                        <div class="input-group-text">
-                                                                                            <span class="fas fa-id-card"></span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
                                                                                 <label>Upload File (.ZIP)</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="file" id="file" name="file" class="form-control">
@@ -172,7 +163,6 @@
                                                                         $("#id1").val(berkas_pengurusan.id);
                                                                         $("#nama_pemohon1").val(berkas_pengurusan.nama_pemohon);
                                                                         $("#alamat_pemohon1").val(berkas_pengurusan.alamat_pemohon);
-                                                                        $("#jenis_permohonan1").val(berkas_pengurusan.jenis_permohonan);
                                                                         $("#editDataFotoModal").modal('toggle');
                                                                     });
                                                                     $.ajaxSetup({

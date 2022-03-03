@@ -37,6 +37,8 @@ class CreateBerkasPengurusansTable extends Migration
             $table->integer('jml_akta_kelahiran')->default(0);
             $table->integer('jml_akta_kematian')->default(0);
             $table->integer('jml_lain_lain')->default(0);
+            $table->string('nama_desa_kelurahan')->nullable();
+            $table->string('nama_kecamatan')->nullable();
             $table->timestamps();
         });
     }

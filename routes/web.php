@@ -106,10 +106,14 @@ Route::get('tampil_data_berkas_permohonan_belum_selesai_oleh_admin_data',[AdminD
 Route::get('/berkas_pengurusans/{id}',[AdminDataController::class,'get_id_berkas_pengurusan_by_admin_data']);
 Route::post('/berkas_pengurusan1',[AdminDataController::class,'unggah_berkas_permohonan_selesai'])->name('berkas_permohonan.upload_berkas_permohonan_selesai');
 Route::get('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data',[AdminDataController::class,'tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data'])->name('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data');
-Route::put('/berkas_pengurusan3',[AdminDataController::class,'hapus_berkas_permohonan_oleh_admin_data'])->name('berkas_permohonan.hapus_berkas');
+
+Route::put('/hapus_berkas_permohonan_ok',[AdminDataController::class,'hapus_berkas_permohonan_oleh_admin_data'])->name('hapus_berkas_permohonan_ok');
+
 Route::put('/berkas_pengurusan4',[AdminDataController::class,'simpan_perubahan_data_catatan_penting_oleh_admin_data'])->name('berkas_pengurusan.isi_canting');
 Route::get('tampil_form_cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan',[AdminDataController::class,'tampil_form_cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan'])->name('tampil_form_cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan');
 Route::post('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan',[AdminDataController::class,'cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan'])->name('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan');
+Route::get('tampil_form_cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan_excell',[AdminDataController::class,'tampil_form_cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan_excell'])->name('tampil_form_cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan_excell');
+Route::post('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan_excell',[AdminDataController::class,'cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan_excell'])->name('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan_excell');
 
 
 //Redaktur
@@ -313,3 +317,4 @@ Route::get('tampil_data_berkas_permohonan_sudah_selesai_oleh_operator',[Operator
 Route::put('/berkas_pengurusan3',[OperatorDesaKelurahanController::class,'simpan_perubahan_data_berkas_permohonan_oleh_operator'])->name('berkas_permohonan.pembaharuan_data');
 //cetak bukti pendaftaran menggunakan DOMPDF
 Route::get('/cetak_bukti_pendaftaran_oleh_operator/{id}',[OperatorDesaKelurahanController::class,'cetak_bukti_pendaftaran_oleh_operator'])->name('cetak_bukti_pendaftaran_oleh_operator');
+Route::get('/cetak_bukti_pengambilan_oleh_operator/{id}',[OperatorDesaKelurahanController::class,'cetak_bukti_pengambilan_oleh_operator'])->name('cetak_bukti_pengambilan_oleh_operator');

@@ -87,7 +87,7 @@
                                                                 <td>{{$no++}}</td>
                                                                 <td>{{$dt->nama_pemohon}}</td>
                                                                 <td>{{$dt->alamat_pemohon}}</td>
-                                                                <td>{{$dt->jenis_permohonan}}</td>
+                                                                <td>{!!$dt->jenis_permohonan!!}</td>
                                                                 <td>{{$dt->tanggal_pengajuan}}</td>
                                                                 <td>{{$dt->bulan_pengajuan}}</td>
                                                                 <td>
@@ -106,7 +106,8 @@
                                                                 </td>
                                                                 <td>
                                                                     <a href="/berkas_permohonan_selesai/{{$dt->berkas_selesai}}" class="btn btn-success btn-block btn-sm"><small>Unduh Dokumen Hasil</small></a>
-                                                                    <a href="javascript:void(0)" onclick="hapusBerkasPermohonanSelesai({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Hapus Berkas Permohonan Selesai</small></a>
+                                                                    <a href="javascript:void(0)" onclick="ubahDataCanting({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Input Canting & Dokumen Hasil</small></a>
+                                                                    <a href="javascript:void(0)" onclick="hapusBerkasPermohonanSelesai({{$dt->id}})" class="btn btn-danger btn-block btn-sm"><small>Hapus Berkas Permohonan Selesai</small></a>
                                                                 </td>
                                                             </tr>
                                                             <!-- Ubah Foto -->
@@ -125,7 +126,7 @@
                                                                                 <ol>
                                                                                     <li>Pastikan bahwa dokumen hasil sudah dikirim ke operator</li>
                                                                                     <li>Pastikan Anda telah mengunduh dokumen hasil</li>
-                                                                                    <li>Pastikan Anda memilih dokumen dengan bulan pengajuan yang telah lampau</li>
+                                                                                    <li>Pastikan Anda memilih permohonan dengan bulan pengajuan yang telah lampau</li>
                                                                                 </ol>
                                                                             </p>
                                                                             <form id="ubahDataForm" action="" method="post">
@@ -134,15 +135,6 @@
                                                                                 <label>Nama Pemohon *</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="text" id="nama_pemohon1" class="form-control" disabled>
-                                                                                    <div class="input-group-append">
-                                                                                        <div class="input-group-text">
-                                                                                            <span class="fas fa-id-card"></span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <label>Jenis Permohonan *</label><br>
-                                                                                <div class="input-group mb-3">
-                                                                                    <input type="text" id="jenis_permohonan1" class="form-control" disabled>
                                                                                     <div class="input-group-append">
                                                                                         <div class="input-group-text">
                                                                                             <span class="fas fa-id-card"></span>
@@ -172,7 +164,6 @@
                                                                     $.get('/berkas_pengurusans/'+id,function(berkas_pengurusan){
                                                                         $("#id1").val(berkas_pengurusan.id);
                                                                         $("#nama_pemohon1").val(berkas_pengurusan.nama_pemohon);
-                                                                        $("#jenis_permohonan1").val(berkas_pengurusan.jenis_permohonan);
                                                                         $("#berkas_permohonan1").val(berkas_pengurusan.berkas_permohonan);
                                                                         $("#ubahDataModal").modal('toggle');
                                                                     })
@@ -182,7 +173,7 @@
                                                                         let berkas_permohonan = $("#berkas_permohonan1").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
-                                                                            url:"{{route('berkas_permohonan.hapus_berkas')}}",
+                                                                            url:"{{route('hapus_berkas_permohonan_ok')}}",
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id:id,
@@ -191,6 +182,184 @@
                                                                             },
                                                                             success:function(response){
                                                                                 $("#ubahDataModal").modal('hide');
+                                                                                window.location = "{{route('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data')}}";
+                                                                            }
+                                                                        })
+                                                                    })
+                                                                }
+                                                            </script>
+                                                            <div class="modal fade" id="Modal8">
+                                                                <div class="modal-dialog modal-lg">
+                                                                    <div class="modal-content bg-warning">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title">Input Catatan Penting dan Dokumen Hasil</h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form id="Form8" action="" method="post">
+                                                                                @csrf
+                                                                                <input type="hidden" id="id2"/>
+                                                                                <label>Nama Pemohon</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="nama_pemohon2" class="form-control" disabled>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Alamat Pemohon</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="alamat_pemohon2" class="form-control" disabled>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Tanggal Pengajuan</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" id="tanggal_pengajuan2" class="form-control" disabled>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Catatan Penting *</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <div class="col-md-12">
+                                                                                        <textarea id="isi_canting2"></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Dokumen Hasil *</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <div class="col-md-12">
+                                                                                        <textarea id="dokumen_hasil2"></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <label>Input Jumlah Dokumen Hasil *</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <div class="col-md-6">
+                                                                                        <label>Jumlah KK</label><br>
+                                                                                        <div class="input-group mb-3">
+                                                                                            <input type="number" id="jml_kk2" class="form-control">
+                                                                                            <div class="input-group-append">
+                                                                                                <div class="input-group-text">
+                                                                                                    <span class="fas fa-id-card"></span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        &nbsp;
+                                                                                        <label>Jumlah SKP</label><br>
+                                                                                        <div class="input-group mb-3">
+                                                                                            <input type="number" id="jml_skp2" class="form-control">
+                                                                                            <div class="input-group-append">
+                                                                                                <div class="input-group-text">
+                                                                                                    <span class="fas fa-id-card"></span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        &nbsp;
+                                                                                        <label>Jumlah KIA</label><br>
+                                                                                        <div class="input-group mb-3">
+                                                                                            <input type="number" id="jml_kia2" class="form-control">
+                                                                                            <div class="input-group-append">
+                                                                                                <div class="input-group-text">
+                                                                                                    <span class="fas fa-id-card"></span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <label>Jumlah Akta Kelahiran</label><br>
+                                                                                        <div class="input-group mb-3">
+                                                                                            <input type="number" id="jml_akta_kelahiran2" class="form-control">
+                                                                                            <div class="input-group-append">
+                                                                                                <div class="input-group-text">
+                                                                                                    <span class="fas fa-id-card"></span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        &nbsp;
+                                                                                        <label>Jumlah Akta Kematian</label><br>
+                                                                                        <div class="input-group mb-3">
+                                                                                            <input type="number" id="jml_akta_kematian2" class="form-control">
+                                                                                            <div class="input-group-append">
+                                                                                                <div class="input-group-text">
+                                                                                                    <span class="fas fa-id-card"></span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        &nbsp;
+                                                                                        <label>Jumlah Dokumen Lainnya (Non KTP)</label><br>
+                                                                                        <div class="input-group mb-3">
+                                                                                            <input type="number" id="jml_lain_lain2" class="form-control">
+                                                                                            <div class="input-group-append">
+                                                                                                <div class="input-group-text">
+                                                                                                    <span class="fas fa-id-card"></span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <button type="submit" class="btn btn-primary btn-block">Simpan</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <script>
+                                                                function ubahDataCanting(id)
+                                                                {
+                                                                    $.get('/berkas_pengurusans/'+id,function(berkas_pengurusan){
+                                                                        $("#id2").val(berkas_pengurusan.id);
+                                                                        $("#nama_pemohon2").val(berkas_pengurusan.nama_pemohon);
+                                                                        $("#alamat_pemohon2").val(berkas_pengurusan.alamat_pemohon);
+                                                                        $("#tanggal_pengajuan2").val(berkas_pengurusan.tanggal_pengajuan);
+                                                                        $("#isi_canting2").summernote('code', berkas_pengurusan.isi_canting);
+                                                                        $("#dokumen_hasil2").summernote('code', berkas_pengurusan.dokumen_hasil);
+                                                                        $("#jml_kk2").val(berkas_pengurusan.jml_kk);
+                                                                        $("#jml_skp2").val(berkas_pengurusan.jml_skp);
+                                                                        $("#jml_kia2").val(berkas_pengurusan.jml_kia);
+                                                                        $("#jml_akta_kelahiran2").val(berkas_pengurusan.jml_akta_kelahiran);
+                                                                        $("#jml_akta_kematian2").val(berkas_pengurusan.jml_akta_kematian);
+                                                                        $("#jml_lain_lain2").val(berkas_pengurusan.jml_lain_lain);
+                                                                        $("#Modal8").modal('toggle');
+                                                                    })
+                                                                    $("#Form8").submit(function (e){
+                                                                        e.preventDefault();
+                                                                        let id = $("#id2").val();
+                                                                        let isi_canting = $("#isi_canting2").val();
+                                                                        let dokumen_hasil = $("#dokumen_hasil2").val();
+                                                                        let jml_kk = $("#jml_kk2").val();
+                                                                        let jml_skp = $("#jml_skp2").val();
+                                                                        let jml_kia = $("#jml_kia2").val();
+                                                                        let jml_akta_kelahiran = $("#jml_akta_kelahiran2").val();
+                                                                        let jml_akta_kematian = $("#jml_akta_kematian2").val();
+                                                                        let jml_lain_lain = $("#jml_lain_lain2").val();
+                                                                        let _token = $("input[name=_token]").val();
+                                                                        $.ajax({
+                                                                            url:"{{route('berkas_pengurusan.isi_canting')}}",
+                                                                            type: "PUT",
+                                                                            data:{
+                                                                                id:id,
+                                                                                isi_canting:isi_canting,
+                                                                                dokumen_hasil:dokumen_hasil,
+                                                                                jml_kk:jml_kk,
+                                                                                jml_skp:jml_skp,
+                                                                                jml_kia:jml_kia,
+                                                                                jml_akta_kelahiran:jml_akta_kelahiran,
+                                                                                jml_akta_kematian:jml_akta_kematian,
+                                                                                jml_lain_lain:jml_lain_lain,
+                                                                                _token:_token
+                                                                            },
+                                                                            success:function(response){
+                                                                                $("#Modal8").modal('hide');
                                                                                 window.location = "{{route('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data')}}";
                                                                             }
                                                                         })

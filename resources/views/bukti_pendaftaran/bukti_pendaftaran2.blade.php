@@ -8,15 +8,15 @@
               width: 100%;
             }
             th {
-              border: 1px solid #dddddd;
+              border: 1px solid #ffffff;
               text-align: center;
-              padding: 3px;
+              padding: 2px;
               font-size: small;
             }
             td {
               border: 1px solid #dddddd;
               text-align: left;
-              padding: 3px;
+              padding: 2px;
               font-size: small;
             }
         </style>
@@ -28,9 +28,6 @@
             </tr>
             <tr>
                 <th colspan="2">PENGURUSAN DOKUMEN KEPENDUDUKAN</th>
-            </tr>
-            <tr>
-                <th colspan="2">APLIKASI SALAM DUKCAPIL</th>
             </tr>
             <tr>
                 <th colspan="2" style="background-color: #dddddd;" >DATA PEMOHON</th>
@@ -56,7 +53,7 @@
                 <td>{!! $data_berkas->jenis_permohonan !!}</td>
             </tr>
             <tr>
-                <td>Desa</td>
+                <td>Desa / Kelurahan</td>
                 <td>{{ str_replace(array( '[', ']','{','}',':','"','nama_desa_kelurahan'), '', $data_berkas->nama_desa_kelurahan) }}</td>
             </tr>
             <tr>
@@ -67,20 +64,24 @@
                 <th colspan="2" style="background-color: #dddddd;">Nomor Pendaftaran</th>
             </tr>
             <tr>
-                <th colspan="2"><h1>{{ $data_berkas->nomor_pendaftaran }}</h1></th>
+                <th colspan="2" style="border: 1px solid #dddddd;"><h2>{{ $data_berkas->nomor_pendaftaran }}</h2></th>
             </tr>
             <tr>
-                <td></td>
-                <td style="text-align: center">Sumbawa Barat, <?php date("d/m/Y"); ?></td>
+                <th colspan="2" style="background-color: #dddddd;">Jangan Lupa Bawa Bukti Pendaftaran Ini Pada Saat Pengambilan Dokumen Hasil</th>
             </tr>
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
             <tr>
-                <td></td>
-                <td style="text-align: center"></td>
+                <td style="text-align:center;border: 1px solid #ffffff;"></td>
+                <td style="text-align: center;border: 1px solid #ffffff;">Sumbawa Barat, <?php echo date("d/m/Y"); ?></td>
             </tr>
+            <tr>
+                <td style="text-align:center;border: 1px solid #ffffff;"></td>
+                <td style="text-color: #ffffff;;border: 1px solid #ffffff;"><h1></h1></td>
+            </tr>
+            <tr>
+                <td style="text-align:center;border: 1px solid #ffffff;"></td>
+                <td style="text-align:center;border: 1px solid #ffffff;">( {{ $nama_operator }} )</td>
+            </tr>
+            
 
         </table>
     </body>

@@ -65,7 +65,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <form action="{{route('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan')}}" method="post" enctype="multipart/form-data">
+                                                <form action="{{route('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan_excell')}}" method="post" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="form-group">
                                                         <label>Pilih Bulan *</label><br>
@@ -97,7 +97,7 @@
                                                         @enderror
                                                     </div>
                                                     <div class="input-group mb-3">
-                                                        <button type="submit" class="btn btn-success btn-block">Pratinjau</button>
+                                                        <button type="submit" class="btn btn-success btn-block">Download Ke Excell</button>
                                                     </div>
                                                 </form>
                                             </div>

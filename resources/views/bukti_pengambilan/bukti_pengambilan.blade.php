@@ -4,19 +4,20 @@
         <style>
             table {
               font-family: arial, sans-serif;
+              font-size: 8px;
               border-collapse: collapse;
               width: 100%;
             }
             th {
-              border: 1px solid #dddddd;
+              border: 1px solid #ffffff;
               text-align: center;
-              padding: 3px;
+              padding: 1px;
               font-size: small;
             }
             td {
               border: 1px solid #dddddd;
               text-align: left;
-              padding: 3px;
+              padding: 1px;
               font-size: small;
             }
         </style>
@@ -24,13 +25,10 @@
     <body>
         <table>
             <tr>
-                <th colspan="2">BUKTI PENDAFTARAN</th>
+                <th colspan="2">BUKTI PENGAMBILAN DOKUMEN</th>
             </tr>
             <tr>
                 <th colspan="2">PENGURUSAN DOKUMEN KEPENDUDUKAN</th>
-            </tr>
-            <tr>
-                <th colspan="2">APLIKASI SALAM DUKCAPIL</th>
             </tr>
             <tr>
                 <th colspan="2" style="background-color: #dddddd;" >DATA PEMOHON</th>
@@ -52,11 +50,7 @@
                 <td>{{ $data_berkas->tanggal_pengajuan }}</td>
             </tr>
             <tr>
-                <td>Jenis Permohonan</td>
-                <td>{!! $data_berkas->jenis_permohonan !!}</td>
-            </tr>
-            <tr>
-                <td>Desa</td>
+                <td>Desa / Kelurahan</td>
                 <td>{{ str_replace(array( '[', ']','{','}',':','"','nama_desa_kelurahan'), '', $data_berkas->nama_desa_kelurahan) }}</td>
             </tr>
             <tr>
@@ -67,21 +61,43 @@
                 <th colspan="2" style="background-color: #dddddd;">Nomor Pendaftaran</th>
             </tr>
             <tr>
-                <th colspan="2"><h1>{{ $data_berkas->nomor_pendaftaran }}</h1></th>
+                <th colspan="2" style="border: 1px solid #dddddd;"><h3>{{ $data_berkas->nomor_pendaftaran }}</h3></th>
             </tr>
             <tr>
-                <td></td>
-                <td style="text-align: center">Sumbawa Barat, <?php date("d/m/Y"); ?></td>
+                <th colspan="2" style="background-color: #dddddd;">Dokumen Hasil</th>
             </tr>
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
             <tr>
-                <td></td>
-                <td style="text-align: center"></td>
+                <td>Nama Dokumen</td>
+                <td>Checklist</td>
             </tr>
-
+            <tr>
+                <td>{!! $data_berkas->dokumen_hasil !!}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2" style="background-color: #dddddd;">Catatan Penting</th>
+            </tr>
+            <tr>
+                <th colspan="2" style="background-color: #dddddd;">{{ $data_berkas->isi_canting }}</th>
+            </tr>
+            <tr>
+                <td style="text-align:center;border: 1px solid #ffffff;"><h4></h4></td>
+                <td style="text-color: #ffffff;;border: 1px solid #ffffff;"><h4></h4></td>
+            </tr>
+            <tr>
+                <td style="text-align:center;border: 1px solid #ffffff;">Diterima Oleh,</td>
+                <td style="text-align: center;border: 1px solid #ffffff;">Sumbawa Barat, <?php echo date("d/m/Y"); ?></td>
+            </tr>
+            <tr>
+                <td style="text-align:center;border: 1px solid #ffffff;"><h1></h1></td>
+                <td style="text-color: #ffffff;;border: 1px solid #ffffff;"><h1></h1></td>
+            </tr>
+            <tr>
+                <td style="text-align:center;border: 1px solid #ffffff;">( {{ $data_berkas->nama_pemohon }} )</td>
+                <td style="text-align:center;border: 1px solid #ffffff;">( {{ $nama_operator }} )</td>
+            </tr>
         </table>
+        
+        
     </body>
 </html>    
