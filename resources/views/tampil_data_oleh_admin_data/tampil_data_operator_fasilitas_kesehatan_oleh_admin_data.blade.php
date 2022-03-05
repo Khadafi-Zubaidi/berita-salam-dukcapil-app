@@ -28,7 +28,7 @@
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
-                                <a href="{{route('tambah_data_operator_desa_kelurahan_oleh_admin_data')}}" class="nav-link">
+                                <a href="{{route('tambah_data_operator_fasilitas_kesehatan_oleh_admin_data')}}" class="nav-link">
                                     <i class="nav-icon fas fa-plus"></i>
                                     <p>
                                         Tambah Data
@@ -63,7 +63,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title">Data Operator Desa / Kelurahan</h5>
+                                        <h5 class="card-title">Data Operator Fasilitas Kesehatan</h5>
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                                 <i class="fas fa-minus"></i>
@@ -80,10 +80,8 @@
                                                             <th>No</th>
                                                             <th>ID Operator</th>
                                                             <th>Nama Operator</th>
-                                                            <th>Jabatan</th>
-                                                            <th>Pangkat/Golongan</th>
                                                             <th>Aktif</th>
-                                                            <th>Desa/Kelurahan</th>
+                                                            <th>Fasilitas Kesehatan</th>
                                                             <th>Kecamatan</th>
                                                             <th>Foto</th>
                                                             <th>Aksi</th>
@@ -94,10 +92,8 @@
                                                         @foreach($DataTabel as $dt)
                                                             <tr>
                                                                 <td>{{$no++}}</td>
-                                                                <td>{{$dt->nip}}</td>
+                                                                <td>{{$dt->id_operator_fasilitas_kesehatan}}</td>
                                                                 <td>{{$dt->nama_operator}}</td>
-                                                                <td>{{$dt->jabatan}}</td>
-                                                                <td>{{$dt->pangkat_golongan}}</td>
                                                                 <td>
                                                                     @if ($dt->aktif == 'Y')
                                                                         <span class="badge badge-success">Aktif</span>
@@ -105,9 +101,9 @@
                                                                         <span class="badge badge-danger">Tidak Aktif</span>
                                                                     @endif
                                                                 </td>
-                                                                <td>{{$dt->nama_desa_kelurahan}}</td>
+                                                                <td>{{$dt->nama_fasilitas_kesehatan}}</td>
                                                                 <td>{{$dt->nama_kecamatan}}</td>
-                                                                <td><img src="{{asset('foto_operator_desa_kelurahan')}}/{{$dt->foto}}" width="100px" height="100px"  alt="User Image"></td>
+                                                                <td><img src="{{asset('foto_operator_fasilitas_kesehatan')}}/{{$dt->foto}}" width="100px" height="100px"  alt="User Image"></td>
                                                                 <td>
                                                                     <a href="javascript:void(0)" onclick="ubahData({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><i class="fa fa-edit"></i></a>
                                                                     <a href="javascript:void(0)" onclick="ubahDataPassword({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><i class="fa fa-key"></i></a>
@@ -115,22 +111,22 @@
                                                                 </td>
                                                             </tr>
                                                             <!-- Ubah Data -->
-                                                            <div class="modal fade" id="ubahDataModal">
+                                                            <div class="modal fade" id="Modal1">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content bg-warning">
                                                                         <div class="modal-header">
-                                                                            <h4 class="modal-title">Ubah Data Operator Desa/Kelurahan</h4>
+                                                                            <h4 class="modal-title">Ubah Data</h4>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form id="ubahDataForm" action="" method="post">
+                                                                            <form id="Form1" action="" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" id="id1"/>
                                                                                 <label>ID Operator *</label><br>
                                                                                 <div class="input-group mb-3">
-                                                                                    <input type="number" id="nip1" class="form-control" disabled>
+                                                                                    <input type="number" id="id_operator_fasilitas_kesehatan1" class="form-control" disabled>
                                                                                     <div class="input-group-append">
                                                                                         <div class="input-group-text">
                                                                                             <span class="fas fa-id-card"></span>
@@ -140,24 +136,6 @@
                                                                                 <label>Nama Operator *</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="text" id="nama_operator1" class="form-control" required>
-                                                                                    <div class="input-group-append">
-                                                                                        <div class="input-group-text">
-                                                                                            <span class="fas fa-id-card"></span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <label>Jabatan *</label><br>
-                                                                                <div class="input-group mb-3">
-                                                                                    <input type="text" id="jabatan1" class="form-control" required>
-                                                                                    <div class="input-group-append">
-                                                                                        <div class="input-group-text">
-                                                                                            <span class="fas fa-id-card"></span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <label>Pangkat/Golongan *</label><br>
-                                                                                <div class="input-group mb-3">
-                                                                                    <input type="text" id="pangkat_golongan1" class="form-control" required>
                                                                                     <div class="input-group-append">
                                                                                         <div class="input-group-text">
                                                                                             <span class="fas fa-id-card"></span>
@@ -184,44 +162,38 @@
                                                             <script>
                                                                 function ubahData(id)
                                                                 {
-                                                                    $.get('/operator_desa_kelurahans/'+id,function(operator_desa_kelurahan){
-                                                                        $("#id1").val(operator_desa_kelurahan.id);
-                                                                        $("#nip1").val(operator_desa_kelurahan.nip);
-                                                                        $("#nama_operator1").val(operator_desa_kelurahan.nama_operator);
-                                                                        $("#jabatan1").val(operator_desa_kelurahan.jabatan);
-                                                                        $("#pangkat_golongan1").val(operator_desa_kelurahan.pangkat_golongan);
-                                                                        $("#aktif1").val(operator_desa_kelurahan.aktif);    
-                                                                        $("#ubahDataModal").modal('toggle');
+                                                                    $.get('/operator_fasilitas_kesehatan/'+id,function(operator_fasilitas_kesehatan){
+                                                                        $("#id1").val(operator_fasilitas_kesehatan.id);
+                                                                        $("#id_operator_fasilitas_kesehatan1").val(operator_fasilitas_kesehatan.id_operator_fasilitas_kesehatan);
+                                                                        $("#nama_operator1").val(operator_fasilitas_kesehatan.nama_operator);
+                                                                        $("#aktif1").val(operator_fasilitas_kesehatan.aktif);    
+                                                                        $("#Modal1").modal('toggle');
                                                                     })
-                                                                    $("#ubahDataForm").submit(function (e){
+                                                                    $("#Form1").submit(function (e){
                                                                         e.preventDefault();
                                                                         let id = $("#id1").val();
                                                                         let nama_operator = $("#nama_operator1").val();
-                                                                        let jabatan = $("#jabatan1").val();
-                                                                        let pangkat_golongan = $("#pangkat_golongan1").val();
                                                                         let aktif = $("#aktif1").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
-                                                                            url:"{{route('operator_desa_kelurahan.updatedata')}}",
+                                                                            url:"{{route('operator_fasilitas_kesehatan.perbaharui_data')}}",
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id:id,
                                                                                 nama_operator:nama_operator,
-                                                                                jabatan:jabatan,
-                                                                                pangkat_golongan:pangkat_golongan,
                                                                                 aktif:aktif,
                                                                                 _token:_token
                                                                             },
                                                                             success:function(response){
-                                                                                $("#ubahDataModal").modal('hide');
-                                                                                window.location = "{{route('tampil_data_operator_desa_kelurahan_oleh_admin_data')}}";
+                                                                                $("#Modal1").modal('hide');
+                                                                                window.location = "{{route('tampil_data_operator_fasilitas_kesehatan_oleh_admin_data')}}";
                                                                             }
                                                                         })
                                                                     })
                                                                 }
                                                             </script>
                                                             <!-- Hapus Data -->
-                                                            <div class="modal fade" id="hapusDataModal">
+                                                            <div class="modal fade" id="Modal2">
                                                                 <div class="modal-dialog modal-lg">
                                                                     <div class="modal-content bg-danger">
                                                                         <div class="modal-header">
@@ -231,12 +203,12 @@
                                                                             </button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form id="hapusDataForm" action="" method="post">
+                                                                            <form id="Form2" action="" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" id="id2"/>
                                                                                 <label>ID Operator *</label><br>
                                                                                 <div class="input-group mb-3">
-                                                                                    <input type="text" id="nip2" class="form-control" disabled>
+                                                                                    <input type="text" id="id_operator_fasilitas_kesehatan2" class="form-control" disabled>
                                                                                     <div class="input-group-append">
                                                                                         <div class="input-group-text">
                                                                                             <span class="fas fa-id-card"></span>
@@ -254,47 +226,47 @@
                                                             <script>
                                                                 function hapusData(id)
                                                                 {
-                                                                    $.get('/operator_desa_kelurahans/'+id,function(operator_desa_kelurahan){
-                                                                        $("#id2").val(operator_desa_kelurahan.id);
-                                                                        $("#nip2").val(operator_desa_kelurahan.nip);
-                                                                        $("#hapusDataModal").modal('toggle');
+                                                                    $.get('/operator_fasilitas_kesehatan/'+id,function(operator_fasilitas_kesehatan){
+                                                                        $("#id2").val(operator_fasilitas_kesehatan.id);
+                                                                        $("#id_operator_fasilitas_kesehatan2").val(operator_fasilitas_kesehatan.id_operator_fasilitas_kesehatan);
+                                                                        $("#Modal2").modal('toggle');
                                                                     })
-                                                                    $("#hapusDataForm").submit(function (e){
+                                                                    $("#Form2").submit(function (e){
                                                                         e.preventDefault();
                                                                         let id2 = $("#id2").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
-                                                                            url:"{{route('operator_desa_kelurahan.hapus_data')}}",
+                                                                            url:"{{route('operator_fasilitas_kesehatan.hapus_data')}}",
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id2:id2,
                                                                                 _token:_token
                                                                             },
                                                                             success:function(response){
-                                                                                $("#hapusDataModal").modal('hide');
-                                                                                window.location = "{{route('tampil_data_operator_desa_kelurahan_oleh_admin_data')}}";
+                                                                                $("#Modal2").modal('hide');
+                                                                                window.location = "{{route('tampil_data_operator_fasilitas_kesehatan_oleh_admin_data')}}";
                                                                             }
                                                                         })
                                                                     })
                                                                 }
                                                             </script>
                                                             <!-- Ubah Data Password -->
-                                                            <div class="modal fade" id="ubahDataPasswordModal">
+                                                            <div class="modal fade" id="Modal3">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content bg-warning">
                                                                         <div class="modal-header">
-                                                                            <h4 class="modal-title">Ubah Data Password Operator Desa/Kelurahan</h4>
+                                                                            <h4 class="modal-title">Ubah Data Password</h4>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form id="ubahDataPasswordForm" action="" method="post">
+                                                                            <form id="Form3" action="" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" id="id3"/>
                                                                                 <label>ID Operator *</label><br>
                                                                                 <div class="input-group mb-3">
-                                                                                    <input type="number" id="nip3" class="form-control" disabled>
+                                                                                    <input type="number" id="id_operator_fasilitas_kesehatan3" class="form-control" disabled>
                                                                                     <div class="input-group-append">
                                                                                         <div class="input-group-text">
                                                                                             <span class="fas fa-id-card"></span>
@@ -330,19 +302,19 @@
                                                             <script>
                                                                 function ubahDataPassword(id)
                                                                 {
-                                                                    $.get('/operator_desa_kelurahans/'+id,function(operator_desa_kelurahan){
-                                                                        $("#id3").val(operator_desa_kelurahan.id);
-                                                                        $("#nip3").val(operator_desa_kelurahan.nip);
-                                                                        $("#nama_operator3").val(operator_desa_kelurahan.nama_operator);    
-                                                                        $("#ubahDataPasswordModal").modal('toggle');
+                                                                    $.get('/operator_fasilitas_kesehatan/'+id,function(operator_fasilitas_kesehatan){
+                                                                        $("#id3").val(operator_fasilitas_kesehatan.id);
+                                                                        $("#id_operator_fasilitas_kesehatan3").val(operator_fasilitas_kesehatan.id_operator_fasilitas_kesehatan);
+                                                                        $("#nama_operator3").val(operator_fasilitas_kesehatan.nama_operator);    
+                                                                        $("#Modal3").modal('toggle');
                                                                     })
-                                                                    $("#ubahDataPasswordForm").submit(function (e){
+                                                                    $("#Form3").submit(function (e){
                                                                         e.preventDefault();
                                                                         let id3 = $("#id3").val();
                                                                         let password3 = $("#password3").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
-                                                                            url:"{{route('operator_desa_kelurahan.update_password')}}",
+                                                                            url:"{{route('operator_fasilitas_kesehatan.update_password')}}",
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id3:id3,
@@ -350,8 +322,8 @@
                                                                                 _token:_token
                                                                             },
                                                                             success:function(response){
-                                                                                $("#ubahDataPasswordModal").modal('hide');
-                                                                                window.location = "{{route('tampil_data_operator_desa_kelurahan_oleh_admin_data')}}";
+                                                                                $("#Modal3").modal('hide');
+                                                                                window.location = "{{route('tampil_data_operator_fasilitas_kesehatan_oleh_admin_data')}}";
                                                                             }
                                                                         })
                                                                     })

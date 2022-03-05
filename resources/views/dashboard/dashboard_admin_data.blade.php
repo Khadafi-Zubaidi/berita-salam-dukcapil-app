@@ -54,6 +54,30 @@
                                             <p>Op. Desa/Kelurahan</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_fasilitas_kesehatan_oleh_admin_data')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Fasilitas Kesehatan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_operator_fasilitas_kesehatan_oleh_admin_data')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Op. Fasilitas Kesehatan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_kua_oleh_admin_data')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>KUA</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_operator_kua_oleh_admin_data')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Op. KUA</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -248,6 +272,32 @@
                                                             <div class="inner">
                                                                 <h3>{{$jumlah_operator_desa_kelurahan}}</h3>
                                                                 <p>Op. Desa/Kelurahan</p>
+                                                            </div>
+                                                            <div class="icon">
+                                                                <i class="ion ion-person"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-6">
+                                                        <!-- small box -->
+                                                        <div class="small-box bg-info">
+                                                            <div class="inner">
+                                                                <h3>{{$jumlah_fasilitas_kesehatan}}</h3>
+                                                                <p>Fasilitas Kesehatan</p>
+                                                            </div>
+                                                            <div class="icon">
+                                                                <i class="ion ion-person"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-6">
+                                                        <!-- small box -->
+                                                        <div class="small-box bg-info">
+                                                            <div class="inner">
+                                                                <h3>{{$jumlah_operator_fasilitas_kesehatan}}</h3>
+                                                                <p>Operator Fasilitas Kesehatan</p>
                                                             </div>
                                                             <div class="icon">
                                                                 <i class="ion ion-person"></i>

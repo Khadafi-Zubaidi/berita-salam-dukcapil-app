@@ -2,11 +2,15 @@
 
 use App\Http\Controllers\AdminAppController;
 use App\Http\Controllers\AdminDataController;
+use App\Http\Controllers\AdminDataDinasController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\FasilitasKesehatanController;
+use App\Http\Controllers\KuaController;
 use App\Http\Controllers\OperatorDesaKelurahanController;
+use App\Http\Controllers\OperatorFasilitasKesehatanController;
+use App\Http\Controllers\OperatorKuaController;
 use App\Http\Controllers\RedakturController;
 use App\Http\Controllers\ReporterController;
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,6 +70,7 @@ Route::put('/redaktur',[AdminAppController::class,'simpan_perubahan_data_redaktu
 Route::get('tambah_data_redaktur_oleh_admin_app',[AdminAppController::class,'tambah_data_redaktur_oleh_admin_app'])->name('tambah_data_redaktur_oleh_admin_app');
 Route::post('simpan_data_baru_redaktur_oleh_admin_app',[AdminAppController::class,'simpan_data_baru_redaktur_oleh_admin_app'])->name('simpan_data_baru_redaktur_oleh_admin_app');
 Route::put('/redaktur2',[AdminAppController::class,'simpan_perubahan_data_password_redaktur_oleh_admin_app'])->name('redaktur.updatedatapassword');
+
 Route::get('tampil_data_admin_data_oleh_admin_app',[AdminAppController::class,'tampil_data_admin_data_oleh_admin_app'])->name('tampil_data_admin_data_oleh_admin_app');
 Route::get('/admindatas/{id}',[AdminAppController::class,'get_id_admin_data_by_admin_app']);
 Route::put('/admindata1',[AdminAppController::class,'simpan_perubahan_data_admin_data_oleh_admin_app'])->name('admindata.updatedata');
@@ -318,3 +323,44 @@ Route::put('/berkas_pengurusan3',[OperatorDesaKelurahanController::class,'simpan
 //cetak bukti pendaftaran menggunakan DOMPDF
 Route::get('/cetak_bukti_pendaftaran_oleh_operator/{id}',[OperatorDesaKelurahanController::class,'cetak_bukti_pendaftaran_oleh_operator'])->name('cetak_bukti_pendaftaran_oleh_operator');
 Route::get('/cetak_bukti_pengambilan_oleh_operator/{id}',[OperatorDesaKelurahanController::class,'cetak_bukti_pengambilan_oleh_operator'])->name('cetak_bukti_pengambilan_oleh_operator');
+
+//Admin Data Dinas
+Route::get('tampil_data_admin_data_dinas_oleh_admin_app',[AdminDataDinasController::class,'tampil_data_admin_data_dinas_oleh_admin_app'])->name('tampil_data_admin_data_dinas_oleh_admin_app');
+Route::get('/admindatadinas/{id}',[AdminDataDinasController::class,'get_id_admin_data_dinas_by_admin_app']);
+Route::put('/admindatadinas1',[AdminDataDinasController::class,'simpan_perubahan_data_admin_data_dinas_oleh_admin_app'])->name('admin_data_dinas.perbaharui_data');
+Route::put('/admindatadinas2',[AdminDataDinasController::class,'simpan_perubahan_data_password_admin_data_dinas_oleh_admin_app'])->name('admin_data_dinas.perbaharui_password');
+Route::get('tambah_data_admin_data_dinas_oleh_admin_app',[AdminDataDinasController::class,'tambah_data_admin_data_dinas_oleh_admin_app'])->name('tambah_data_admin_data_dinas_oleh_admin_app');
+Route::post('simpan_data_baru_admin_data_dinas_oleh_admin_app',[AdminDataDinasController::class,'simpan_data_baru_admin_data_dinas_oleh_admin_app'])->name('simpan_data_baru_admin_data_dinas_oleh_admin_app');
+
+//Fasilitas Kesehatan
+Route::get('tampil_data_fasilitas_kesehatan_oleh_admin_data',[FasilitasKesehatanController::class,'tampil_data_fasilitas_kesehatan_oleh_admin_data'])->name('tampil_data_fasilitas_kesehatan_oleh_admin_data');
+Route::get('/fasilitas_kesehatan/{id}',[FasilitasKesehatanController::class,'get_id_fasilitas_kesehatan_by_admin_data']);
+Route::put('/fasilitas_kesehatan1',[FasilitasKesehatanController::class,'simpan_perubahan_data_fasilitas_kesehatan_oleh_admin_data'])->name('fasilitas_kesehatan.perbaharui_data');
+Route::get('tambah_data_fasilitas_kesehatan_oleh_admin_data',[FasilitasKesehatanController::class,'tambah_data_fasilitas_kesehatan_oleh_admin_data'])->name('tambah_data_fasilitas_kesehatan_oleh_admin_data');
+Route::post('simpan_data_baru_fasilitas_kesehatan_oleh_admin_data',[FasilitasKesehatanController::class,'simpan_data_baru_fasilitas_kesehatan_oleh_admin_data'])->name('simpan_data_baru_fasilitas_kesehatan_oleh_admin_data');
+
+//Operator Fasilitas Kesehatan
+Route::get('tampil_data_operator_fasilitas_kesehatan_oleh_admin_data',[OperatorFasilitasKesehatanController::class,'tampil_data_operator_fasilitas_kesehatan_oleh_admin_data'])->name('tampil_data_operator_fasilitas_kesehatan_oleh_admin_data');
+Route::get('/operator_fasilitas_kesehatan/{id}',[OperatorFasilitasKesehatanController::class,'get_id_operator_fasilitas_kesehatan_by_admin_data']);
+Route::put('/operator_fasilitas_kesehatan1',[OperatorFasilitasKesehatanController::class,'simpan_perubahan_data_operator_fasilitas_kesehatan_oleh_admin_data'])->name('operator_fasilitas_kesehatan.perbaharui_data');
+Route::put('/operator_fasilitas_kesehatan2',[OperatorFasilitasKesehatanController::class,'hapus_data_operator_fasilitas_kesehatan_oleh_admin_data'])->name('operator_fasilitas_kesehatan.hapus_data');
+Route::put('/operator_fasilitas_kesehatan3',[OperatorFasilitasKesehatanController::class,'simpan_perubahan_data_password_operator_fasilitas_kesehatan_oleh_admin_data'])->name('operator_fasilitas_kesehatan.update_password');
+Route::get('tambah_data_operator_fasilitas_kesehatan_oleh_admin_data',[OperatorFasilitasKesehatanController::class,'tambah_data_operator_fasilitas_kesehatan_oleh_admin_data'])->name('tambah_data_operator_fasilitas_kesehatan_oleh_admin_data');
+Route::post('simpan_data_baru_operator_fasilitas_kesehatan_oleh_admin_data',[OperatorFasilitasKesehatanController::class,'simpan_data_baru_operator_fasilitas_kesehatan_oleh_admin_data'])->name('simpan_data_baru_operator_fasilitas_kesehatan_oleh_admin_data');
+
+//KUA
+Route::get('tampil_data_kua_oleh_admin_data',[KuaController::class,'tampil_data_kua_oleh_admin_data'])->name('tampil_data_kua_oleh_admin_data');
+Route::get('/kua/{id}',[KuaController::class,'get_id_kua_by_admin_data']);
+Route::put('/kua1',[KuaController::class,'simpan_perubahan_data_kua_oleh_admin_data'])->name('kua.perbaharui_data');
+Route::get('tambah_data_kua_oleh_admin_data',[KuaController::class,'tambah_data_kua_oleh_admin_data'])->name('tambah_data_kua_oleh_admin_data');
+Route::post('simpan_data_baru_kua_oleh_admin_data',[KuaController::class,'simpan_data_baru_kua_oleh_admin_data'])->name('simpan_data_baru_kua_oleh_admin_data');
+
+//Operator KUA
+Route::get('tampil_data_operator_kua_oleh_admin_data',[OperatorKuaController::class,'tampil_data_operator_kua_oleh_admin_data'])->name('tampil_data_operator_kua_oleh_admin_data');
+Route::get('/operator_kua/{id}',[OperatorKuaController::class,'get_id_operator_kua_by_admin_data']);
+Route::put('/operator_kua1',[OperatorKuaController::class,'simpan_perubahan_data_operator_kua_oleh_admin_data'])->name('operator_kua.perbaharui_data');
+Route::put('/operator_kua2',[OperatorKuaController::class,'hapus_data_operator_kua_oleh_admin_data'])->name('operator_kua.hapus_data');
+Route::put('/operator_kua3',[OperatorKuaController::class,'simpan_perubahan_data_password_operator_kua_oleh_admin_data'])->name('operator_kua.update_password');
+Route::get('tambah_data_operator_kua_oleh_admin_data',[OperatorKuaController::class,'tambah_data_operator_kua_oleh_admin_data'])->name('tambah_data_operator_kua_oleh_admin_data');
+Route::post('simpan_data_baru_operator_kua_oleh_admin_data',[OperatorKuaController::class,'simpan_data_baru_operator_kua_oleh_admin_data'])->name('simpan_data_baru_operator_kua_oleh_admin_data');
+

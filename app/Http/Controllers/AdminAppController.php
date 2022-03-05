@@ -71,10 +71,12 @@ class AdminAppController extends Controller
                 ->count();
             $jumlah_admin_data = DB::table('admin_data')
                 ->count();
+            $jumlah_admin_data_dinas = DB::table('admin_data_dinas')
+                ->count();
             $data = [
                 'LoggedUserInfo'=>$data_admin_untuk_dashboard,
             ];
-            return view('dashboard.dashboard_admin_app',$data,compact('jumlah_redaktur','jumlah_admin_data'));
+            return view('dashboard.dashboard_admin_app',$data,compact('jumlah_redaktur','jumlah_admin_data','jumlah_admin_data_dinas'));
         }else{
             return view('login.login_admin_app');
         }

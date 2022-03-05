@@ -48,6 +48,12 @@
                                             <p>Admin Data</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_admin_data_dinas_oleh_admin_app')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Admin Data Dinas</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -113,7 +119,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="row">
-                                                    <div class="col-lg-6 col-6">
+                                                    <div class="col-lg-4 col-6">
                                                         <!-- small box -->
                                                         <div class="small-box bg-info">
                                                             <div class="inner">
@@ -125,12 +131,24 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6 col-6">
+                                                    <div class="col-lg-4 col-6">
                                                         <!-- small box -->
                                                         <div class="small-box bg-info">
                                                             <div class="inner">
                                                                 <h3>{{$jumlah_admin_data}}</h3>
                                                                 <p>Admin Data</p>
+                                                            </div>
+                                                            <div class="icon">
+                                                                <i class="ion ion-person"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-6">
+                                                        <!-- small box -->
+                                                        <div class="small-box bg-info">
+                                                            <div class="inner">
+                                                                <h3>{{$jumlah_admin_data_dinas}}</h3>
+                                                                <p>Admin Data Dinas</p>
                                                             </div>
                                                             <div class="icon">
                                                                 <i class="ion ion-person"></i>
