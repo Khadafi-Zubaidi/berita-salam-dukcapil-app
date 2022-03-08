@@ -333,36 +333,48 @@
                                                                     })
                                                                     $("#Form8").submit(function (e){
                                                                         e.preventDefault();
-                                                                        let id = $("#id2").val();
-                                                                        let isi_canting = $("#isi_canting2").val();
-                                                                        let dokumen_hasil = $("#dokumen_hasil2").val();
-                                                                        let jml_kk = $("#jml_kk2").val();
-                                                                        let jml_skp = $("#jml_skp2").val();
-                                                                        let jml_kia = $("#jml_kia2").val();
-                                                                        let jml_akta_kelahiran = $("#jml_akta_kelahiran2").val();
-                                                                        let jml_akta_kematian = $("#jml_akta_kematian2").val();
-                                                                        let jml_lain_lain = $("#jml_lain_lain2").val();
-                                                                        let _token = $("input[name=_token]").val();
-                                                                        $.ajax({
-                                                                            url:"{{route('berkas_pengurusan.isi_canting')}}",
-                                                                            type: "PUT",
-                                                                            data:{
-                                                                                id:id,
-                                                                                isi_canting:isi_canting,
-                                                                                dokumen_hasil:dokumen_hasil,
-                                                                                jml_kk:jml_kk,
-                                                                                jml_skp:jml_skp,
-                                                                                jml_kia:jml_kia,
-                                                                                jml_akta_kelahiran:jml_akta_kelahiran,
-                                                                                jml_akta_kematian:jml_akta_kematian,
-                                                                                jml_lain_lain:jml_lain_lain,
-                                                                                _token:_token
-                                                                            },
-                                                                            success:function(response){
-                                                                                $("#Modal8").modal('hide');
-                                                                                window.location = "{{route('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data')}}";
+                                                                        if($('#jml_kk2').val() == '0'&&
+                                                                            $('#jml_skp2').val() == '0'&&
+                                                                            $('#jml_kia2').val() == '0'&&
+                                                                            $('#jml_akta_kelahiran2').val() == '0'&&
+                                                                            $('#jml_akta_kematian2').val() == '0'&&
+                                                                            $('#jml_lain_lain2').val() == '0')
+                                                                            {
+                                                                                alert("Jumlah dokumen hasil tidak boleh kosong");  	
                                                                             }
-                                                                        })
+                                                                        else
+                                                                            {
+                                                                                let id = $("#id2").val();
+                                                                                let isi_canting = $("#isi_canting2").val();
+                                                                                let dokumen_hasil = $("#dokumen_hasil2").val();
+                                                                                let jml_kk = $("#jml_kk2").val();
+                                                                                let jml_skp = $("#jml_skp2").val();
+                                                                                let jml_kia = $("#jml_kia2").val();
+                                                                                let jml_akta_kelahiran = $("#jml_akta_kelahiran2").val();
+                                                                                let jml_akta_kematian = $("#jml_akta_kematian2").val();
+                                                                                let jml_lain_lain = $("#jml_lain_lain2").val();
+                                                                                let _token = $("input[name=_token]").val();
+                                                                                $.ajax({
+                                                                                    url:"{{route('berkas_pengurusan.isi_canting')}}",
+                                                                                    type: "PUT",
+                                                                                    data:{
+                                                                                        id:id,
+                                                                                        isi_canting:isi_canting,
+                                                                                        dokumen_hasil:dokumen_hasil,
+                                                                                        jml_kk:jml_kk,
+                                                                                        jml_skp:jml_skp,
+                                                                                        jml_kia:jml_kia,
+                                                                                        jml_akta_kelahiran:jml_akta_kelahiran,
+                                                                                        jml_akta_kematian:jml_akta_kematian,
+                                                                                        jml_lain_lain:jml_lain_lain,
+                                                                                        _token:_token
+                                                                                    },
+                                                                                    success:function(response){
+                                                                                        $("#Modal8").modal('hide');
+                                                                                        window.location = "{{route('tampil_data_berkas_permohonan_sudah_selesai_oleh_admin_data')}}";
+                                                                                    }
+                                                                                })
+                                                                            }
                                                                     })
                                                                 }
                                                             </script>

@@ -18,10 +18,10 @@ class CreateOperatorDesaKelurahansTable extends Migration
             $table->bigInteger('id_desa_kelurahan')->nullable();
             $table->string('nip')->nullable();
             $table->string('nama_operator')->nullable();
-            $table->string('jabatan')->nullable();
+            $table->string('no_wa')->nullable();
             $table->string('password')->nullable();
-            $table->string('pangkat_golongan')->nullable();
             $table->string('foto')->default('foto.png');
+            $table->string('berkas')->default('berkas.zip');
             $table->string('aktif')->default('Y');
             $table->timestamps();
         });

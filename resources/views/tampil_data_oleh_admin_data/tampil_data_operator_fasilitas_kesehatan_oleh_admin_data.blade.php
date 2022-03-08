@@ -80,6 +80,7 @@
                                                             <th>No</th>
                                                             <th>ID Operator</th>
                                                             <th>Nama Operator</th>
+                                                            <th>No. WA</th>
                                                             <th>Aktif</th>
                                                             <th>Fasilitas Kesehatan</th>
                                                             <th>Kecamatan</th>
@@ -94,6 +95,7 @@
                                                                 <td>{{$no++}}</td>
                                                                 <td>{{$dt->id_operator_fasilitas_kesehatan}}</td>
                                                                 <td>{{$dt->nama_operator}}</td>
+                                                                <td>{{$dt->no_wa}}</td>
                                                                 <td>
                                                                     @if ($dt->aktif == 'Y')
                                                                         <span class="badge badge-success">Aktif</span>
@@ -142,6 +144,15 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
+                                                                                <label>No. Telp./WA *</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="number" id="no_wa1" class="form-control" required>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                                 <label>Aktif * (Y:Ya, T:Tidak)</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="text" id="aktif1" class="form-control" required>
@@ -166,6 +177,7 @@
                                                                         $("#id1").val(operator_fasilitas_kesehatan.id);
                                                                         $("#id_operator_fasilitas_kesehatan1").val(operator_fasilitas_kesehatan.id_operator_fasilitas_kesehatan);
                                                                         $("#nama_operator1").val(operator_fasilitas_kesehatan.nama_operator);
+                                                                        $("#no_wa1").val(operator_fasilitas_kesehatan.no_wa);
                                                                         $("#aktif1").val(operator_fasilitas_kesehatan.aktif);    
                                                                         $("#Modal1").modal('toggle');
                                                                     })
@@ -173,6 +185,7 @@
                                                                         e.preventDefault();
                                                                         let id = $("#id1").val();
                                                                         let nama_operator = $("#nama_operator1").val();
+                                                                        let no_wa = $("#no_wa1").val();
                                                                         let aktif = $("#aktif1").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
@@ -181,6 +194,7 @@
                                                                             data:{
                                                                                 id:id,
                                                                                 nama_operator:nama_operator,
+                                                                                no_wa:no_wa,
                                                                                 aktif:aktif,
                                                                                 _token:_token
                                                                             },

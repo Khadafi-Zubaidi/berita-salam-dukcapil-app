@@ -99,15 +99,15 @@
                                                         <div class="invalid-feedback">{{$message}}</div>
                                                         @enderror
                                                     </div>
-                                                    <label>Jabatan *</label><br>
+                                                    <label>Nomor Telp./WA *</label><br>
                                                     <div class="input-group mb-3">
-                                                        <input type="text" name="jabatan" class="form-control @error('jabatan') is-invalid @enderror" value="{{ old('jabatan')}}">
+                                                        <input type="number" name="no_wa" class="form-control @error('no_wa') is-invalid @enderror" value="{{ old('no_wa')}}">
                                                         <div class="input-group-append">
                                                             <div class="input-group-text">
                                                                 <span class="fas fa-id-card"></span>
                                                             </div>
                                                         </div>
-                                                        @error('jabatan')
+                                                        @error('no_wa')
                                                         <div class="invalid-feedback">{{$message}}</div>
                                                         @enderror
                                                     </div>
@@ -120,18 +120,6 @@
                                                             </div>
                                                         </div>
                                                         @error('password')
-                                                        <div class="invalid-feedback">{{$message}}</div>
-                                                        @enderror
-                                                    </div>
-                                                    <label>Pangkat / Golongan *</label><br>
-                                                    <div class="input-group mb-3">
-                                                        <input type="text" name="pangkat_golongan" class="form-control @error('pangkat_golongan') is-invalid @enderror" value="{{ old('pangkat_golongan')}}">
-                                                        <div class="input-group-append">
-                                                            <div class="input-group-text">
-                                                                <span class="fas fa-id-card"></span>
-                                                            </div>
-                                                        </div>
-                                                        @error('pangkat_golongan')
                                                         <div class="invalid-feedback">{{$message}}</div>
                                                         @enderror
                                                     </div>

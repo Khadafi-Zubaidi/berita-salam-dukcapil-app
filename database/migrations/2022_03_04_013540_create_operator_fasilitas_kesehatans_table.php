@@ -18,6 +18,7 @@ class CreateOperatorFasilitasKesehatansTable extends Migration
             $table->bigInteger('id_fasilitas_kesehatan')->nullable();
             $table->string('id_operator_fasilitas_kesehatan')->nullable();
             $table->string('nama_operator')->nullable();
+            $table->string('no_wa')->nullable();
             $table->string('password')->nullable();
             $table->string('foto')->default('foto.png');
             $table->string('aktif')->default('Y');

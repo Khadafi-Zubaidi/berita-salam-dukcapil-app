@@ -110,4 +110,29 @@ class OperatorFasilitasKesehatanController extends Controller
             return view('login.login_admin_data');
         }
     }
+
+    public function login_operator_faskes(){
+        return view('login.login_operator_faskes');
+    }
+
+    public function cek_login_operator_faskes(Request $request){
+        $request->validate([
+            'cek_login_operator_faskes'=>'required',
+            'password'=>'required',
+        ],[
+            'cek_login_operator_faskes.required'=>'ID Operator tidak boleh kosong',
+            'password.required'=>'Password tidak boleh kosong',
+        ]);
+        $cek_login = OperatorFasilitasKesehatan::where('nip','=',$request->nip)->where('aktif','=','Y')->first();
+        if($cek_login){
+            if(Hash::check($request->password,$cek_login->password)){
+                $request->session()->put('LoggedOperatorFasilitasKesehatan',$cek_login->id);
+                return redirect('dashboard_operator_faskes');
+            }else{
+                return redirect()->back()->with('error', 'Password salah !');
+            }
+        }else{
+            return redirect()->back()->with('error', 'NIP tidak terdaftar !');
+        }
+    }
 }

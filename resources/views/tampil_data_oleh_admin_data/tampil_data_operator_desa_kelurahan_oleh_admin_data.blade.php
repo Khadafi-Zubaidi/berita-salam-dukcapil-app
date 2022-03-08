@@ -80,8 +80,7 @@
                                                             <th>No</th>
                                                             <th>ID Operator</th>
                                                             <th>Nama Operator</th>
-                                                            <th>Jabatan</th>
-                                                            <th>Pangkat/Golongan</th>
+                                                            <th>No. Telp/WA</th>
                                                             <th>Aktif</th>
                                                             <th>Desa/Kelurahan</th>
                                                             <th>Kecamatan</th>
@@ -96,8 +95,7 @@
                                                                 <td>{{$no++}}</td>
                                                                 <td>{{$dt->nip}}</td>
                                                                 <td>{{$dt->nama_operator}}</td>
-                                                                <td>{{$dt->jabatan}}</td>
-                                                                <td>{{$dt->pangkat_golongan}}</td>
+                                                                <td>{{$dt->no_wa}}</td>
                                                                 <td>
                                                                     @if ($dt->aktif == 'Y')
                                                                         <span class="badge badge-success">Aktif</span>
@@ -112,6 +110,8 @@
                                                                     <a href="javascript:void(0)" onclick="ubahData({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><i class="fa fa-edit"></i></a>
                                                                     <a href="javascript:void(0)" onclick="ubahDataPassword({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><i class="fa fa-key"></i></a>
                                                                     <a href="javascript:void(0)" onclick="hapusData({{$dt->id}})" class="btn btn-danger btn-block btn-sm"><i class="fa fa-trash"></i></a>
+                                                                    <a href="/berkas_operator_desa_kelurahan/{{$dt->berkas}}" class="btn btn-info btn-block btn-sm"><small>Unduh Berkas</small></a>
+
                                                                 </td>
                                                             </tr>
                                                             <!-- Ubah Data -->
@@ -119,7 +119,7 @@
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content bg-warning">
                                                                         <div class="modal-header">
-                                                                            <h4 class="modal-title">Ubah Data Operator Desa/Kelurahan</h4>
+                                                                            <h4 class="modal-title">Ubah Data</h4>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
@@ -146,18 +146,9 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <label>Jabatan *</label><br>
+                                                                                <label>No. Telp/WA *</label><br>
                                                                                 <div class="input-group mb-3">
-                                                                                    <input type="text" id="jabatan1" class="form-control" required>
-                                                                                    <div class="input-group-append">
-                                                                                        <div class="input-group-text">
-                                                                                            <span class="fas fa-id-card"></span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <label>Pangkat/Golongan *</label><br>
-                                                                                <div class="input-group mb-3">
-                                                                                    <input type="text" id="pangkat_golongan1" class="form-control" required>
+                                                                                    <input type="text" id="no_wa1" class="form-control" required>
                                                                                     <div class="input-group-append">
                                                                                         <div class="input-group-text">
                                                                                             <span class="fas fa-id-card"></span>
@@ -188,8 +179,7 @@
                                                                         $("#id1").val(operator_desa_kelurahan.id);
                                                                         $("#nip1").val(operator_desa_kelurahan.nip);
                                                                         $("#nama_operator1").val(operator_desa_kelurahan.nama_operator);
-                                                                        $("#jabatan1").val(operator_desa_kelurahan.jabatan);
-                                                                        $("#pangkat_golongan1").val(operator_desa_kelurahan.pangkat_golongan);
+                                                                        $("#no_wa1").val(operator_desa_kelurahan.no_wa);
                                                                         $("#aktif1").val(operator_desa_kelurahan.aktif);    
                                                                         $("#ubahDataModal").modal('toggle');
                                                                     })
@@ -197,8 +187,7 @@
                                                                         e.preventDefault();
                                                                         let id = $("#id1").val();
                                                                         let nama_operator = $("#nama_operator1").val();
-                                                                        let jabatan = $("#jabatan1").val();
-                                                                        let pangkat_golongan = $("#pangkat_golongan1").val();
+                                                                        let no_wa = $("#no_wa1").val();
                                                                         let aktif = $("#aktif1").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
@@ -207,8 +196,7 @@
                                                                             data:{
                                                                                 id:id,
                                                                                 nama_operator:nama_operator,
-                                                                                jabatan:jabatan,
-                                                                                pangkat_golongan:pangkat_golongan,
+                                                                                no_wa:no_wa,
                                                                                 aktif:aktif,
                                                                                 _token:_token
                                                                             },

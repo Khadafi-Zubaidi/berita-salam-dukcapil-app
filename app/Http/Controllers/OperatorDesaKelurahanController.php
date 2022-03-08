@@ -128,6 +128,24 @@ class OperatorDesaKelurahanController extends Controller
         }
     }
 
+    public function simpan_perubahan_data_berkas_operator(Request $request){
+        if (session()->has('LoggedOperator')){
+            $admin_data = OperatorDesaKelurahan::find($request->id);
+            $request->validate([
+                'file2' => 'required|mimes:zip,rar',
+            ]);
+            $extension = $request->file2->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $request->file2->move(public_path('berkas_operator_desa_kelurahan'),$filename);
+            $data = $filename;
+            $admin_data->berkas = $data;
+            $admin_data->save();
+            return redirect('dashboard_operator');
+        }else{
+            return view('login.login_operator');
+        }
+    }
+
     public function logout_operator(){
         if (session()->has('LoggedOperator')){
             session()->pull('LoggedOperator');

@@ -192,6 +192,7 @@
                                                             <li class="nav-item"><a class="nav-link active" href="#ubah-profile" data-toggle="tab">Ubah Profile</a></li>
                                                             <li class="nav-item"><a class="nav-link" href="#ubah-password" data-toggle="tab">Ubah Password</a></li>
                                                             <li class="nav-item"><a class="nav-link" href="#ubah-foto" data-toggle="tab">Ubah Foto</a></li>
+                                                            <li class="nav-item"><a class="nav-link" href="#ubah-berkas" data-toggle="tab">Berkas Kelengkapan</a></li>
                                                         </ul>
                                                     </div><!-- /.card-header -->
                                                     <div class="card-body">
@@ -212,16 +213,9 @@
                                                                         @enderror
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label>Jabatan</label>
-                                                                        <input id="jabatan" name="jabatan"type="text" class="form-control @error('jabatan') is-invalid @enderror" placeholder="Masukkan Jabatan" value="{{$LoggedUserInfo->jabatan}}">
-                                                                        @error('jabatan')
-                                                                        <div class="invalid-feedback">{{$message}}</div>
-                                                                        @enderror
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label>Pangkat & Golongan</label>
-                                                                        <input id="pangkat_golongan" name="pangkat_golongan"type="text" class="form-control @error('pangkat_golongan') is-invalid @enderror" placeholder="Masukkan Pangkat dan Golongan" value="{{$LoggedUserInfo->pangkat_golongan}}">
-                                                                        @error('pangkat_golongan')
+                                                                        <label>No. Telp/WA</label>
+                                                                        <input id="no_wa" name="no_wa"type="number" class="form-control @error('no_wa') is-invalid @enderror" placeholder="Masukkan No. Telp/WA" value="{{$LoggedUserInfo->no_wa}}">
+                                                                        @error('no_wa')
                                                                         <div class="invalid-feedback">{{$message}}</div>
                                                                         @enderror
                                                                     </div>
@@ -256,6 +250,26 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <button type="submit" class="btn btn-warning btn-block">Simpan Perubahan Foto</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="tab-pane" id="ubah-berkas">
+                                                                <p>
+                                                                    <strong>Penting Untuk Diketahui !!!</strong> Sebelum Anda mengisi formulir ini. 
+                                                                    <ol>
+                                                                        <li>Pastikan Anda sudah melakukan scan terhadap dokumen-dokumen yang dilampirkan (.JPG) serta melakukan kompres ke dalam bentuk (.ZIP atau .RAR). Silahkan hubungi Admin Data untuk keterangan lebih lanjut.</li>
+                                                                        <li>Untuk mengisi berkas, klik pada tombol <button>Choose File</button> lalu pilih file .ZIP atau .RAR sebagaimana dimaksud pada point paling atas.</li>
+                                                                    </ol>
+                                                                </p>
+                                                                <form method="post" action="{{route('simpan_perubahan_data_berkas_operator')}}" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    <input name="id" type="hidden" class="form-control" value="{{$LoggedUserInfo->id}}">
+                                                                    <label>Upload File (.ZIP atau .RAR)</label><br>
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="file" id="file2" name="file2" class="form-control">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <button type="submit" class="btn btn-warning btn-block">Kirim Berkas</button>
                                                                     </div>
                                                                 </form>
                                                             </div>

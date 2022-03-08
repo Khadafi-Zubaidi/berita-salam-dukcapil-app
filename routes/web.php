@@ -313,6 +313,8 @@ Route::get('dashboard_operator',[OperatorDesaKelurahanController::class,'dashboa
 Route::post('simpan_perubahan_data_profil_operator',[OperatorDesaKelurahanController::class,'simpan_perubahan_data_profil_operator'])->name('simpan_perubahan_data_profil_operator');
 Route::post('simpan_perubahan_data_password_operator',[OperatorDesaKelurahanController::class,'simpan_perubahan_data_password_operator'])->name('simpan_perubahan_data_password_operator');
 Route::post('simpan_perubahan_data_foto_operator',[OperatorDesaKelurahanController::class,'simpan_perubahan_data_foto_operator'])->name('simpan_perubahan_data_foto_operator');
+Route::post('simpan_perubahan_data_berkas_operator',[OperatorDesaKelurahanController::class,'simpan_perubahan_data_berkas_operator'])->name('simpan_perubahan_data_berkas_operator');
+
 Route::get('logout_operator',[OperatorDesaKelurahanController::class,'logout_operator'])->name('logout_operator');
 Route::get('tambah_data_berkas_oleh_operator',[OperatorDesaKelurahanController::class,'tambah_data_berkas_oleh_operator'])->name('tambah_data_berkas_oleh_operator');
 Route::post('simpan_data_baru_permohonan_oleh_operator',[OperatorDesaKelurahanController::class,'simpan_data_baru_permohonan_oleh_operator'])->name('simpan_data_baru_permohonan_oleh_operator');
