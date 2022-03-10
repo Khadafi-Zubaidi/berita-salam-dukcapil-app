@@ -18,8 +18,10 @@ class CreateOperatorKuasTable extends Migration
             $table->bigInteger('id_kua')->nullable();
             $table->string('id_operator_kua')->nullable();
             $table->string('nama_operator')->nullable();
+            $table->string('no_wa')->nullable();
             $table->string('password')->nullable();
             $table->string('foto')->default('foto.png');
+            $table->string('berkas')->default('berkas.zip');
             $table->string('aktif')->default('Y');
             $table->timestamps();
         });

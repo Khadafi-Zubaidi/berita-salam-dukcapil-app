@@ -8,7 +8,7 @@
                         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                        <a href="#" class="nav-link">Dashboard Admin Data</a>
+                        <a href="#" class="nav-link">Dashboard Operator</a>
                     </li>
                 </ul>
             </nav>
@@ -19,16 +19,16 @@
                 <div class="sidebar">
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="{{asset('foto_admin_data')}}/{{$LoggedUserInfo->foto}}" class="img-circle elevation-2" alt="User Image">
+                            <img src="{{asset('foto_operator_kua')}}/{{$LoggedUserInfo->foto}}" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
-                            <a href="#" class="d-block">{{$LoggedUserInfo->nama}}</a>
+                            <a href="#" class="d-block">{{$LoggedUserInfo->nama_operator}}</a>
                         </div>
                     </div>
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
-                                <a href="{{route('tampil_data_operator_kua_oleh_admin_data')}}" class="nav-link">
+                                <a href="{{route('dashboard_operator_kua')}}" class="nav-link">
                                     <i class="nav-icon fas fa-arrow-left"></i>
                                     <p>
                                         Sebelumnya
@@ -53,9 +53,39 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
+                                <div class="card card-danger">
+                                  <div class="card-header">
+                                    <h3 class="card-title">Perhatian</h3>
+                    
+                                    <div class="card-tools">
+                                      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                      </button>
+                                    </div>
+                                    <!-- /.card-tools -->
+                                  </div>
+                                  <!-- /.card-header -->
+                                  <div class="card-body">
+                                    <p>
+                                        <strong>Penting Untuk Diketahui !!!</strong> Sebelum Anda mengisi formulir ini. 
+                                        <ol>
+                                            <li>Pastikan Anda sudah melakukan scan terhadap dokumen-dokumen yang dilampirkan (.JPG) serta melakukan kompres ke dalam bentuk (.ZIP atau .RAR). Silahkan hubungi Admin Data untuk keterangan lebih lanjut.</li>
+                                            <li>Seluruh kolom yang bertanda bintang (*) wajib diisi.</li>
+                                            <li>Untuk mengisi berkas, klik pada tombol <button>Choose File</button> lalu pilih file .ZIP atau .RAR sebagaimana dimaksud pada point paling atas.</li>
+                                            <li><strong>Untuk Pengurusan Dokumen Terkait Kartu Tanda Penduduk Hanya Bisa Dilayani Secara Langsung di Kantor Dinas Kependudukan dan Pencatatan Sipil Kabupaten Sumbawa Barat.</strong></li>
+                                        </ol>
+                                    </p>
+                                  </div>
+                                  <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                              </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title">Pemasukan Data Operator KUA</h5>
+                                        <h5 class="card-title">Pemasukan Data Permohonan</h5>
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                                 <i class="fas fa-minus"></i>
@@ -65,62 +95,55 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <form action="{{route('simpan_data_baru_operator_kua_oleh_admin_data')}}" method="post" enctype="multipart/form-data">
+                                                <form action="{{route('simpan_data_baru_permohonan_oleh_operator_kua')}}" method="post" enctype="multipart/form-data">
                                                     @csrf
-                                                    <div class="form-group">
-                                                        <label>Nama KUA *</label>
-                                                            <select name="id_kua" class="form-control select2" style="width: 100%;">
-                                                                @foreach($DataKua as $dt1)
-                                                                    <option value="{{$dt1->id}}">{{$dt1->nama_kua}} - {{$dt1->nama_kecamatan}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    <label>ID Operator *</label><br>
+                                                    <label>NIK Pemohon *</label><br>
                                                     <div class="input-group mb-3">
-                                                        <input type="number" name="id_operator_kua" class="form-control @error('id_operator_kua') is-invalid @enderror" value="{{ old('id_operator_kua')}}">
+                                                        <input type="number" name="nik_pemohon" class="form-control @error('nik_pemohon') is-invalid @enderror" value="{{ old('nik_pemohon')}}">
                                                         <div class="input-group-append">
                                                             <div class="input-group-text">
                                                                 <span class="fas fa-id-card"></span>
                                                             </div>
                                                         </div>
-                                                        @error('id_operator_kua')
+                                                        @error('nik_pemohon')
                                                         <div class="invalid-feedback">{{$message}}</div>
                                                         @enderror
                                                     </div>
-                                                    <label>Nama Operator *</label><br>
+                                                    <label>Nama Pemohon *</label><br>
                                                     <div class="input-group mb-3">
-                                                        <input type="text" name="nama_operator" class="form-control @error('nama_operator') is-invalid @enderror" value="{{ old('nama_operator')}}">
+                                                        <input type="text" name="nama_pemohon" class="form-control @error('nama_pemohon') is-invalid @enderror" value="{{ old('nama_pemohon')}}">
                                                         <div class="input-group-append">
                                                             <div class="input-group-text">
                                                                 <span class="fas fa-id-card"></span>
                                                             </div>
                                                         </div>
-                                                        @error('nama_operator')
+                                                        @error('nama_pemohon')
                                                         <div class="invalid-feedback">{{$message}}</div>
                                                         @enderror
                                                     </div>
-                                                    <label>No. Telp./WA. *</label><br>
+                                                    <label>Alamat Pemohon *</label><br>
                                                     <div class="input-group mb-3">
-                                                        <input type="text" name="no_wa" class="form-control @error('no_wa') is-invalid @enderror" value="{{ old('no_wa')}}">
+                                                        <input type="text" name="alamat_pemohon" class="form-control @error('alamat_pemohon') is-invalid @enderror" value="{{ old('alamat_pemohon')}}">
                                                         <div class="input-group-append">
                                                             <div class="input-group-text">
                                                                 <span class="fas fa-id-card"></span>
                                                             </div>
                                                         </div>
-                                                        @error('no_wa')
+                                                        @error('alamat_pemohon')
                                                         <div class="invalid-feedback">{{$message}}</div>
                                                         @enderror
                                                     </div>
-                                                    <label>Password *</label><br>
+                                                    <label>Jenis Permohonan *</label><br>
                                                     <div class="input-group mb-3">
-                                                        <input type="text" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password')}}">
-                                                        <div class="input-group-append">
-                                                            <div class="input-group-text">
-                                                                <span class="fas fa-id-card"></span>
-                                                            </div>
+                                                        <div class="col-md-12">
+                                                            <textarea name="jenis_permohonan"id="summernote"></textarea>
                                                         </div>
-                                                        @error('password')
-                                                        <div class="invalid-feedback">{{$message}}</div>
+                                                    </div>
+                                                    <label>Berkas *</label><br>
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" id="file" name="file" class="form-control">
+                                                        @error('file')
+                                                            <div class="invalid-feedback">{{$message}}</div>
                                                         @enderror
                                                     </div>
                                                     <div class="input-group mb-3">

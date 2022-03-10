@@ -80,6 +80,7 @@
                                                             <th>No</th>
                                                             <th>ID Operator</th>
                                                             <th>Nama Operator</th>
+                                                            <th>No. WA</th>
                                                             <th>Aktif</th>
                                                             <th>KUA</th>
                                                             <th>Kecamatan</th>
@@ -94,6 +95,7 @@
                                                                 <td>{{$no++}}</td>
                                                                 <td>{{$dt->id_operator_kua}}</td>
                                                                 <td>{{$dt->nama_operator}}</td>
+                                                                <td>{{$dt->no_wa}}</td>
                                                                 <td>
                                                                     @if ($dt->aktif == 'Y')
                                                                         <span class="badge badge-success">Aktif</span>
@@ -108,6 +110,7 @@
                                                                     <a href="javascript:void(0)" onclick="ubahData({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><i class="fa fa-edit"></i></a>
                                                                     <a href="javascript:void(0)" onclick="ubahDataPassword({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><i class="fa fa-key"></i></a>
                                                                     <a href="javascript:void(0)" onclick="hapusData({{$dt->id}})" class="btn btn-danger btn-block btn-sm"><i class="fa fa-trash"></i></a>
+                                                                    <a href="/berkas_operator_kua/{{$dt->berkas}}" class="btn btn-info btn-block btn-sm"><small>Unduh Berkas Kelengkapan</small></a>
                                                                 </td>
                                                             </tr>
                                                             <!-- Ubah Data -->
@@ -142,6 +145,15 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
+                                                                                <label>No. Telp./WA *</label><br>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="number" id="no_wa1" class="form-control" required>
+                                                                                    <div class="input-group-append">
+                                                                                        <div class="input-group-text">
+                                                                                            <span class="fas fa-id-card"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                                 <label>Aktif * (Y:Ya, T:Tidak)</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="text" id="aktif1" class="form-control" required>
@@ -166,6 +178,7 @@
                                                                         $("#id1").val(operator_kua.id);
                                                                         $("#id_operator_kua1").val(operator_kua.id_operator_kua);
                                                                         $("#nama_operator1").val(operator_kua.nama_operator);
+                                                                        $("#no_wa1").val(operator_kua.no_wa);
                                                                         $("#aktif1").val(operator_kua.aktif);    
                                                                         $("#Modal1").modal('toggle');
                                                                     })
@@ -173,6 +186,7 @@
                                                                         e.preventDefault();
                                                                         let id = $("#id1").val();
                                                                         let nama_operator = $("#nama_operator1").val();
+                                                                        let no_wa = $("#no_wa1").val();
                                                                         let aktif = $("#aktif1").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
@@ -181,6 +195,7 @@
                                                                             data:{
                                                                                 id:id,
                                                                                 nama_operator:nama_operator,
+                                                                                no_wa:no_wa,
                                                                                 aktif:aktif,
                                                                                 _token:_token
                                                                             },

@@ -8,7 +8,7 @@
                         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                        <a href="#" class="nav-link">Dashboard Operator {{$NamaFaskes->nama_fasilitas_kesehatan}} - Kecamatan {{$NamaKecamatan->nama_kecamatan}}</a>
+                        <a href="#" class="nav-link">Dashboard Operator {{$NamaKUA->nama_kua}} - Kecamatan {{$NamaKecamatan->nama_kecamatan}}</a>
                     </li>
                 </ul>
             </nav>
@@ -19,7 +19,7 @@
                 <div class="sidebar">
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="{{asset('foto_operator_fasilitas_kesehatan')}}/{{$LoggedUserInfo->foto}}" class="img-circle elevation-2" alt="User Image">
+                            <img src="{{asset('foto_operator_kua')}}/{{$LoggedUserInfo->foto}}" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
                             <a href="#" class="d-block">{{$LoggedUserInfo->nama_operator}}</a>
@@ -28,7 +28,7 @@
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
-                                <a href="{{route('tambah_data_berkas_permohonan_oleh_operator_faskes')}}" class="nav-link">
+                                <a href="{{route('tambah_data_berkas_permohonan_oleh_operator_kua')}}" class="nav-link">
                                     <i class="nav-icon fas fa-plus"></i>
                                     <p>
                                         Permohonan Baru
@@ -36,25 +36,25 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('tampil_data_berkas_permohonan_belum_selesai_oleh_operator_faskes')}}" class="nav-link">
+                                <a href="{{route('tampil_data_berkas_permohonan_belum_selesai_oleh_operator_kua')}}" class="nav-link">
                                     <i class="nav-icon fas fa-file"></i>
                                     <p>
                                         Belum Selesai
-                                        <span class="right badge badge-danger">{{$jumlah_berkas_permohonan_dari_faskes_yang_belum_selesai}}</span>
+                                        <span class="right badge badge-danger">{{$jumlah_berkas_permohonan_dari_kua_yang_belum_selesai}}</span>
                                     </p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('tampil_data_berkas_permohonan_sudah_selesai_oleh_operator_faskes')}}" class="nav-link">
+                                <a href="{{route('tampil_data_berkas_permohonan_sudah_selesai_oleh_operator_kua')}}" class="nav-link">
                                     <i class="nav-icon fas fa-file"></i>
                                     <p>
                                         Sudah Selesai
-                                        <span class="right badge badge-success">{{$jumlah_berkas_permohonan_dari_faskes_yang_sudah_selesai}}</span>
+                                        <span class="right badge badge-success">{{$jumlah_berkas_permohonan_dari_kua_yang_sudah_selesai}}</span>
                                     </p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('logout_operator_faskes')}}" class="nav-link">
+                                <a href="{{route('logout_operator_kua')}}" class="nav-link">
                                     <i class="nav-icon fas fa-sign-out-alt"></i>
                                     <p>
                                         Keluar Aplikasi
@@ -120,7 +120,7 @@
                                                         <!-- small box -->
                                                         <div class="small-box bg-info">
                                                             <div class="inner">
-                                                                <h3>{{$jumlah_berkas_permohonan_dari_faskes}}</h3>
+                                                                <h3>{{$jumlah_berkas_permohonan_dari_kua}}</h3>
                                                                 <p>Permohonan</p>
                                                             </div>
                                                             <div class="icon">
@@ -132,7 +132,7 @@
                                                         <!-- small box -->
                                                         <div class="small-box bg-danger">
                                                             <div class="inner">
-                                                                <h3>{{$jumlah_berkas_permohonan_dari_faskes_yang_belum_selesai}}</h3>
+                                                                <h3>{{$jumlah_berkas_permohonan_dari_kua_yang_belum_selesai}}</h3>
                                                                 <p>Permohonan Belum Selesai</p>
                                                             </div>
                                                             <div class="icon">
@@ -144,7 +144,7 @@
                                                         <!-- small box -->
                                                         <div class="small-box bg-success">
                                                             <div class="inner">
-                                                                <h3>{{$jumlah_berkas_permohonan_dari_faskes_yang_sudah_selesai}}</h3>
+                                                                <h3>{{$jumlah_berkas_permohonan_dari_kua_yang_sudah_selesai}}</h3>
                                                                 <p>Permohonan Sudah Selesai</p>
                                                             </div>
                                                             <div class="icon">
@@ -177,11 +177,11 @@
                                                     <div class="card-body box-profile">
                                                         <div class="text-center">
                                                             <img class="profile-user-img img-fluid img-circle"
-                                                                 src="{{asset('foto_operator_fasilitas_kesehatan')}}/{{$LoggedUserInfo->foto}}"
+                                                                 src="{{asset('foto_operator_kua')}}/{{$LoggedUserInfo->foto}}"
                                                                  alt="User profile picture">
                                                         </div>
                                                         <h5 class="profile-username text-center">{{$LoggedUserInfo->nama_operator}}</h5>
-                                                        <p class="text-muted text-center">ID Operator<br>{{$LoggedUserInfo->id_operator_fasilitas_kesehatan}}</p>
+                                                        <p class="text-muted text-center">ID Operator<br>{{$LoggedUserInfo->id_operator_kua}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -198,12 +198,12 @@
                                                     <div class="card-body">
                                                         <div class="tab-content">
                                                             <div class="active tab-pane" id="ubah-profile">
-                                                                <form method="post" action="{{route('simpan_perubahan_data_profil_operator_faskes')}}">
+                                                                <form method="post" action="{{route('simpan_perubahan_data_profil_operator_kua')}}">
                                                                     @csrf
                                                                     <input name="id" type="hidden" class="form-control" value="{{$LoggedUserInfo->id}}">
                                                                     <div class="form-group">
                                                                         <label>ID Operator (tanpa spasi)</label>
-                                                                        <input id="id_operator_fasilitas_kesehatan" name="id_operator_fasilitas_kesehatan" type="number" class="form-control" placeholder="Masukkan ID Operator" value="{{$LoggedUserInfo->id_operator_fasilitas_kesehatan}}">
+                                                                        <input id="id_operator_kua" name="id_operator_kua" type="number" class="form-control" placeholder="Masukkan ID Operator" value="{{$LoggedUserInfo->id_operator_kua}}">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>Nama</label>
@@ -225,7 +225,7 @@
                                                                 </form>
                                                             </div>
                                                             <div class="tab-pane" id="ubah-password">
-                                                                <form method="post" action="{{route('simpan_perubahan_data_password_operator_faskes')}}">
+                                                                <form method="post" action="{{route('simpan_perubahan_data_password_operator_kua')}}">
                                                                     @csrf
                                                                     <input name="id" type="hidden" class="form-control" value="{{$LoggedUserInfo->id}}">
                                                                     <div class="form-group">
@@ -241,7 +241,7 @@
                                                                 </form>
                                                             </div>
                                                             <div class="tab-pane" id="ubah-foto">
-                                                                <form method="post" action="{{route('simpan_perubahan_data_foto_operator_faskes')}}" enctype="multipart/form-data">
+                                                                <form method="post" action="{{route('simpan_perubahan_data_foto_operator_kua')}}" enctype="multipart/form-data">
                                                                     @csrf
                                                                     <input name="id" type="hidden" class="form-control" value="{{$LoggedUserInfo->id}}">
                                                                     <label>Upload File</label><br>
@@ -261,7 +261,7 @@
                                                                         <li>Untuk mengisi berkas, klik pada tombol <button>Choose File</button> lalu pilih file .ZIP atau .RAR sebagaimana dimaksud pada point paling atas.</li>
                                                                     </ol>
                                                                 </p>
-                                                                <form method="post" action="{{route('simpan_perubahan_data_berkas_operator_faskes')}}" enctype="multipart/form-data">
+                                                                <form method="post" action="{{route('simpan_perubahan_data_berkas_operator_kua')}}" enctype="multipart/form-data">
                                                                     @csrf
                                                                     <input name="id" type="hidden" class="form-control" value="{{$LoggedUserInfo->id}}">
                                                                     <label>Upload File (.ZIP atau .RAR)</label><br>

@@ -140,6 +140,35 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-file"></i>
+                                    <p>
+                                        Permhn dr KUA
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_berkas_permohonan_dari_kua_belum_selesai_oleh_admin_data')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                Belum Selesai
+                                                <span class="right badge badge-danger">{{$jumlah_berkas_permohonan_dari_kua_yang_belum_selesai}}</span>
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_berkas_permohonan_dari_kua_sudah_selesai_oleh_admin_data')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                Sudah Selesai
+                                                <span class="right badge badge-success">{{$jumlah_berkas_permohonan_dari_kua_yang_sudah_selesai}}</span>
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-search"></i>
                                     <p>
                                         Prev. Rekap (B/T)
@@ -164,7 +193,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="{{route('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua')}}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>
                                                 KUA
@@ -199,7 +228,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="{{route('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua_excell')}}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>
                                                 KUA
@@ -327,6 +356,32 @@
                                                             <div class="inner">
                                                                 <h3>{{$jumlah_operator_fasilitas_kesehatan}}</h3>
                                                                 <p>Operator Fasilitas Kesehatan</p>
+                                                            </div>
+                                                            <div class="icon">
+                                                                <i class="ion ion-person"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-6">
+                                                        <!-- small box -->
+                                                        <div class="small-box bg-info">
+                                                            <div class="inner">
+                                                                <h3>{{$jumlah_kua}}</h3>
+                                                                <p>KUA</p>
+                                                            </div>
+                                                            <div class="icon">
+                                                                <i class="ion ion-person"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-6">
+                                                        <!-- small box -->
+                                                        <div class="small-box bg-info">
+                                                            <div class="inner">
+                                                                <h3>{{$jumlah_operator_kua}}</h3>
+                                                                <p>Operator KUA</p>
                                                             </div>
                                                             <div class="icon">
                                                                 <i class="ion ion-person"></i>

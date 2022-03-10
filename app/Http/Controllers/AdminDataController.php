@@ -53,6 +53,10 @@ class AdminDataController extends Controller
                 ->count();
             $jumlah_operator_fasilitas_kesehatan = DB::table('operator_fasilitas_kesehatans')
                 ->count();
+            $jumlah_kua = DB::table('kuas')
+                ->count();
+            $jumlah_operator_kua = DB::table('operator_kuas')
+                ->count();
             $jumlah_berkas_pengurusan_yang_belum_selesai = DB::table('berkas_pengurusans')
                 ->where('status','=','B')
                 ->count();
@@ -65,6 +69,12 @@ class AdminDataController extends Controller
             $jumlah_berkas_permohonan_dari_faskes_yang_sudah_selesai = DB::table('berkas_permohonan_dari_faskes')
                 ->where('status','=','S')
                 ->count();
+            $jumlah_berkas_permohonan_dari_kua_yang_belum_selesai = DB::table('berkas_permohonan_dari_kuas')
+                ->where('status','=','B')
+                ->count();
+            $jumlah_berkas_permohonan_dari_kua_yang_sudah_selesai = DB::table('berkas_permohonan_dari_kuas')
+                ->where('status','=','S')
+                ->count();
             $data = [
                 'LoggedUserInfo'=>$data_admin_untuk_dashboard,
             ];
@@ -72,7 +82,9 @@ class AdminDataController extends Controller
             'jumlah_operator_desa_kelurahan','jumlah_berkas_pengurusan_yang_belum_selesai',
             'jumlah_berkas_pengurusan_yang_sudah_selesai',
             'jumlah_fasilitas_kesehatan','jumlah_operator_fasilitas_kesehatan',
-            'jumlah_berkas_permohonan_dari_faskes_yang_belum_selesai','jumlah_berkas_permohonan_dari_faskes_yang_sudah_selesai'));
+            'jumlah_berkas_permohonan_dari_faskes_yang_belum_selesai','jumlah_berkas_permohonan_dari_faskes_yang_sudah_selesai',
+            'jumlah_berkas_permohonan_dari_kua_yang_belum_selesai','jumlah_berkas_permohonan_dari_kua_yang_sudah_selesai',
+            'jumlah_kua','jumlah_operator_kua'));
         }else{
             return view('login.login_admin_data');
         }

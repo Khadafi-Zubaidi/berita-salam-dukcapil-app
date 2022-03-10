@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminDataController;
 use App\Http\Controllers\AdminDataDinasController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\BerkasPermohonanDariFaskesController;
+use App\Http\Controllers\BerkasPermohonanDariKuaController;
 use App\Http\Controllers\FasilitasKesehatanController;
 use App\Http\Controllers\KuaController;
 use App\Http\Controllers\OperatorDesaKelurahanController;
@@ -377,6 +378,15 @@ Route::put('/operator_kua2',[OperatorKuaController::class,'hapus_data_operator_k
 Route::put('/operator_kua3',[OperatorKuaController::class,'simpan_perubahan_data_password_operator_kua_oleh_admin_data'])->name('operator_kua.update_password');
 Route::get('tambah_data_operator_kua_oleh_admin_data',[OperatorKuaController::class,'tambah_data_operator_kua_oleh_admin_data'])->name('tambah_data_operator_kua_oleh_admin_data');
 Route::post('simpan_data_baru_operator_kua_oleh_admin_data',[OperatorKuaController::class,'simpan_data_baru_operator_kua_oleh_admin_data'])->name('simpan_data_baru_operator_kua_oleh_admin_data');
+Route::get('login_operator_kua',[OperatorKuaController::class,'login_operator_kua'])->middleware('OperatorKUALoggedIn');
+Route::post('cek_login_operator_kua',[OperatorKuaController::class,'cek_login_operator_kua'])->name('cek_login_operator_kua');
+Route::get('dashboard_operator_kua',[OperatorKuaController::class,'dashboard_operator_kua'])->name('dashboard_operator_kua');
+Route::post('simpan_perubahan_data_profil_operator_kua',[OperatorKuaController::class,'simpan_perubahan_data_profil_operator_kua'])->name('simpan_perubahan_data_profil_operator_kua');
+Route::post('simpan_perubahan_data_password_operator_kua',[OperatorKuaController::class,'simpan_perubahan_data_password_operator_kua'])->name('simpan_perubahan_data_password_operator_kua');
+Route::post('simpan_perubahan_data_foto_operator_kua',[OperatorKuaController::class,'simpan_perubahan_data_foto_operator_kua'])->name('simpan_perubahan_data_foto_operator_kua');
+Route::post('simpan_perubahan_data_berkas_operator_kua',[OperatorKuaController::class,'simpan_perubahan_data_berkas_operator_kua'])->name('simpan_perubahan_data_berkas_operator_kua');
+Route::get('logout_operator_kua',[OperatorKuaController::class,'logout_operator_kua'])->name('logout_operator_kua');
+
 
 //Berkas Permohonan Dari Faskes
 Route::get('tambah_data_berkas_permohonan_oleh_operator_faskes',[BerkasPermohonanDariFaskesController::class,'tambah_data_berkas_permohonan_oleh_operator_faskes'])->name('tambah_data_berkas_permohonan_oleh_operator_faskes');
@@ -384,7 +394,7 @@ Route::post('simpan_data_baru_permohonan_oleh_operator_faskes',[BerkasPermohonan
 Route::get('tampil_data_berkas_permohonan_belum_selesai_oleh_operator_faskes',[BerkasPermohonanDariFaskesController::class,'tampil_data_berkas_permohonan_belum_selesai_oleh_operator_faskes'])->name('tampil_data_berkas_permohonan_belum_selesai_oleh_operator_faskes');
 Route::get('/berkas_permohonan_dari_faskes/{id}',[BerkasPermohonanDariFaskesController::class,'get_id_berkas_permohonan']);
 Route::put('/simpan_perubahan_data_berkas_permohonan_dari_faskes',[BerkasPermohonanDariFaskesController::class,'simpan_perubahan_data_berkas_permohonan_dari_faskes'])->name('berkas_permohonan_dari_faskes.pembaharuan_data');
-Route::post('/unggah_berkas_permohonan_lagi_oleh_operator',[BerkasPermohonanDariFaskesController::class,'unggah_berkas_permohonan_lagi_oleh_operator_faskes'])->name('berkas_permohonan_dari_faskes.upload_berkas_permohonan_lagi');
+Route::post('/unggah_berkas_permohonan_lagi_oleh_operator_faskes',[BerkasPermohonanDariFaskesController::class,'unggah_berkas_permohonan_lagi_oleh_operator_faskes'])->name('berkas_permohonan_dari_faskes.upload_berkas_permohonan_lagi');
 Route::get('/cetak_bukti_pendaftaran_oleh_operator_faskes/{id}',[BerkasPermohonanDariFaskesController::class,'cetak_bukti_pendaftaran_oleh_operator_faskes'])->name('cetak_bukti_pendaftaran_oleh_operator_faskes');
 Route::get('/cetak_bukti_pengambilan_oleh_operator_faskes/{id}',[BerkasPermohonanDariFaskesController::class,'cetak_bukti_pengambilan_oleh_operator_faskes'])->name('cetak_bukti_pengambilan_oleh_operator_faskes');
 Route::get('tampil_data_berkas_permohonan_dari_faskes_belum_selesai_oleh_admin_data',[BerkasPermohonanDariFaskesController::class,'tampil_data_berkas_permohonan_dari_faskes_belum_selesai_oleh_admin_data'])->name('tampil_data_berkas_permohonan_dari_faskes_belum_selesai_oleh_admin_data');
@@ -397,3 +407,24 @@ Route::get('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes',
 Route::post('cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes',[BerkasPermohonanDariFaskesController::class,'cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes'])->name('cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes');
 Route::get('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes_excell',[BerkasPermohonanDariFaskesController::class,'tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes_excell'])->name('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes_excell');
 Route::post('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_faskes_excell',[BerkasPermohonanDariFaskesController::class,'cetak_laporan_bulan_tahun_rekap_pengurusan_dari_faskes_excell'])->name('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_faskes_excell');
+
+//Berkas Permohonan Dari KUA
+Route::get('tambah_data_berkas_permohonan_oleh_operator_kua',[BerkasPermohonanDariKuaController::class,'tambah_data_berkas_permohonan_oleh_operator_kua'])->name('tambah_data_berkas_permohonan_oleh_operator_kua');
+Route::post('simpan_data_baru_permohonan_oleh_operator_kua',[BerkasPermohonanDariKuaController::class,'simpan_data_baru_permohonan_oleh_operator_kua'])->name('simpan_data_baru_permohonan_oleh_operator_kua');
+Route::get('tampil_data_berkas_permohonan_belum_selesai_oleh_operator_kua',[BerkasPermohonanDariKuaController::class,'tampil_data_berkas_permohonan_belum_selesai_oleh_operator_kua'])->name('tampil_data_berkas_permohonan_belum_selesai_oleh_operator_kua');
+Route::get('/berkas_permohonan_dari_kua/{id}',[BerkasPermohonanDariKuaController::class,'get_id_berkas_permohonan']);
+Route::put('/simpan_perubahan_data_berkas_permohonan_dari_kua',[BerkasPermohonanDariKuaController::class,'simpan_perubahan_data_berkas_permohonan_dari_kua'])->name('berkas_permohonan_dari_kua.pembaharuan_data');
+Route::post('/unggah_berkas_permohonan_lagi_oleh_operator_kua',[BerkasPermohonanDariKuaController::class,'unggah_berkas_permohonan_lagi_oleh_operator_kua'])->name('berkas_permohonan_dari_kua.upload_berkas_permohonan_lagi');
+Route::get('/cetak_bukti_pendaftaran_oleh_operator_kua/{id}',[BerkasPermohonanDariKuaController::class,'cetak_bukti_pendaftaran_oleh_operator_kua'])->name('cetak_bukti_pendaftaran_oleh_operator_kua');
+Route::get('/cetak_bukti_pengambilan_oleh_operator_kua/{id}',[BerkasPermohonanDariKuaController::class,'cetak_bukti_pengambilan_oleh_operator_kua'])->name('cetak_bukti_pengambilan_oleh_operator_kua');
+Route::get('tampil_data_berkas_permohonan_dari_kua_belum_selesai_oleh_admin_data',[BerkasPermohonanDariKuaController::class,'tampil_data_berkas_permohonan_dari_kua_belum_selesai_oleh_admin_data'])->name('tampil_data_berkas_permohonan_dari_kua_belum_selesai_oleh_admin_data');
+Route::post('/unggah_berkas_permohonan_dari_kua_selesai',[BerkasPermohonanDariKuaController::class,'unggah_berkas_permohonan_dari_kua_selesai'])->name('berkas_permohonan_dari_kua.upload_berkas_permohonan_selesai');
+Route::put('/simpan_perubahan_data_catatan_penting_untuk_kua_oleh_admin_data',[BerkasPermohonanDariKuaController::class,'simpan_perubahan_data_catatan_penting_untuk_kua_oleh_admin_data'])->name('berkas_permohonan_dari_kua.isi_canting');
+Route::get('tampil_data_berkas_permohonan_dari_kua_sudah_selesai_oleh_admin_data',[BerkasPermohonanDariKuaController::class,'tampil_data_berkas_permohonan_dari_kua_sudah_selesai_oleh_admin_data'])->name('tampil_data_berkas_permohonan_dari_kua_sudah_selesai_oleh_admin_data');
+Route::put('/hapus_berkas_permohonan_dari_kua_ok',[BerkasPermohonanDariKuaController::class,'hapus_berkas_permohonan_dari_kua_oleh_admin_data'])->name('hapus_berkas_permohonan_dari_kua_ok');
+Route::get('tampil_data_berkas_permohonan_sudah_selesai_oleh_operator_kua',[BerkasPermohonanDariKuaController::class,'tampil_data_berkas_permohonan_sudah_selesai_oleh_operator_kua'])->name('tampil_data_berkas_permohonan_sudah_selesai_oleh_operator_kua');
+Route::get('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua',[BerkasPermohonanDariKuaController::class,'tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua'])->name('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua');
+Route::post('cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua',[BerkasPermohonanDariKuaController::class,'cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua'])->name('cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua');
+Route::get('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua_excell',[BerkasPermohonanDariKuaController::class,'tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua_excell'])->name('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua_excell');
+Route::post('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_kua_excell',[BerkasPermohonanDariKuaController::class,'cetak_laporan_bulan_tahun_rekap_pengurusan_dari_kua_excell'])->name('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_kua_excell');
+
