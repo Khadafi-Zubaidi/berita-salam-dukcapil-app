@@ -21,6 +21,7 @@ class CreateOperatorFasilitasKesehatansTable extends Migration
             $table->string('no_wa')->nullable();
             $table->string('password')->nullable();
             $table->string('foto')->default('foto.png');
+            $table->string('berkas')->default('berkas.zip');
             $table->string('aktif')->default('Y');
             $table->timestamps();
         });

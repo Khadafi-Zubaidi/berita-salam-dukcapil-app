@@ -19,7 +19,7 @@
                 <div class="sidebar">
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="{{asset('foto_operator_desa_kelurahan')}}/{{$LoggedUserInfo->foto}}" class="img-circle elevation-2" alt="User Image">
+                            <img src="{{asset('foto_operator_fasilitas_kesehatan')}}/{{$LoggedUserInfo->foto}}" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
                             <a href="#" class="d-block">{{$LoggedUserInfo->nama_operator}}</a>
@@ -28,7 +28,7 @@
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
-                                <a href="{{route('dashboard_operator')}}" class="nav-link">
+                                <a href="{{route('dashboard_operator_faskes')}}" class="nav-link">
                                     <i class="nav-icon fas fa-home"></i>
                                     <p>
                                         Kembali ke Beranda
@@ -129,9 +129,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <a href="javascript:void(0)" onclick="ubahData({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Ubah Data Permohonan</small></a>
-                                                                    <a href="/berkas_permohonan/{{$dt->berkas_permohonan}}" class="btn btn-info btn-block btn-sm"><small>Unduh Berkas Permohonan</small></a>
+                                                                    <a href="/berkas_permohonan_dari_faskes/{{$dt->berkas_permohonan}}" class="btn btn-info btn-block btn-sm"><small>Unduh Berkas Permohonan</small></a>
                                                                     <a href="javascript:void(0)" onclick="lihatCanting({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Catatan Penting</small></a>
-                                                                    <a href="{{action('App\Http\Controllers\OperatorDesaKelurahanController@cetak_bukti_pendaftaran_oleh_operator', $dt->id)}}" class="btn btn-success btn-block btn-sm"><small>Cetak Bukti Pendaftaran</small></a>
+                                                                    <a href="{{action('App\Http\Controllers\BerkasPermohonanDariFaskesController@cetak_bukti_pendaftaran_oleh_operator_faskes', $dt->id)}}" class="btn btn-success btn-block btn-sm"><small>Cetak Bukti Pendaftaran</small></a>
                                                                     <a href="javascript:void(0)" onclick="lihatDokumenKeluaran({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Lihat Daftar Dokumen Hasil</small></a>
                                                                     <a href="javascript:void(0)" onclick="unggahBerkasPermohonanLagi({{$dt->id}})" class="btn btn-danger btn-block btn-sm"><small>Unggah Berkas Permohonan Lagi</small></a>
                                                                 </td>
@@ -194,12 +194,12 @@
                                                             <script>
                                                                 function ubahData(id)
                                                                 {
-                                                                    $.get('/berkas_pengurusans/'+id,function(berkas_pengurusan){
-                                                                        $("#id7").val(berkas_pengurusan.id);
-                                                                        $("#nik_pemohon7").val(berkas_pengurusan.nik_pemohon);
-                                                                        $("#nama_pemohon7").val(berkas_pengurusan.nama_pemohon);
-                                                                        $("#alamat_pemohon7").val(berkas_pengurusan.alamat_pemohon);
-                                                                        $("#jenis_permohonan").summernote('code', berkas_pengurusan.jenis_permohonan);
+                                                                    $.get('/berkas_permohonan_dari_faskes/'+id,function(berkas_permohonan_dari_faskes){
+                                                                        $("#id7").val(berkas_permohonan_dari_faskes.id);
+                                                                        $("#nik_pemohon7").val(berkas_permohonan_dari_faskes.nik_pemohon);
+                                                                        $("#nama_pemohon7").val(berkas_permohonan_dari_faskes.nama_pemohon);
+                                                                        $("#alamat_pemohon7").val(berkas_permohonan_dari_faskes.alamat_pemohon);
+                                                                        $("#jenis_permohonan").summernote('code', berkas_permohonan_dari_faskes.jenis_permohonan);
                                                                         $("#Modal7").modal('toggle');
                                                                     })
                                                                     $("#Form7").submit(function (e){
@@ -211,7 +211,7 @@
                                                                         let jenis_permohonan = $("#jenis_permohonan").val();
                                                                         let _token = $("input[name=_token]").val();
                                                                         $.ajax({
-                                                                            url:"{{route('berkas_permohonan.pembaharuan_data')}}",
+                                                                            url:"{{route('berkas_permohonan_dari_faskes.pembaharuan_data')}}",
                                                                             type: "PUT",
                                                                             data:{
                                                                                 id:id,
@@ -223,7 +223,7 @@
                                                                             },
                                                                             success:function(response){
                                                                                 $("#Modal7").modal('hide');
-                                                                                window.location = "{{route('tampil_data_berkas_permohonan_belum_selesai_oleh_operator')}}";
+                                                                                window.location = "{{route('tampil_data_berkas_permohonan_belum_selesai_oleh_operator_faskes')}}";
                                                                             }
                                                                         })
                                                                     })
@@ -284,10 +284,10 @@
                                                             <script>
                                                                 function unggahBerkasPermohonanLagi(id)
                                                                 {
-                                                                    $.get('/berkas_pengurusans/'+id,function(berkas_pengurusan){
-                                                                        $("#id1").val(berkas_pengurusan.id);
-                                                                        $("#nama_pemohon1").val(berkas_pengurusan.nama_pemohon);
-                                                                        $("#alamat_pemohon1").val(berkas_pengurusan.alamat_pemohon);
+                                                                    $.get('/berkas_permohonan_dari_faskes/'+id,function(berkas_permohonan_dari_faskes){
+                                                                        $("#id1").val(berkas_permohonan_dari_faskes.id);
+                                                                        $("#nama_pemohon1").val(berkas_permohonan_dari_faskes.nama_pemohon);
+                                                                        $("#alamat_pemohon1").val(berkas_permohonan_dari_faskes.alamat_pemohon);
                                                                         $("#editDataFotoModal").modal('toggle');
                                                                     });
                                                                     $.ajaxSetup({
@@ -299,7 +299,7 @@
                                                                         e.preventDefault();
                                                                         var formData = new FormData(this);
                                                                         $.ajax({
-                                                                            url:"{{route('berkas_permohonan.upload_berkas_permohonan_lagi')}}",
+                                                                            url:"{{route('berkas_permohonan_dari_faskes.upload_berkas_permohonan_lagi')}}",
                                                                             type: "POST",
                                                                             data: formData,
                                                                             cache:false,
@@ -308,7 +308,7 @@
                                                                             success: (data) =>{
                                                                                 this.reset();
                                                                                 $("#editDataFotoModal").modal('hide');
-                                                                                window.location = "{{route('tampil_data_berkas_permohonan_belum_selesai_oleh_operator')}}";
+                                                                                window.location = "{{route('tampil_data_berkas_permohonan_belum_selesai_oleh_operator_faskes')}}";
                                                                             }
                                                                         });
                                                                     });
@@ -369,12 +369,12 @@
                                                             <script>
                                                                 function lihatCanting(id)
                                                                 {
-                                                                    $.get('/berkas_pengurusans/'+id,function(berkas_pengurusan){
-                                                                        $("#id2").val(berkas_pengurusan.id);
-                                                                        $("#nama_pemohon2").val(berkas_pengurusan.nama_pemohon);
-                                                                        $("#alamat_pemohon2").val(berkas_pengurusan.alamat_pemohon);
-                                                                        $("#tanggal_pengajuan2").val(berkas_pengurusan.tanggal_pengajuan);
-                                                                        $("#isi_canting2").summernote('code', berkas_pengurusan.isi_canting);
+                                                                    $.get('/berkas_permohonan_dari_faskes/'+id,function(berkas_permohonan_dari_faskes){
+                                                                        $("#id2").val(berkas_permohonan_dari_faskes.id);
+                                                                        $("#nama_pemohon2").val(berkas_permohonan_dari_faskes.nama_pemohon);
+                                                                        $("#alamat_pemohon2").val(berkas_permohonan_dari_faskes.alamat_pemohon);
+                                                                        $("#tanggal_pengajuan2").val(berkas_permohonan_dari_faskes.tanggal_pengajuan);
+                                                                        $("#isi_canting2").summernote('code', berkas_permohonan_dari_faskes.isi_canting);
                                                                         $("#ubahDataModal").modal('toggle');
                                                                     })
                                                                 }
@@ -434,12 +434,12 @@
                                                             <script>
                                                                 function lihatDokumenKeluaran(id)
                                                                 {
-                                                                    $.get('/berkas_pengurusans/'+id,function(berkas_pengurusan){
-                                                                        $("#id3").val(berkas_pengurusan.id);
-                                                                        $("#nama_pemohon3").val(berkas_pengurusan.nama_pemohon);
-                                                                        $("#tanggal_pengajuan3").val(berkas_pengurusan.tanggal_pengajuan);
-                                                                        $("#nomor_pendaftaran3").val(berkas_pengurusan.nomor_pendaftaran);
-                                                                        $("#dokumen_hasil3").summernote('code', berkas_pengurusan.dokumen_hasil);
+                                                                    $.get('/berkas_permohonan_dari_faskes/'+id,function(berkas_permohonan_dari_faskes){
+                                                                        $("#id3").val(berkas_permohonan_dari_faskes.id);
+                                                                        $("#nama_pemohon3").val(berkas_permohonan_dari_faskes.nama_pemohon);
+                                                                        $("#tanggal_pengajuan3").val(berkas_permohonan_dari_faskes.tanggal_pengajuan);
+                                                                        $("#nomor_pendaftaran3").val(berkas_permohonan_dari_faskes.nomor_pendaftaran);
+                                                                        $("#dokumen_hasil3").summernote('code', berkas_permohonan_dari_faskes.dokumen_hasil);
                                                                         $("#ubahDataModal2").modal('toggle');
                                                                     })
                                                                 }

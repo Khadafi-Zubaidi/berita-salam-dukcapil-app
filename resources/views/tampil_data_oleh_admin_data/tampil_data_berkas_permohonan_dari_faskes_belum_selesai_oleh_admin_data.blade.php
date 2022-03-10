@@ -55,7 +55,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title">Data Berkas Permohonan Dari Operator Desa</h5>
+                                        <h5 class="card-title">Data Berkas Permohonan Dari Operator Fasilitas Kesehatan</h5>
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                                 <i class="fas fa-minus"></i>
@@ -74,7 +74,7 @@
                                                             <th>Alamat Pemohon</th>
                                                             <th>Jenis Permohonan</th>
                                                             <th>Tanggal Pengajuan</th>
-                                                            <th>Desa/Kelurahan</th>
+                                                            <th>Fasilitas Kesehatan</th>
                                                             <th>Kecamatan</th>
                                                             <th>Status</th>
                                                             <th>Aksi</th>
@@ -89,7 +89,7 @@
                                                                 <td>{{$dt->alamat_pemohon}}</td>
                                                                 <td>{!!$dt->jenis_permohonan!!}</td>
                                                                 <td>{{$dt->tanggal_pengajuan}}</td>
-                                                                <td>{{$dt->nama_desa_kelurahan}}</td>
+                                                                <td>{{$dt->nama_fasilitas_kesehatan}}</td>
                                                                 <td>{{$dt->nama_kecamatan}}</td>
                                                                 <td>
                                                                     @if ($dt->status == 'B')
@@ -99,7 +99,7 @@
                                                                     @endif
                                                                 </td>
                                                                 <td>
-                                                                    <a href="/berkas_permohonan/{{$dt->berkas_permohonan}}" class="btn btn-info btn-block btn-sm"><small>Unduh Berkas Permohonan</small></a>
+                                                                    <a href="/berkas_permohonan_dari_faskes/{{$dt->berkas_permohonan}}" class="btn btn-info btn-block btn-sm"><small>Unduh Berkas Permohonan</small></a>
                                                                     <a href="javascript:void(0)" onclick="ubahDataCanting({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Input Canting & Dokumen Hasil</small></a>
                                                                     <a href="javascript:void(0)" onclick="unggahBerkasPermohonanSelesai({{$dt->id}})" class="btn btn-success btn-block btn-sm"><small>Unggah Dokumen Hasil</small></a>
                                                                 </td>
@@ -159,10 +159,10 @@
                                                             <script>
                                                                 function unggahBerkasPermohonanSelesai(id)
                                                                 {
-                                                                    $.get('/berkas_pengurusans/'+id,function(berkas_pengurusan){
-                                                                        $("#id1").val(berkas_pengurusan.id);
-                                                                        $("#nama_pemohon1").val(berkas_pengurusan.nama_pemohon);
-                                                                        $("#alamat_pemohon1").val(berkas_pengurusan.alamat_pemohon);
+                                                                    $.get('/berkas_permohonan_dari_faskes/'+id,function(berkas_permohonan_dari_faskes){
+                                                                        $("#id1").val(berkas_permohonan_dari_faskes.id);
+                                                                        $("#nama_pemohon1").val(berkas_permohonan_dari_faskes.nama_pemohon);
+                                                                        $("#alamat_pemohon1").val(berkas_permohonan_dari_faskes.alamat_pemohon);
                                                                         $("#editDataFotoModal").modal('toggle');
                                                                     });
                                                                     $.ajaxSetup({
@@ -174,7 +174,7 @@
                                                                         e.preventDefault();
                                                                         var formData = new FormData(this);
                                                                         $.ajax({
-                                                                            url:"{{route('berkas_permohonan.upload_berkas_permohonan_selesai')}}",
+                                                                            url:"{{route('berkas_permohonan_dari_faskes.upload_berkas_permohonan_selesai')}}",
                                                                             type: "POST",
                                                                             data: formData,
                                                                             cache:false,
@@ -183,7 +183,7 @@
                                                                             success: (data) =>{
                                                                                 this.reset();
                                                                                 $("#editDataFotoModal").modal('hide');
-                                                                                window.location = "{{route('tampil_data_berkas_permohonan_belum_selesai_oleh_admin_data')}}";
+                                                                                window.location = "{{route('tampil_data_berkas_permohonan_dari_faskes_belum_selesai_oleh_admin_data')}}";
                                                                             }
                                                                         });
                                                                     });
@@ -318,19 +318,19 @@
                                                             <script>
                                                                 function ubahDataCanting(id)
                                                                 {
-                                                                    $.get('/berkas_pengurusans/'+id,function(berkas_pengurusan){
-                                                                        $("#id2").val(berkas_pengurusan.id);
-                                                                        $("#nama_pemohon2").val(berkas_pengurusan.nama_pemohon);
-                                                                        $("#alamat_pemohon2").val(berkas_pengurusan.alamat_pemohon);
-                                                                        $("#tanggal_pengajuan2").val(berkas_pengurusan.tanggal_pengajuan);
-                                                                        $("#isi_canting2").summernote('code', berkas_pengurusan.isi_canting);
-                                                                        $("#dokumen_hasil2").summernote('code', berkas_pengurusan.dokumen_hasil);
-                                                                        $("#jml_kk2").val(berkas_pengurusan.jml_kk);
-                                                                        $("#jml_skp2").val(berkas_pengurusan.jml_skp);
-                                                                        $("#jml_kia2").val(berkas_pengurusan.jml_kia);
-                                                                        $("#jml_akta_kelahiran2").val(berkas_pengurusan.jml_akta_kelahiran);
-                                                                        $("#jml_akta_kematian2").val(berkas_pengurusan.jml_akta_kematian);
-                                                                        $("#jml_lain_lain2").val(berkas_pengurusan.jml_lain_lain);
+                                                                    $.get('/berkas_permohonan_dari_faskes/'+id,function(berkas_permohonan_dari_faskes){
+                                                                        $("#id2").val(berkas_permohonan_dari_faskes.id);
+                                                                        $("#nama_pemohon2").val(berkas_permohonan_dari_faskes.nama_pemohon);
+                                                                        $("#alamat_pemohon2").val(berkas_permohonan_dari_faskes.alamat_pemohon);
+                                                                        $("#tanggal_pengajuan2").val(berkas_permohonan_dari_faskes.tanggal_pengajuan);
+                                                                        $("#isi_canting2").summernote('code', berkas_permohonan_dari_faskes.isi_canting);
+                                                                        $("#dokumen_hasil2").summernote('code', berkas_permohonan_dari_faskes.dokumen_hasil);
+                                                                        $("#jml_kk2").val(berkas_permohonan_dari_faskes.jml_kk);
+                                                                        $("#jml_skp2").val(berkas_permohonan_dari_faskes.jml_skp);
+                                                                        $("#jml_kia2").val(berkas_permohonan_dari_faskes.jml_kia);
+                                                                        $("#jml_akta_kelahiran2").val(berkas_permohonan_dari_faskes.jml_akta_kelahiran);
+                                                                        $("#jml_akta_kematian2").val(berkas_permohonan_dari_faskes.jml_akta_kematian);
+                                                                        $("#jml_lain_lain2").val(berkas_permohonan_dari_faskes.jml_lain_lain);
                                                                         $("#ubahDataModal").modal('toggle');
                                                                     })
                                                                     $("#ubahDataForm").submit(function (e){
@@ -356,7 +356,7 @@
                                                                             let jml_lain_lain = $("#jml_lain_lain2").val();
                                                                             let _token = $("input[name=_token]").val();
                                                                             $.ajax({
-                                                                                url:"{{route('berkas_pengurusan.isi_canting')}}",
+                                                                                url:"{{route('berkas_permohonan_dari_faskes.isi_canting')}}",
                                                                                 type: "PUT",
                                                                                 data:{
                                                                                     id:id,
@@ -372,7 +372,7 @@
                                                                                 },
                                                                                 success:function(response){
                                                                                     $("#ubahDataModal").modal('hide');
-                                                                                    window.location = "{{route('tampil_data_berkas_permohonan_belum_selesai_oleh_admin_data')}}";
+                                                                                    window.location = "{{route('tampil_data_berkas_permohonan_dari_faskes_belum_selesai_oleh_admin_data')}}";
                                                                                 }
                                                                             })
                                                                         }

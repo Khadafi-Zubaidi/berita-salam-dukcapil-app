@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'ReporterLoggedIn' => \App\Http\Middleware\ReporterLoggedIn::class,
         'AdminDataLoggedIn' => \App\Http\Middleware\AdminDataLoggedIn::class,
         'OperatorLoggedIn' => \App\Http\Middleware\OperatorLoggedIn::class,
+        'OperatorFasilitasKesehatanLoggedIn' => \App\Http\Middleware\OperatorFasilitasKesehatanLoggedIn::class,
     ];
 }

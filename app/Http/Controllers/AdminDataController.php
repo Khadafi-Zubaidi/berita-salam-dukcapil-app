@@ -59,13 +59,20 @@ class AdminDataController extends Controller
             $jumlah_berkas_pengurusan_yang_sudah_selesai = DB::table('berkas_pengurusans')
                 ->where('status','=','S')
                 ->count();
+            $jumlah_berkas_permohonan_dari_faskes_yang_belum_selesai = DB::table('berkas_permohonan_dari_faskes')
+                ->where('status','=','B')
+                ->count();
+            $jumlah_berkas_permohonan_dari_faskes_yang_sudah_selesai = DB::table('berkas_permohonan_dari_faskes')
+                ->where('status','=','S')
+                ->count();
             $data = [
                 'LoggedUserInfo'=>$data_admin_untuk_dashboard,
             ];
             return view('dashboard.dashboard_admin_data',$data,compact('jumlah_kecamatan','jumlah_desa_kelurahan',
             'jumlah_operator_desa_kelurahan','jumlah_berkas_pengurusan_yang_belum_selesai',
             'jumlah_berkas_pengurusan_yang_sudah_selesai',
-            'jumlah_fasilitas_kesehatan','jumlah_operator_fasilitas_kesehatan'));
+            'jumlah_fasilitas_kesehatan','jumlah_operator_fasilitas_kesehatan',
+            'jumlah_berkas_permohonan_dari_faskes_yang_belum_selesai','jumlah_berkas_permohonan_dari_faskes_yang_sudah_selesai'));
         }else{
             return view('login.login_admin_data');
         }
@@ -406,7 +413,7 @@ class AdminDataController extends Controller
     public function unggah_berkas_permohonan_selesai(Request $request){
         $data_berkas_diperbaharui = BerkasPengurusan::find($request->id1);
         $request->validate([
-            'file' => 'required|mimes:zip',
+            'file' => 'required|mimes:zip,rar',
         ]);
         $extension = $request->file->getClientOriginalExtension();
         $filename = time().'.'.$extension;

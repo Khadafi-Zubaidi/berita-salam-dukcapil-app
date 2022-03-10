@@ -76,17 +76,14 @@ class OperatorDesaKelurahanController extends Controller
         if (session()->has('LoggedOperator')){
             $request->validate([
                 'nama_operator'=>'required',
-                'jabatan'=>'required',
-                'pangkat_golongan'=>'required',
+                'no_wa'=>'required',
             ],[
                 'nama_operator.required'=>'Nama Operator tidak boleh kosong',
-                'jabatan.required'=>'Jabatan tidak boleh kosong',
-                'pangkat_golongan.required'=>'Pangkat dan Golongan tidak boleh kosong',
+                'no_wa.required'=>'No Telp./WA. tidak boleh kosong',
             ]);
             $admin_data = OperatorDesaKelurahan::find($request->id);
             $admin_data->nama_operator = $request->nama_operator;
-            $admin_data->jabatan = $request->jabatan;
-            $admin_data->pangkat_golongan = $request->pangkat_golongan;
+            $admin_data->no_wa = $request->no_wa;
             $admin_data->save();
             return redirect('dashboard_operator');
         }else{
@@ -163,7 +160,7 @@ class OperatorDesaKelurahanController extends Controller
             ];
             return view('tambah_data_oleh_operator.tambah_data_berkas_oleh_operator',$data);
         }else{
-            return view('login.login_redaktur');
+            return view('login.login_operator');
         }
     }
 

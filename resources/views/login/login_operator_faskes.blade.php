@@ -10,7 +10,7 @@
                         <div align="center">
                             <img src="{{ asset('logintheme') }}/logo/logo_ksb.png" class="mb-4">
                             <br>
-                            <h3>Login <strong>Operator Fasilitas Kesehatan</strong></h3>
+                            <h3>Login <strong>Operator Faskes</strong></h3>
                             <h5>Aplikasi Salam Dukcapil</h5>
                         </div>
                         <form action="{{route('cek_login_operator_faskes')}}" method="post">

@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminAppController;
 use App\Http\Controllers\AdminDataController;
 use App\Http\Controllers\AdminDataDinasController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\BerkasPermohonanDariFaskesController;
 use App\Http\Controllers\FasilitasKesehatanController;
 use App\Http\Controllers\KuaController;
 use App\Http\Controllers\OperatorDesaKelurahanController;
@@ -316,6 +317,8 @@ Route::post('simpan_perubahan_data_foto_operator',[OperatorDesaKelurahanControll
 Route::post('simpan_perubahan_data_berkas_operator',[OperatorDesaKelurahanController::class,'simpan_perubahan_data_berkas_operator'])->name('simpan_perubahan_data_berkas_operator');
 
 Route::get('logout_operator',[OperatorDesaKelurahanController::class,'logout_operator'])->name('logout_operator');
+
+//Berkas Permohonan Dari Desa Kelurahan
 Route::get('tambah_data_berkas_oleh_operator',[OperatorDesaKelurahanController::class,'tambah_data_berkas_oleh_operator'])->name('tambah_data_berkas_oleh_operator');
 Route::post('simpan_data_baru_permohonan_oleh_operator',[OperatorDesaKelurahanController::class,'simpan_data_baru_permohonan_oleh_operator'])->name('simpan_data_baru_permohonan_oleh_operator');
 Route::get('tampil_data_berkas_permohonan_belum_selesai_oleh_operator',[OperatorDesaKelurahanController::class,'tampil_data_berkas_permohonan_belum_selesai_oleh_operator'])->name('tampil_data_berkas_permohonan_belum_selesai_oleh_operator');
@@ -349,6 +352,15 @@ Route::put('/operator_fasilitas_kesehatan2',[OperatorFasilitasKesehatanControlle
 Route::put('/operator_fasilitas_kesehatan3',[OperatorFasilitasKesehatanController::class,'simpan_perubahan_data_password_operator_fasilitas_kesehatan_oleh_admin_data'])->name('operator_fasilitas_kesehatan.update_password');
 Route::get('tambah_data_operator_fasilitas_kesehatan_oleh_admin_data',[OperatorFasilitasKesehatanController::class,'tambah_data_operator_fasilitas_kesehatan_oleh_admin_data'])->name('tambah_data_operator_fasilitas_kesehatan_oleh_admin_data');
 Route::post('simpan_data_baru_operator_fasilitas_kesehatan_oleh_admin_data',[OperatorFasilitasKesehatanController::class,'simpan_data_baru_operator_fasilitas_kesehatan_oleh_admin_data'])->name('simpan_data_baru_operator_fasilitas_kesehatan_oleh_admin_data');
+Route::get('login_operator_faskes',[OperatorFasilitasKesehatanController::class,'login_operator_faskes'])->middleware('OperatorFasilitasKesehatanLoggedIn');
+Route::post('cek_login_operator_faskes',[OperatorFasilitasKesehatanController::class,'cek_login_operator_faskes'])->name('cek_login_operator_faskes');
+Route::get('dashboard_operator_faskes',[OperatorFasilitasKesehatanController::class,'dashboard_operator_faskes'])->name('dashboard_operator_faskes');
+Route::post('simpan_perubahan_data_profil_operator_faskes',[OperatorFasilitasKesehatanController::class,'simpan_perubahan_data_profil_operator_faskes'])->name('simpan_perubahan_data_profil_operator_faskes');
+Route::post('simpan_perubahan_data_password_operator_faskes',[OperatorFasilitasKesehatanController::class,'simpan_perubahan_data_password_operator_faskes'])->name('simpan_perubahan_data_password_operator_faskes');
+Route::post('simpan_perubahan_data_foto_operator_faskes',[OperatorFasilitasKesehatanController::class,'simpan_perubahan_data_foto_operator_faskes'])->name('simpan_perubahan_data_foto_operator_faskes');
+Route::post('simpan_perubahan_data_berkas_operator_faskes',[OperatorFasilitasKesehatanController::class,'simpan_perubahan_data_berkas_operator_faskes'])->name('simpan_perubahan_data_berkas_operator_faskes');
+Route::get('logout_operator_faskes',[OperatorFasilitasKesehatanController::class,'logout_operator_faskes'])->name('logout_operator_faskes');
+
 
 //KUA
 Route::get('tampil_data_kua_oleh_admin_data',[KuaController::class,'tampil_data_kua_oleh_admin_data'])->name('tampil_data_kua_oleh_admin_data');
@@ -366,3 +378,22 @@ Route::put('/operator_kua3',[OperatorKuaController::class,'simpan_perubahan_data
 Route::get('tambah_data_operator_kua_oleh_admin_data',[OperatorKuaController::class,'tambah_data_operator_kua_oleh_admin_data'])->name('tambah_data_operator_kua_oleh_admin_data');
 Route::post('simpan_data_baru_operator_kua_oleh_admin_data',[OperatorKuaController::class,'simpan_data_baru_operator_kua_oleh_admin_data'])->name('simpan_data_baru_operator_kua_oleh_admin_data');
 
+//Berkas Permohonan Dari Faskes
+Route::get('tambah_data_berkas_permohonan_oleh_operator_faskes',[BerkasPermohonanDariFaskesController::class,'tambah_data_berkas_permohonan_oleh_operator_faskes'])->name('tambah_data_berkas_permohonan_oleh_operator_faskes');
+Route::post('simpan_data_baru_permohonan_oleh_operator_faskes',[BerkasPermohonanDariFaskesController::class,'simpan_data_baru_permohonan_oleh_operator_faskes'])->name('simpan_data_baru_permohonan_oleh_operator_faskes');
+Route::get('tampil_data_berkas_permohonan_belum_selesai_oleh_operator_faskes',[BerkasPermohonanDariFaskesController::class,'tampil_data_berkas_permohonan_belum_selesai_oleh_operator_faskes'])->name('tampil_data_berkas_permohonan_belum_selesai_oleh_operator_faskes');
+Route::get('/berkas_permohonan_dari_faskes/{id}',[BerkasPermohonanDariFaskesController::class,'get_id_berkas_permohonan']);
+Route::put('/simpan_perubahan_data_berkas_permohonan_dari_faskes',[BerkasPermohonanDariFaskesController::class,'simpan_perubahan_data_berkas_permohonan_dari_faskes'])->name('berkas_permohonan_dari_faskes.pembaharuan_data');
+Route::post('/unggah_berkas_permohonan_lagi_oleh_operator',[BerkasPermohonanDariFaskesController::class,'unggah_berkas_permohonan_lagi_oleh_operator_faskes'])->name('berkas_permohonan_dari_faskes.upload_berkas_permohonan_lagi');
+Route::get('/cetak_bukti_pendaftaran_oleh_operator_faskes/{id}',[BerkasPermohonanDariFaskesController::class,'cetak_bukti_pendaftaran_oleh_operator_faskes'])->name('cetak_bukti_pendaftaran_oleh_operator_faskes');
+Route::get('/cetak_bukti_pengambilan_oleh_operator_faskes/{id}',[BerkasPermohonanDariFaskesController::class,'cetak_bukti_pengambilan_oleh_operator_faskes'])->name('cetak_bukti_pengambilan_oleh_operator_faskes');
+Route::get('tampil_data_berkas_permohonan_dari_faskes_belum_selesai_oleh_admin_data',[BerkasPermohonanDariFaskesController::class,'tampil_data_berkas_permohonan_dari_faskes_belum_selesai_oleh_admin_data'])->name('tampil_data_berkas_permohonan_dari_faskes_belum_selesai_oleh_admin_data');
+Route::post('/unggah_berkas_permohonan_dari_faskes_selesai',[BerkasPermohonanDariFaskesController::class,'unggah_berkas_permohonan_dari_faskes_selesai'])->name('berkas_permohonan_dari_faskes.upload_berkas_permohonan_selesai');
+Route::put('/simpan_perubahan_data_catatan_penting_untuk_faskes_oleh_admin_data',[BerkasPermohonanDariFaskesController::class,'simpan_perubahan_data_catatan_penting_untuk_faskes_oleh_admin_data'])->name('berkas_permohonan_dari_faskes.isi_canting');
+Route::get('tampil_data_berkas_permohonan_dari_faskes_sudah_selesai_oleh_admin_data',[BerkasPermohonanDariFaskesController::class,'tampil_data_berkas_permohonan_dari_faskes_sudah_selesai_oleh_admin_data'])->name('tampil_data_berkas_permohonan_dari_faskes_sudah_selesai_oleh_admin_data');
+Route::put('/hapus_berkas_permohonan_dari_faskes_ok',[BerkasPermohonanDariFaskesController::class,'hapus_berkas_permohonan_dari_faskes_oleh_admin_data'])->name('hapus_berkas_permohonan_dari_faskes_ok');
+Route::get('tampil_data_berkas_permohonan_sudah_selesai_oleh_operator_faskes',[BerkasPermohonanDariFaskesController::class,'tampil_data_berkas_permohonan_sudah_selesai_oleh_operator_faskes'])->name('tampil_data_berkas_permohonan_sudah_selesai_oleh_operator_faskes');
+Route::get('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes',[BerkasPermohonanDariFaskesController::class,'tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes'])->name('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes');
+Route::post('cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes',[BerkasPermohonanDariFaskesController::class,'cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes'])->name('cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes');
+Route::get('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes_excell',[BerkasPermohonanDariFaskesController::class,'tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes_excell'])->name('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_faskes_excell');
+Route::post('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_faskes_excell',[BerkasPermohonanDariFaskesController::class,'cetak_laporan_bulan_tahun_rekap_pengurusan_dari_faskes_excell'])->name('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_faskes_excell');

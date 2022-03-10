@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBerkasPengurusansTable extends Migration
+class CreateBerkasPermohonanDariFaskesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateBerkasPengurusansTable extends Migration
      */
     public function up()
     {
-        Schema::create('berkas_pengurusans', function (Blueprint $table) {
+        Schema::create('berkas_permohonan_dari_faskes', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_operator_desa_kelurahan')->nullable();
-            $table->bigInteger('id_desa_kelurahan')->nullable();
+            $table->bigInteger('id_operator_fasilitas_kesehatan')->nullable();
+            $table->bigInteger('id_fasilitas_kesehatan')->nullable();
             $table->string('nik_pemohon')->nullable();
             $table->string('nama_pemohon')->nullable();
             $table->string('alamat_pemohon')->nullable();
@@ -37,7 +37,7 @@ class CreateBerkasPengurusansTable extends Migration
             $table->integer('jml_akta_kelahiran')->default(0);
             $table->integer('jml_akta_kematian')->default(0);
             $table->integer('jml_lain_lain')->default(0);
-            $table->string('nama_desa_kelurahan')->nullable();
+            $table->string('nama_fasilitas_kesehatan')->nullable();
             $table->string('nama_kecamatan')->nullable();
             $table->timestamps();
         });
@@ -50,6 +50,6 @@ class CreateBerkasPengurusansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('berkas_pengurusans');
+        Schema::dropIfExists('berkas_permohonan_dari_faskes');
     }
 }

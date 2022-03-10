@@ -110,6 +110,7 @@
                                                                     <a href="javascript:void(0)" onclick="ubahData({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><i class="fa fa-edit"></i></a>
                                                                     <a href="javascript:void(0)" onclick="ubahDataPassword({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><i class="fa fa-key"></i></a>
                                                                     <a href="javascript:void(0)" onclick="hapusData({{$dt->id}})" class="btn btn-danger btn-block btn-sm"><i class="fa fa-trash"></i></a>
+                                                                    <a href="/berkas_operator_faskes/{{$dt->berkas}}" class="btn btn-info btn-block btn-sm"><small>Unduh Berkas Kelengkapan</small></a>
                                                                 </td>
                                                             </tr>
                                                             <!-- Ubah Data -->

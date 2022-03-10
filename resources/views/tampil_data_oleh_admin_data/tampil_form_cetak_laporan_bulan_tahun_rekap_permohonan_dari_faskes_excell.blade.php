@@ -55,7 +55,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title">Formulir Rekapitulasi Pengurusan Dokumen Dari Desa/Kelurahan</h5>
+                                        <h5 class="card-title">Formulir Rekapitulasi Pengurusan Dokumen Dari Fasilitas Kesehatan</h5>
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                                 <i class="fas fa-minus"></i>
@@ -65,7 +65,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <form action="{{route('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_desa_kelurahan')}}" method="post" enctype="multipart/form-data">
+                                                <form action="{{route('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_faskes_excell')}}" method="post" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="form-group">
                                                         <label>Pilih Bulan *</label><br>
@@ -97,7 +97,7 @@
                                                         @enderror
                                                     </div>
                                                     <div class="input-group mb-3">
-                                                        <button type="submit" class="btn btn-success btn-block">Pratinjau</button>
+                                                        <button type="submit" class="btn btn-success btn-block">Download Ke Excell</button>
                                                     </div>
                                                 </form>
                                             </div>

@@ -55,7 +55,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title">Data Berkas Permohonan Dari Operator Desa</h5>
+                                        <h5 class="card-title">Data Berkas Permohonan Dari Operator Fasilitas Kesehatan</h5>
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                                 <i class="fas fa-minus"></i>
@@ -74,8 +74,8 @@
                                                             <th>Alamat Pemohon</th>
                                                             <th>Jenis Permohonan</th>
                                                             <th>Tanggal Pengajuan</th>
-                                                            <th>Desa/Kelurahan</th>
-                                                            <th>Kecamatan</th>
+                                                            <th>Bulan Pengajuan</th>
+                                                            <th>Berkas Permohonan</th>
                                                             <th>Status</th>
                                                             <th>Aksi</th>
                                                         </tr>
@@ -89,8 +89,14 @@
                                                                 <td>{{$dt->alamat_pemohon}}</td>
                                                                 <td>{!!$dt->jenis_permohonan!!}</td>
                                                                 <td>{{$dt->tanggal_pengajuan}}</td>
-                                                                <td>{{$dt->nama_desa_kelurahan}}</td>
-                                                                <td>{{$dt->nama_kecamatan}}</td>
+                                                                <td>{{$dt->bulan_pengajuan}}</td>
+                                                                <td>
+                                                                    @if ($dt->berkas_permohonan == 'Fisik Telah Dibackup')
+                                                                        <span class="badge badge-danger">File Telah Dibackup</span>
+                                                                    @else
+                                                                        {{$dt->berkas_permohonan}}
+                                                                    @endif
+                                                                </td>
                                                                 <td>
                                                                     @if ($dt->status == 'B')
                                                                         <span class="badge badge-danger">Belum</span>
@@ -99,34 +105,34 @@
                                                                     @endif
                                                                 </td>
                                                                 <td>
-                                                                    <a href="/berkas_permohonan/{{$dt->berkas_permohonan}}" class="btn btn-info btn-block btn-sm"><small>Unduh Berkas Permohonan</small></a>
+                                                                    <a href="/berkas_permohonan_dari_faskes_selesai/{{$dt->berkas_selesai}}" class="btn btn-success btn-block btn-sm"><small>Unduh Dokumen Hasil</small></a>
                                                                     <a href="javascript:void(0)" onclick="ubahDataCanting({{$dt->id}})" class="btn btn-warning btn-block btn-sm"><small>Input Canting & Dokumen Hasil</small></a>
-                                                                    <a href="javascript:void(0)" onclick="unggahBerkasPermohonanSelesai({{$dt->id}})" class="btn btn-success btn-block btn-sm"><small>Unggah Dokumen Hasil</small></a>
+                                                                    <a href="javascript:void(0)" onclick="hapusBerkasPermohonanSelesai({{$dt->id}})" class="btn btn-danger btn-block btn-sm"><small>Hapus Berkas Permohonan Selesai</small></a>
                                                                 </td>
                                                             </tr>
                                                             <!-- Ubah Foto -->
-                                                            <div class="modal fade" id="editDataFotoModal">
+                                                            <div class="modal fade" id="ubahDataModal">
                                                                 <div class="modal-dialog modal-lg">
-                                                                    <div class="modal-content bg-info">
+                                                                    <div class="modal-content bg-warning">
                                                                         <div class="modal-header">
-                                                                            <h4 class="modal-title">Unggah Berkas</h4>
+                                                                            <h4 class="modal-title">Hapus Berkas</h4>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
                                                                         </div>
                                                                         <div class="modal-body">
                                                                             <p>
-                                                                                <strong>Penting Untuk Diketahui !!!</strong> Sebelum Anda mengisi formulir ini. 
+                                                                                <strong>Penting Untuk Diketahui !!!</strong> Sebelum Anda melakukan penghapusan berkas. 
                                                                                 <ol>
-                                                                                    <li>Pastikan bahwa Anda sudah melakukan kompres ke dalam bentuk (.ZIP/.RAR).</li>
-                                                                                    <li>Anda sudah memastikan file yang akan dikirim sesuai dengan permohonan yang bersangkutan.</li>
-                                                                                    <li>Untuk mengisi berkas, klik pada tombol <button>Choose File</button> lalu pilih file Zip sebagaimana dimaksud pada point paling atas.</li>
+                                                                                    <li>Pastikan bahwa dokumen hasil sudah dikirim ke operator</li>
+                                                                                    <li>Pastikan Anda telah mengunduh dokumen hasil</li>
+                                                                                    <li>Pastikan Anda memilih permohonan dengan bulan pengajuan yang telah lampau</li>
                                                                                 </ol>
                                                                             </p>
-                                                                            <form id="editDataFotoForm" action="" method="post" enctype="multipart/form-data">
+                                                                            <form id="ubahDataForm" action="" method="post">
                                                                                 @csrf
-                                                                                <input type="hidden" id="id1" name="id1"/>
-                                                                                <label>Nama Pemohon</label><br>
+                                                                                <input type="hidden" id="id1"/>
+                                                                                <label>Nama Pemohon *</label><br>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="text" id="nama_pemohon1" class="form-control" disabled>
                                                                                     <div class="input-group-append">
@@ -135,21 +141,17 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <label>Alamat Pemohon</label><br>
+                                                                                <label>Berkas Permohonan *</label><br>
                                                                                 <div class="input-group mb-3">
-                                                                                    <input type="text" id="alamat_pemohon1" class="form-control" disabled>
+                                                                                    <input type="text" id="berkas_permohonan1" class="form-control" disabled>
                                                                                     <div class="input-group-append">
                                                                                         <div class="input-group-text">
                                                                                             <span class="fas fa-id-card"></span>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <label>Upload File (.ZIP/.RAR)</label><br>
-                                                                                <div class="input-group mb-3">
-                                                                                    <input type="file" id="file" name="file" class="form-control">
-                                                                                </div>
                                                                                 <div class="col-12">
-                                                                                    <button type="submit" class="btn btn-primary btn-block">Upload Berkas</button>
+                                                                                    <button type="submit" class="btn btn-danger btn-block">Hapus Berkas Permohonan</button>
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -157,40 +159,36 @@
                                                                 </div>
                                                             </div>
                                                             <script>
-                                                                function unggahBerkasPermohonanSelesai(id)
+                                                                function hapusBerkasPermohonanSelesai(id)
                                                                 {
-                                                                    $.get('/berkas_pengurusans/'+id,function(berkas_pengurusan){
-                                                                        $("#id1").val(berkas_pengurusan.id);
-                                                                        $("#nama_pemohon1").val(berkas_pengurusan.nama_pemohon);
-                                                                        $("#alamat_pemohon1").val(berkas_pengurusan.alamat_pemohon);
-                                                                        $("#editDataFotoModal").modal('toggle');
-                                                                    });
-                                                                    $.ajaxSetup({
-                                                                        headers: {
-                                                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                                                        }
-                                                                    });
-                                                                    $("#editDataFotoForm").submit(function (e){
+                                                                    $.get('/berkas_permohonan_dari_faskes/'+id,function(berkas_permohonan_dari_faskes){
+                                                                        $("#id1").val(berkas_permohonan_dari_faskes.id);
+                                                                        $("#nama_pemohon1").val(berkas_permohonan_dari_faskes.nama_pemohon);
+                                                                        $("#berkas_permohonan1").val(berkas_permohonan_dari_faskes.berkas_permohonan);
+                                                                        $("#ubahDataModal").modal('toggle');
+                                                                    })
+                                                                    $("#ubahDataForm").submit(function (e){
                                                                         e.preventDefault();
-                                                                        var formData = new FormData(this);
+                                                                        let id = $("#id1").val();
+                                                                        let berkas_permohonan = $("#berkas_permohonan1").val();
+                                                                        let _token = $("input[name=_token]").val();
                                                                         $.ajax({
-                                                                            url:"{{route('berkas_permohonan.upload_berkas_permohonan_selesai')}}",
-                                                                            type: "POST",
-                                                                            data: formData,
-                                                                            cache:false,
-                                                                            contentType: false,
-                                                                            processData: false,
-                                                                            success: (data) =>{
-                                                                                this.reset();
-                                                                                $("#editDataFotoModal").modal('hide');
-                                                                                window.location = "{{route('tampil_data_berkas_permohonan_belum_selesai_oleh_admin_data')}}";
+                                                                            url:"{{route('hapus_berkas_permohonan_dari_faskes_ok')}}",
+                                                                            type: "PUT",
+                                                                            data:{
+                                                                                id:id,
+                                                                                berkas_permohonan:berkas_permohonan,
+                                                                                _token:_token
+                                                                            },
+                                                                            success:function(response){
+                                                                                $("#ubahDataModal").modal('hide');
+                                                                                window.location = "{{route('tampil_data_berkas_permohonan_dari_faskes_sudah_selesai_oleh_admin_data')}}";
                                                                             }
-                                                                        });
-                                                                    });
+                                                                        })
+                                                                    })
                                                                 }
                                                             </script>
-                                                            <!-- Ubah Data Canting -->
-                                                            <div class="modal fade" id="ubahDataModal">
+                                                            <div class="modal fade" id="Modal8">
                                                                 <div class="modal-dialog modal-lg">
                                                                     <div class="modal-content bg-warning">
                                                                         <div class="modal-header">
@@ -200,7 +198,7 @@
                                                                             </button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form id="ubahDataForm" action="" method="post">
+                                                                            <form id="Form8" action="" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" id="id2"/>
                                                                                 <label>Nama Pemohon</label><br>
@@ -318,22 +316,22 @@
                                                             <script>
                                                                 function ubahDataCanting(id)
                                                                 {
-                                                                    $.get('/berkas_pengurusans/'+id,function(berkas_pengurusan){
-                                                                        $("#id2").val(berkas_pengurusan.id);
-                                                                        $("#nama_pemohon2").val(berkas_pengurusan.nama_pemohon);
-                                                                        $("#alamat_pemohon2").val(berkas_pengurusan.alamat_pemohon);
-                                                                        $("#tanggal_pengajuan2").val(berkas_pengurusan.tanggal_pengajuan);
-                                                                        $("#isi_canting2").summernote('code', berkas_pengurusan.isi_canting);
-                                                                        $("#dokumen_hasil2").summernote('code', berkas_pengurusan.dokumen_hasil);
-                                                                        $("#jml_kk2").val(berkas_pengurusan.jml_kk);
-                                                                        $("#jml_skp2").val(berkas_pengurusan.jml_skp);
-                                                                        $("#jml_kia2").val(berkas_pengurusan.jml_kia);
-                                                                        $("#jml_akta_kelahiran2").val(berkas_pengurusan.jml_akta_kelahiran);
-                                                                        $("#jml_akta_kematian2").val(berkas_pengurusan.jml_akta_kematian);
-                                                                        $("#jml_lain_lain2").val(berkas_pengurusan.jml_lain_lain);
-                                                                        $("#ubahDataModal").modal('toggle');
+                                                                    $.get('/berkas_permohonan_dari_faskes/'+id,function(berkas_permohonan_dari_faskes){
+                                                                        $("#id2").val(berkas_permohonan_dari_faskes.id);
+                                                                        $("#nama_pemohon2").val(berkas_permohonan_dari_faskes.nama_pemohon);
+                                                                        $("#alamat_pemohon2").val(berkas_permohonan_dari_faskes.alamat_pemohon);
+                                                                        $("#tanggal_pengajuan2").val(berkas_permohonan_dari_faskes.tanggal_pengajuan);
+                                                                        $("#isi_canting2").summernote('code', berkas_permohonan_dari_faskes.isi_canting);
+                                                                        $("#dokumen_hasil2").summernote('code', berkas_permohonan_dari_faskes.dokumen_hasil);
+                                                                        $("#jml_kk2").val(berkas_permohonan_dari_faskes.jml_kk);
+                                                                        $("#jml_skp2").val(berkas_permohonan_dari_faskes.jml_skp);
+                                                                        $("#jml_kia2").val(berkas_permohonan_dari_faskes.jml_kia);
+                                                                        $("#jml_akta_kelahiran2").val(berkas_permohonan_dari_faskes.jml_akta_kelahiran);
+                                                                        $("#jml_akta_kematian2").val(berkas_permohonan_dari_faskes.jml_akta_kematian);
+                                                                        $("#jml_lain_lain2").val(berkas_permohonan_dari_faskes.jml_lain_lain);
+                                                                        $("#Modal8").modal('toggle');
                                                                     })
-                                                                    $("#ubahDataForm").submit(function (e){
+                                                                    $("#Form8").submit(function (e){
                                                                         e.preventDefault();
                                                                         if($('#jml_kk2').val() == '0'&&
                                                                             $('#jml_skp2').val() == '0'&&
@@ -344,39 +342,39 @@
                                                                             {
                                                                                 alert("Jumlah dokumen hasil tidak boleh kosong");  	
                                                                             }
-                                                                        else{
-                                                                            let id = $("#id2").val();
-                                                                            let isi_canting = $("#isi_canting2").val();
-                                                                            let dokumen_hasil = $("#dokumen_hasil2").val();
-                                                                            let jml_kk = $("#jml_kk2").val();
-                                                                            let jml_skp = $("#jml_skp2").val();
-                                                                            let jml_kia = $("#jml_kia2").val();
-                                                                            let jml_akta_kelahiran = $("#jml_akta_kelahiran2").val();
-                                                                            let jml_akta_kematian = $("#jml_akta_kematian2").val();
-                                                                            let jml_lain_lain = $("#jml_lain_lain2").val();
-                                                                            let _token = $("input[name=_token]").val();
-                                                                            $.ajax({
-                                                                                url:"{{route('berkas_pengurusan.isi_canting')}}",
-                                                                                type: "PUT",
-                                                                                data:{
-                                                                                    id:id,
-                                                                                    isi_canting:isi_canting,
-                                                                                    dokumen_hasil:dokumen_hasil,
-                                                                                    jml_kk:jml_kk,
-                                                                                    jml_skp:jml_skp,
-                                                                                    jml_kia:jml_kia,
-                                                                                    jml_akta_kelahiran:jml_akta_kelahiran,
-                                                                                    jml_akta_kematian:jml_akta_kematian,
-                                                                                    jml_lain_lain:jml_lain_lain,
-                                                                                    _token:_token
-                                                                                },
-                                                                                success:function(response){
-                                                                                    $("#ubahDataModal").modal('hide');
-                                                                                    window.location = "{{route('tampil_data_berkas_permohonan_belum_selesai_oleh_admin_data')}}";
-                                                                                }
-                                                                            })
-                                                                        }
-                                                                        
+                                                                        else
+                                                                            {
+                                                                                let id = $("#id2").val();
+                                                                                let isi_canting = $("#isi_canting2").val();
+                                                                                let dokumen_hasil = $("#dokumen_hasil2").val();
+                                                                                let jml_kk = $("#jml_kk2").val();
+                                                                                let jml_skp = $("#jml_skp2").val();
+                                                                                let jml_kia = $("#jml_kia2").val();
+                                                                                let jml_akta_kelahiran = $("#jml_akta_kelahiran2").val();
+                                                                                let jml_akta_kematian = $("#jml_akta_kematian2").val();
+                                                                                let jml_lain_lain = $("#jml_lain_lain2").val();
+                                                                                let _token = $("input[name=_token]").val();
+                                                                                $.ajax({
+                                                                                    url:"{{route('berkas_permohonan_dari_faskes.isi_canting')}}",
+                                                                                    type: "PUT",
+                                                                                    data:{
+                                                                                        id:id,
+                                                                                        isi_canting:isi_canting,
+                                                                                        dokumen_hasil:dokumen_hasil,
+                                                                                        jml_kk:jml_kk,
+                                                                                        jml_skp:jml_skp,
+                                                                                        jml_kia:jml_kia,
+                                                                                        jml_akta_kelahiran:jml_akta_kelahiran,
+                                                                                        jml_akta_kematian:jml_akta_kematian,
+                                                                                        jml_lain_lain:jml_lain_lain,
+                                                                                        _token:_token
+                                                                                    },
+                                                                                    success:function(response){
+                                                                                        $("#Modal8").modal('hide');
+                                                                                        window.location = "{{route('tampil_data_berkas_permohonan_dari_faskes_sudah_selesai_oleh_admin_data')}}";
+                                                                                    }
+                                                                                })
+                                                                            }
                                                                     })
                                                                 }
                                                             </script>
