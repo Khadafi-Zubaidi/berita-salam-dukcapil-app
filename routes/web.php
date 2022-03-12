@@ -330,13 +330,7 @@ Route::put('/berkas_pengurusan3',[OperatorDesaKelurahanController::class,'simpan
 Route::get('/cetak_bukti_pendaftaran_oleh_operator/{id}',[OperatorDesaKelurahanController::class,'cetak_bukti_pendaftaran_oleh_operator'])->name('cetak_bukti_pendaftaran_oleh_operator');
 Route::get('/cetak_bukti_pengambilan_oleh_operator/{id}',[OperatorDesaKelurahanController::class,'cetak_bukti_pengambilan_oleh_operator'])->name('cetak_bukti_pengambilan_oleh_operator');
 
-//Admin Data Dinas
-Route::get('tampil_data_admin_data_dinas_oleh_admin_app',[AdminDataDinasController::class,'tampil_data_admin_data_dinas_oleh_admin_app'])->name('tampil_data_admin_data_dinas_oleh_admin_app');
-Route::get('/admindatadinas/{id}',[AdminDataDinasController::class,'get_id_admin_data_dinas_by_admin_app']);
-Route::put('/admindatadinas1',[AdminDataDinasController::class,'simpan_perubahan_data_admin_data_dinas_oleh_admin_app'])->name('admin_data_dinas.perbaharui_data');
-Route::put('/admindatadinas2',[AdminDataDinasController::class,'simpan_perubahan_data_password_admin_data_dinas_oleh_admin_app'])->name('admin_data_dinas.perbaharui_password');
-Route::get('tambah_data_admin_data_dinas_oleh_admin_app',[AdminDataDinasController::class,'tambah_data_admin_data_dinas_oleh_admin_app'])->name('tambah_data_admin_data_dinas_oleh_admin_app');
-Route::post('simpan_data_baru_admin_data_dinas_oleh_admin_app',[AdminDataDinasController::class,'simpan_data_baru_admin_data_dinas_oleh_admin_app'])->name('simpan_data_baru_admin_data_dinas_oleh_admin_app');
+
 
 //Fasilitas Kesehatan
 Route::get('tampil_data_fasilitas_kesehatan_oleh_admin_data',[FasilitasKesehatanController::class,'tampil_data_fasilitas_kesehatan_oleh_admin_data'])->name('tampil_data_fasilitas_kesehatan_oleh_admin_data');
@@ -427,4 +421,31 @@ Route::get('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua',[Be
 Route::post('cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua',[BerkasPermohonanDariKuaController::class,'cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua'])->name('cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua');
 Route::get('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua_excell',[BerkasPermohonanDariKuaController::class,'tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua_excell'])->name('tampil_form_cetak_laporan_bulan_tahun_rekap_permohonan_dari_kua_excell');
 Route::post('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_kua_excell',[BerkasPermohonanDariKuaController::class,'cetak_laporan_bulan_tahun_rekap_pengurusan_dari_kua_excell'])->name('cetak_laporan_bulan_tahun_rekap_pengurusan_dari_kua_excell');
+
+//Admin Data Dinas
+Route::get('tampil_data_admin_data_dinas_oleh_admin_app',[AdminDataDinasController::class,'tampil_data_admin_data_dinas_oleh_admin_app'])->name('tampil_data_admin_data_dinas_oleh_admin_app');
+Route::get('/admindatadinas/{id}',[AdminDataDinasController::class,'get_id_admin_data_dinas_by_admin_app']);
+Route::put('/admindatadinas1',[AdminDataDinasController::class,'simpan_perubahan_data_admin_data_dinas_oleh_admin_app'])->name('admin_data_dinas.perbaharui_data');
+Route::put('/admindatadinas2',[AdminDataDinasController::class,'simpan_perubahan_data_password_admin_data_dinas_oleh_admin_app'])->name('admin_data_dinas.perbaharui_password');
+Route::get('tambah_data_admin_data_dinas_oleh_admin_app',[AdminDataDinasController::class,'tambah_data_admin_data_dinas_oleh_admin_app'])->name('tambah_data_admin_data_dinas_oleh_admin_app');
+Route::post('simpan_data_baru_admin_data_dinas_oleh_admin_app',[AdminDataDinasController::class,'simpan_data_baru_admin_data_dinas_oleh_admin_app'])->name('simpan_data_baru_admin_data_dinas_oleh_admin_app');
+Route::get('login_admin_data_dinas',[AdminDataDinasController::class,'login_admin_data_dinas'])->middleware('AdminDataDinasLoggedIn');
+Route::post('cek_login_admin_data_dinas',[AdminDataDinasController::class,'cek_login_admin_data_dinas'])->name('cek_login_admin_data_dinas');
+Route::get('dashboard_admin_data_dinas',[AdminDataDinasController::class,'dashboard_admin_data_dinas'])->name('dashboard_admin_data_dinas');
+Route::post('simpan_perubahan_data_profil_admin_data_dinas',[AdminDataDinasController::class,'simpan_perubahan_data_profil_admin_data_dinas'])->name('simpan_perubahan_data_profil_admin_data_dinas');
+Route::post('simpan_perubahan_data_password_admin_data_dinas',[AdminDataDinasController::class,'simpan_perubahan_data_password_admin_data_dinas'])->name('simpan_perubahan_data_password_admin_data_dinas');
+Route::post('simpan_perubahan_data_foto_admin_data_dinas',[AdminDataDinasController::class,'simpan_perubahan_data_foto_admin_data_dinas'])->name('simpan_perubahan_data_foto_admin_data_dinas');
+Route::get('logout_admin_data_dinas',[AdminDataDinasController::class,'logout_admin_data_dinas'])->name('logout_admin_data_dinas');
+Route::get('tampil_data_berkas_permohonan_dari_desa_belum_selesai_oleh_admin_data_dinas',[AdminDataDinasController::class,'tampil_data_berkas_permohonan_dari_desa_belum_selesai_oleh_admin_data_dinas'])->name('tampil_data_berkas_permohonan_dari_desa_belum_selesai_oleh_admin_data_dinas');
+Route::get('/cari_berkas_pengurusan_oleh_admin_data_dinas/{id}',[AdminDataDinasController::class,'get_id_berkas_pengurusan_by_admin_data_dinas']);
+Route::post('/unggah_berkas_permohonan_selesai_oleh_admin_data_dinas',[AdminDataDinasController::class,'unggah_berkas_permohonan_selesai_oleh_admin_data_dinas'])->name('berkas_permohonan.upload_berkas_permohonan_selesai_oleh_admin_data_dinas');
+Route::put('/simpan_perubahan_data_catatan_penting_oleh_admin_data_dinas',[AdminDataDinasController::class,'simpan_perubahan_data_catatan_penting_oleh_admin_data_dinas'])->name('berkas_permohonan.isi_canting_oleh_admin_data_dinas');
+Route::get('tampil_data_berkas_permohonan_dari_desa_sudah_selesai_oleh_admin_data_dinas',[AdminDataDinasController::class,'tampil_data_berkas_permohonan_dari_desa_sudah_selesai_oleh_admin_data_dinas'])->name('tampil_data_berkas_permohonan_dari_desa_sudah_selesai_oleh_admin_data_dinas');
+Route::get('tampil_data_berkas_permohonan_dari_faskes_belum_selesai_oleh_admin_data_dinas',[AdminDataDinasController::class,'tampil_data_berkas_permohonan_dari_faskes_belum_selesai_oleh_admin_data_dinas'])->name('tampil_data_berkas_permohonan_dari_faskes_belum_selesai_oleh_admin_data_dinas');
+Route::get('/cari_berkas_permohonan_dari_faskes_oleh_admin_data_dinas/{id}',[AdminDataDinasController::class,'get_id_berkas_permohonan_dari_faskes_by_admin_data_dinas']);
+Route::get('tampil_data_berkas_permohonan_dari_faskes_sudah_selesai_oleh_admin_data_dinas',[AdminDataDinasController::class,'tampil_data_berkas_permohonan_dari_faskes_sudah_selesai_oleh_admin_data_dinas'])->name('tampil_data_berkas_permohonan_dari_faskes_sudah_selesai_oleh_admin_data_dinas');
+Route::get('tampil_data_berkas_permohonan_dari_kua_belum_selesai_oleh_admin_data_dinas',[AdminDataDinasController::class,'tampil_data_berkas_permohonan_dari_kua_belum_selesai_oleh_admin_data_dinas'])->name('tampil_data_berkas_permohonan_dari_kua_belum_selesai_oleh_admin_data_dinas');
+Route::get('tampil_data_berkas_permohonan_dari_kua_sudah_selesai_oleh_admin_data_dinas',[AdminDataDinasController::class,'tampil_data_berkas_permohonan_dari_kua_sudah_selesai_oleh_admin_data_dinas'])->name('tampil_data_berkas_permohonan_dari_kua_sudah_selesai_oleh_admin_data_dinas');
+
+
 
